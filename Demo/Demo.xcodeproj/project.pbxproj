@@ -1,0 +1,440 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		20B77CE1247FC0A300C1D503 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CE0247FC0A300C1D503 /* AppDelegate.swift */; };
+		20B77CE5247FC0A300C1D503 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CE4247FC0A300C1D503 /* ViewController.swift */; };
+		20B77CE8247FC0A300C1D503 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20B77CE6247FC0A300C1D503 /* Main.storyboard */; };
+		20B77CEA247FC0A500C1D503 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20B77CE9247FC0A500C1D503 /* Assets.xcassets */; };
+		20B77CED247FC0A500C1D503 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20B77CEB247FC0A500C1D503 /* LaunchScreen.storyboard */; };
+		20B77CF6247FC0DB00C1D503 /* UniversalBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B77CF5247FC0DB00C1D503 /* UniversalBluetooth.framework */; };
+		20B77CF7247FC0DB00C1D503 /* UniversalBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 20B77CF5247FC0DB00C1D503 /* UniversalBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		20B77D12247FC4CF00C1D503 /* KRProgressHUDIconType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D08247FC4CF00C1D503 /* KRProgressHUDIconType.swift */; };
+		20B77D13247FC4CF00C1D503 /* InnerKRProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D09247FC4CF00C1D503 /* InnerKRProgressHUD.swift */; };
+		20B77D14247FC4CF00C1D503 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D0A247FC4CF00C1D503 /* Extensions.swift */; };
+		20B77D15247FC4CF00C1D503 /* KRProgressHUDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D0B247FC4CF00C1D503 /* KRProgressHUDViewController.swift */; };
+		20B77D16247FC4CF00C1D503 /* KRProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D0C247FC4CF00C1D503 /* KRProgressHUD.swift */; };
+		20B77D17247FC4CF00C1D503 /* CAGradientLayerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D0F247FC4CF00C1D503 /* CAGradientLayerExtensions.swift */; };
+		20B77D18247FC4CF00C1D503 /* KRActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D10247FC4CF00C1D503 /* KRActivityIndicatorView.swift */; };
+		20B77D19247FC4CF00C1D503 /* KRActivityIndicatorViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D11247FC4CF00C1D503 /* KRActivityIndicatorViewStyle.swift */; };
+		20B77D1B247FC6BF00C1D503 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D1A247FC6BF00C1D503 /* ScanViewController.swift */; };
+		20B77D1D247FC6EB00C1D503 /* BluetoothViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D1C247FC6EB00C1D503 /* BluetoothViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		20B77CF8247FC0DB00C1D503 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				20B77CF7247FC0DB00C1D503 /* UniversalBluetooth.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		20B77CDD247FC0A300C1D503 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		20B77CE0247FC0A300C1D503 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		20B77CE4247FC0A300C1D503 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		20B77CE7247FC0A300C1D503 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		20B77CE9247FC0A500C1D503 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		20B77CEC247FC0A500C1D503 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		20B77CEE247FC0A500C1D503 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20B77CF5247FC0DB00C1D503 /* UniversalBluetooth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UniversalBluetooth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		20B77D08247FC4CF00C1D503 /* KRProgressHUDIconType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KRProgressHUDIconType.swift; sourceTree = "<group>"; };
+		20B77D09247FC4CF00C1D503 /* InnerKRProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InnerKRProgressHUD.swift; sourceTree = "<group>"; };
+		20B77D0A247FC4CF00C1D503 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		20B77D0B247FC4CF00C1D503 /* KRProgressHUDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KRProgressHUDViewController.swift; sourceTree = "<group>"; };
+		20B77D0C247FC4CF00C1D503 /* KRProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KRProgressHUD.swift; sourceTree = "<group>"; };
+		20B77D0D247FC4CF00C1D503 /* KRProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRProgressHUD.h; sourceTree = "<group>"; };
+		20B77D0F247FC4CF00C1D503 /* CAGradientLayerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAGradientLayerExtensions.swift; sourceTree = "<group>"; };
+		20B77D10247FC4CF00C1D503 /* KRActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KRActivityIndicatorView.swift; sourceTree = "<group>"; };
+		20B77D11247FC4CF00C1D503 /* KRActivityIndicatorViewStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KRActivityIndicatorViewStyle.swift; sourceTree = "<group>"; };
+		20B77D1A247FC6BF00C1D503 /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
+		20B77D1C247FC6EB00C1D503 /* BluetoothViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		20B77CDA247FC0A300C1D503 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20B77CF6247FC0DB00C1D503 /* UniversalBluetooth.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		20B77CD4247FC0A300C1D503 = {
+			isa = PBXGroup;
+			children = (
+				20B77CDF247FC0A300C1D503 /* Demo */,
+				20B77CDE247FC0A300C1D503 /* Products */,
+				20B77CF4247FC0DB00C1D503 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		20B77CDE247FC0A300C1D503 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20B77CDD247FC0A300C1D503 /* Demo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		20B77CDF247FC0A300C1D503 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				20B77CE0247FC0A300C1D503 /* AppDelegate.swift */,
+				20B77CE4247FC0A300C1D503 /* ViewController.swift */,
+				20B77D1A247FC6BF00C1D503 /* ScanViewController.swift */,
+				20B77D1C247FC6EB00C1D503 /* BluetoothViewController.swift */,
+				20B77CE6247FC0A300C1D503 /* Main.storyboard */,
+				20B77D06247FC4CF00C1D503 /* Vendor */,
+				20B77D05247FC2B100C1D503 /* SupportingFiles */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+		20B77CF4247FC0DB00C1D503 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				20B77CF5247FC0DB00C1D503 /* UniversalBluetooth.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		20B77D05247FC2B100C1D503 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				20B77CEB247FC0A500C1D503 /* LaunchScreen.storyboard */,
+				20B77CE9247FC0A500C1D503 /* Assets.xcassets */,
+				20B77CEE247FC0A500C1D503 /* Info.plist */,
+			);
+			name = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		20B77D06247FC4CF00C1D503 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				20B77D07247FC4CF00C1D503 /* KRProgressHUD */,
+				20B77D0E247FC4CF00C1D503 /* KRActivityIndicatorView */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		20B77D07247FC4CF00C1D503 /* KRProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				20B77D08247FC4CF00C1D503 /* KRProgressHUDIconType.swift */,
+				20B77D09247FC4CF00C1D503 /* InnerKRProgressHUD.swift */,
+				20B77D0A247FC4CF00C1D503 /* Extensions.swift */,
+				20B77D0B247FC4CF00C1D503 /* KRProgressHUDViewController.swift */,
+				20B77D0C247FC4CF00C1D503 /* KRProgressHUD.swift */,
+				20B77D0D247FC4CF00C1D503 /* KRProgressHUD.h */,
+			);
+			path = KRProgressHUD;
+			sourceTree = "<group>";
+		};
+		20B77D0E247FC4CF00C1D503 /* KRActivityIndicatorView */ = {
+			isa = PBXGroup;
+			children = (
+				20B77D0F247FC4CF00C1D503 /* CAGradientLayerExtensions.swift */,
+				20B77D10247FC4CF00C1D503 /* KRActivityIndicatorView.swift */,
+				20B77D11247FC4CF00C1D503 /* KRActivityIndicatorViewStyle.swift */,
+			);
+			path = KRActivityIndicatorView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		20B77CDC247FC0A300C1D503 /* Demo-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20B77CF1247FC0A500C1D503 /* Build configuration list for PBXNativeTarget "Demo-iOS" */;
+			buildPhases = (
+				20B77CD9247FC0A300C1D503 /* Sources */,
+				20B77CDA247FC0A300C1D503 /* Frameworks */,
+				20B77CDB247FC0A300C1D503 /* Resources */,
+				20B77CF8247FC0DB00C1D503 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Demo-iOS";
+			productName = Demo;
+			productReference = 20B77CDD247FC0A300C1D503 /* Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		20B77CD5247FC0A300C1D503 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				TargetAttributes = {
+					20B77CDC247FC0A300C1D503 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+				};
+			};
+			buildConfigurationList = 20B77CD8247FC0A300C1D503 /* Build configuration list for PBXProject "Demo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 20B77CD4247FC0A300C1D503;
+			productRefGroup = 20B77CDE247FC0A300C1D503 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				20B77CDC247FC0A300C1D503 /* Demo-iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		20B77CDB247FC0A300C1D503 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20B77CED247FC0A500C1D503 /* LaunchScreen.storyboard in Resources */,
+				20B77CEA247FC0A500C1D503 /* Assets.xcassets in Resources */,
+				20B77CE8247FC0A300C1D503 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		20B77CD9247FC0A300C1D503 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20B77D16247FC4CF00C1D503 /* KRProgressHUD.swift in Sources */,
+				20B77D17247FC4CF00C1D503 /* CAGradientLayerExtensions.swift in Sources */,
+				20B77D19247FC4CF00C1D503 /* KRActivityIndicatorViewStyle.swift in Sources */,
+				20B77D1B247FC6BF00C1D503 /* ScanViewController.swift in Sources */,
+				20B77D14247FC4CF00C1D503 /* Extensions.swift in Sources */,
+				20B77CE5247FC0A300C1D503 /* ViewController.swift in Sources */,
+				20B77D15247FC4CF00C1D503 /* KRProgressHUDViewController.swift in Sources */,
+				20B77D12247FC4CF00C1D503 /* KRProgressHUDIconType.swift in Sources */,
+				20B77D13247FC4CF00C1D503 /* InnerKRProgressHUD.swift in Sources */,
+				20B77D1D247FC6EB00C1D503 /* BluetoothViewController.swift in Sources */,
+				20B77CE1247FC0A300C1D503 /* AppDelegate.swift in Sources */,
+				20B77D18247FC4CF00C1D503 /* KRActivityIndicatorView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		20B77CE6247FC0A300C1D503 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				20B77CE7247FC0A300C1D503 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		20B77CEB247FC0A500C1D503 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				20B77CEC247FC0A500C1D503 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		20B77CEF247FC0A500C1D503 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		20B77CF0247FC0A500C1D503 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		20B77CF2247FC0A500C1D503 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.evanxlh.Demo;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		20B77CF3247FC0A500C1D503 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.evanxlh.Demo;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		20B77CD8247FC0A300C1D503 /* Build configuration list for PBXProject "Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20B77CEF247FC0A500C1D503 /* Debug */,
+				20B77CF0247FC0A500C1D503 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		20B77CF1247FC0A500C1D503 /* Build configuration list for PBXNativeTarget "Demo-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20B77CF2247FC0A500C1D503 /* Debug */,
+				20B77CF3247FC0A500C1D503 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 20B77CD5247FC0A300C1D503 /* Project object */;
+}

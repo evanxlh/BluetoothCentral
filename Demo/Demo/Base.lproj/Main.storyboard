@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JFE-wx-h4O">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--扫描-->
+        <scene sceneID="UId-pL-tqy">
+            <objects>
+                <tableViewController id="2gg-Qu-lEy" customClass="ScanViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4Pr-o1-iRS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScanTableCell" textLabel="cMJ-II-dTY" detailTextLabel="por-UJ-SXz" rowHeight="50" style="IBUITableViewCellStyleValue1" id="y5o-Zp-MWE">
+                                <rect key="frame" x="0.0" y="28" width="414" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="y5o-Zp-MWE" id="NoI-Rj-2Z3">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cMJ-II-dTY">
+                                            <rect key="frame" x="20" y="15" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="por-UJ-SXz">
+                                            <rect key="frame" x="350" y="15" width="44" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="2gg-Qu-lEy" id="Fye-nH-9cW"/>
+                            <outlet property="delegate" destination="2gg-Qu-lEy" id="Pbn-cw-VLc"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="扫描" id="Aqm-xw-jjM"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="acu-8A-iFs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="713" y="117"/>
+        </scene>
+        <!-- 蓝牙机器人-->
+        <scene sceneID="P4P-Yn-jId">
+            <objects>
+                <viewController storyboardIdentifier="BluetoothViewController" id="5Ls-ZI-8MA" customClass="BluetoothViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="x75-Zm-9O9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W5S-uR-eRK">
+                                <rect key="frame" x="20" y="59" width="92" height="30"/>
+                                <state key="normal" title="获取设备信息"/>
+                                <connections>
+                                    <action selector="fetchDeviceInfo:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="eQj-4A-swc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6zK-W1-H8c">
+                                <rect key="frame" x="20" y="107" width="92" height="30"/>
+                                <state key="normal" title="设置舵机角度"/>
+                                <connections>
+                                    <action selector="setServoToAngle:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="5m2-4x-RRz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sdZ-pc-DQm">
+                                <rect key="frame" x="20" y="155" width="108" height="30"/>
+                                <state key="normal" title="转动轮模式舵机"/>
+                                <connections>
+                                    <action selector="rotateServo:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="xgZ-3u-bUV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gqk-6t-0ob">
+                                <rect key="frame" x="20" y="243" width="62" height="30"/>
+                                <state key="normal" title="启动马达"/>
+                                <connections>
+                                    <action selector="startMotor:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="5JE-T7-iuU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nHU-Qu-ieY">
+                                <rect key="frame" x="20" y="293" width="62" height="30"/>
+                                <state key="normal" title="关闭马达"/>
+                                <connections>
+                                    <action selector="stopMotor:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="i0F-2j-uDP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j4x-oE-dKm">
+                                <rect key="frame" x="20" y="199" width="108" height="30"/>
+                                <state key="normal" title="停止轮模式舵机"/>
+                                <connections>
+                                    <action selector="stopRotateServo:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="h4X-iB-PIk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5z-ki-PHN">
+                                <rect key="frame" x="302" y="107" width="92" height="30"/>
+                                <state key="normal" title="获取红外数据"/>
+                                <connections>
+                                    <action selector="getInfraredSensorData:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="4rq-Nv-xlM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WUM-Zw-cVa">
+                                <rect key="frame" x="286" y="155" width="108" height="30"/>
+                                <state key="normal" title="获取超声波数据"/>
+                                <connections>
+                                    <action selector="getUtralsoundSensorData:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="8c5-4b-vjd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dl0-l4-m4K">
+                                <rect key="frame" x="289" y="199" width="103" height="30"/>
+                                <state key="normal" title="获取Touch数据"/>
+                                <connections>
+                                    <action selector="getTouchSensorData:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="HK0-aX-oUd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uli-RJ-DZO">
+                                <rect key="frame" x="300" y="59" width="92" height="30"/>
+                                <state key="normal" title="获取颜色数据"/>
+                                <connections>
+                                    <action selector="getColorSensorData:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="xX5-06-qfN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SVd-Nf-kFt">
+                                <rect key="frame" x="20" y="344" width="62" height="30"/>
+                                <state key="normal" title="眼灯常亮"/>
+                                <connections>
+                                    <action selector="lightUpLedLight:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="gIT-Ow-4as"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9p2-Yo-5cb">
+                                <rect key="frame" x="20" y="392" width="123" height="30"/>
+                                <state key="normal" title="眼灯亮一会儿熄灭"/>
+                                <connections>
+                                    <action selector="lightupLedLightSometime:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="Noy-o0-bL7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uAL-sR-a7a">
+                                <rect key="frame" x="20" y="442" width="62" height="30"/>
+                                <state key="normal" title="熄灭眼灯"/>
+                                <connections>
+                                    <action selector="extingushLedLight:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="hck-Xh-FVf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1l-68-RnS">
+                                <rect key="frame" x="300" y="243" width="92" height="30"/>
+                                <state key="normal" title="超声波灯常亮"/>
+                                <connections>
+                                    <action selector="lightupUltrasonicLight:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="soX-Bg-txt"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D4l-Uq-NeQ">
+                                <rect key="frame" x="239" y="292" width="153" height="30"/>
+                                <state key="normal" title="超声波灯亮一会儿熄灭"/>
+                                <connections>
+                                    <action selector="lightupUltrasonicLightSometime:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="lyG-4P-OZr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UxL-2E-TvV">
+                                <rect key="frame" x="300" y="344" width="92" height="30"/>
+                                <state key="normal" title="超声波灯单闪"/>
+                                <connections>
+                                    <action selector="singleFlash:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="Tbp-Qr-EH3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Df-7S-e3c">
+                                <rect key="frame" x="300" y="392" width="92" height="30"/>
+                                <state key="normal" title="超声波灯双闪"/>
+                                <connections>
+                                    <action selector="doubleFlash:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="ebu-eD-nFh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F6c-Uw-0HH">
+                                <rect key="frame" x="300" y="442" width="92" height="30"/>
+                                <state key="normal" title="熄灭超声波灯"/>
+                                <connections>
+                                    <action selector="extingushUltrasonicLight:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="k8U-2p-gfV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZb-ek-pz9">
+                                <rect key="frame" x="20" y="491" width="92" height="30"/>
+                                <state key="normal" title="眼灯做个表情"/>
+                                <connections>
+                                    <action selector="makeLedLightExpression:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="3YV-Ua-FeF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eye-ZO-GiJ">
+                                <rect key="frame" x="223" y="491" width="169" height="30"/>
+                                <state key="normal" title="动作录制：舵机角度回读"/>
+                                <state key="selected" title="结束动作录制">
+                                    <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="recordAction:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="7Xo-uQ-L5G"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5aa-wW-Z1W">
+                                <rect key="frame" x="20" y="542" width="92" height="30"/>
+                                <state key="normal" title="开始电量监控"/>
+                                <state key="selected" title="停止电量监控">
+                                    <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleBatteryMonitor:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="fjn-6R-7vg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="9p2-Yo-5cb" firstAttribute="leading" secondItem="Tcr-pH-dPT" secondAttribute="leading" constant="20" id="0yc-C8-gBS"/>
+                            <constraint firstItem="sdZ-pc-DQm" firstAttribute="leading" secondItem="Tcr-pH-dPT" secondAttribute="leading" constant="20" id="1lG-oP-7Bm"/>
+                            <constraint firstItem="Tcr-pH-dPT" firstAttribute="trailing" secondItem="WUM-Zw-cVa" secondAttribute="trailing" constant="20" id="2Kq-nt-MNn"/>
+                            <constraint firstItem="cZb-ek-pz9" firstAttribute="leading" secondItem="Tcr-pH-dPT" secondAttribute="leading" constant="20" id="608-uQ-glf"/>
+                            <constraint firstItem="gqk-6t-0ob" firstAttribute="top" secondItem="j4x-oE-dKm" secondAttribute="bottom" constant="14" id="6sX-Fb-td1"/>
+                            <constraint firstItem="uAL-sR-a7a" firstAttribute="top" secondItem="9p2-Yo-5cb" secondAttribute="bottom" constant="20" id="782-BM-siq"/>
+                            <constraint firstItem="cZb-ek-pz9" firstAttribute="top" secondItem="uAL-sR-a7a" secondAttribute="bottom" constant="19" id="7aK-B5-lda"/>
+                            <constraint firstItem="Tcr-pH-dPT" firstAttribute="trailing" secondItem="Uli-RJ-DZO" secondAttribute="trailing" constant="22" id="D3e-jc-6GB"/>
+                            <constraint firstItem="D4l-Uq-NeQ" firstAttribute="top" secondItem="x1l-68-RnS" secondAttribute="bottom" constant="19" id="Gz0-Ep-EPs"/>
+                            <constraint firstItem="UxL-2E-TvV" firstAttribute="top" secondItem="D4l-Uq-NeQ" secondAttribute="bottom" constant="22" id="H6v-Ao-8Ml"/>
+                            <constraint firstItem="d5z-ki-PHN" firstAttribute="top" secondItem="Uli-RJ-DZO" secondAttribute="bottom" constant="18" id="ME7-Xk-uly"/>
+                            <constraint firstItem="Tcr-pH-dPT" firstAttribute="trailing" secondItem="1Df-7S-e3c" secondAttribute="trailing" constant="22" id="NCh-zI-Mav"/>
+                            <constraint firstItem="gqk-6t-0ob" firstAttribute="leading" secondItem="Tcr-pH-dPT" secondAttribute="leading" constant="20" id="Obm-aW-qfa"/>
+                            <constraint firstItem="j4x-oE-dKm" firstAttribute="leading" secondItem="Tcr-pH-dPT" secondAttribute="leading" constant="20" id="OyO-3x-zuy"/>
+                            <constraint firstItem="6zK-W1-H8c" firstAttribute="leading" secondItem="Tcr-pH-dPT" secondAttribute="leading" constant="20" id="PFL-eg-sRk"/>
+                            <constraint firstItem="W5S-uR-eRK" firstAttribute="top" secondItem="Tcr-pH-dPT" secondAttribute="top" constant="15" id="PQL-pX-tPX"/>
+                            <constraint firstItem="Tcr-pH-dPT" firstAttribute="trailing" secondItem="UxL-2E-TvV" secondAttribute="trailing" constant="22" id="Pmw-vg-0Iw"/>
+                            <constraint firstItem="5aa-wW-Z1W" firstAttribute="leading" secondItem="Tcr-pH-dPT" secondAttribute="leading" constant="20" id="QMM-LB-ZpI"/>
+                            <constraint firstItem="W5S-uR-eRK" firstAttribute="leading" secondItem="Tcr-pH-dPT" secondAttribute="leading" constant="20" id="QOx-ob-nip"/>
+                            <constraint firstItem="5aa-wW-Z1W" firstAttribute="top" secondItem="cZb-ek-pz9" secondAttribute="bottom" constant="21" id="QSS-vs-6uA"/>
+                            <constraint firstItem="sdZ-pc-DQm" firstAttribute="top" secondItem="6zK-W1-H8c" secondAttribute="bottom" constant="18" id="STa-Oe-YpX"/>
+                            <constraint firstItem="6zK-W1-H8c" firstAttribute="top" secondItem="W5S-uR-eRK" secondAttribute="bottom" constant="18" id="XsS-58-7yK"/>
+                            <constraint firstItem="j4x-oE-dKm" firstAttribute="top" secondItem="sdZ-pc-DQm" secondAttribute="bottom" constant="14" id="axb-AN-gaM"/>
+                            <constraint firstItem="F6c-Uw-0HH" firstAttribute="top" secondItem="1Df-7S-e3c" secondAttribute="bottom" constant="20" id="cGT-io-HYl"/>
+                            <constraint firstItem="Tcr-pH-dPT" firstAttribute="trailing" secondItem="x1l-68-RnS" secondAttribute="trailing" constant="22" id="clc-jH-SFE"/>
+                            <constraint firstItem="1Df-7S-e3c" firstAttribute="top" secondItem="UxL-2E-TvV" secondAttribute="bottom" constant="18" id="eCU-dm-Tud"/>
+                            <constraint firstItem="Eye-ZO-GiJ" firstAttribute="top" secondItem="F6c-Uw-0HH" secondAttribute="bottom" constant="19" id="gp6-qc-eLB"/>
+                            <constraint firstItem="Uli-RJ-DZO" firstAttribute="top" secondItem="Tcr-pH-dPT" secondAttribute="top" constant="15" id="h1Y-Yz-WOv"/>
+                            <constraint firstItem="x1l-68-RnS" firstAttribute="top" secondItem="Dl0-l4-m4K" secondAttribute="bottom" constant="14" id="hwm-4n-Qjl"/>
+                            <constraint firstItem="Tcr-pH-dPT" firstAttribute="trailing" secondItem="Dl0-l4-m4K" secondAttribute="trailing" constant="22" id="itZ-69-Oje"/>
+                            <constraint firstItem="Tcr-pH-dPT" firstAttribute="trailing" secondItem="Eye-ZO-GiJ" secondAttribute="trailing" constant="22" id="kFo-fv-4T5"/>
+                            <constraint firstItem="Tcr-pH-dPT" firstAttribute="trailing" secondItem="D4l-Uq-NeQ" secondAttribute="trailing" constant="22" id="kii-KN-06A"/>
+                            <constraint firstItem="9p2-Yo-5cb" firstAttribute="top" secondItem="SVd-Nf-kFt" secondAttribute="bottom" constant="18" id="ntS-EE-npr"/>
+                            <constraint firstItem="nHU-Qu-ieY" firstAttribute="leading" secondItem="Tcr-pH-dPT" secondAttribute="leading" constant="20" id="oMo-7o-q5c"/>
+                            <constraint firstItem="WUM-Zw-cVa" firstAttribute="top" secondItem="d5z-ki-PHN" secondAttribute="bottom" constant="18" id="pf3-Ov-SPE"/>
+                            <constraint firstItem="nHU-Qu-ieY" firstAttribute="top" secondItem="gqk-6t-0ob" secondAttribute="bottom" constant="20" id="qVc-PU-zOT"/>
+                            <constraint firstItem="Tcr-pH-dPT" firstAttribute="trailing" secondItem="d5z-ki-PHN" secondAttribute="trailing" constant="20" id="sz3-8a-Xno"/>
+                            <constraint firstItem="Dl0-l4-m4K" firstAttribute="top" secondItem="WUM-Zw-cVa" secondAttribute="bottom" constant="14" id="uM4-eK-Pat"/>
+                            <constraint firstItem="Tcr-pH-dPT" firstAttribute="trailing" secondItem="F6c-Uw-0HH" secondAttribute="trailing" constant="22" id="vsO-cO-8Jn"/>
+                            <constraint firstItem="uAL-sR-a7a" firstAttribute="leading" secondItem="Tcr-pH-dPT" secondAttribute="leading" constant="20" id="wK6-r0-9h6"/>
+                            <constraint firstItem="SVd-Nf-kFt" firstAttribute="leading" secondItem="Tcr-pH-dPT" secondAttribute="leading" constant="20" id="wrr-dR-xOU"/>
+                            <constraint firstItem="SVd-Nf-kFt" firstAttribute="top" secondItem="nHU-Qu-ieY" secondAttribute="bottom" constant="21" id="zyB-BG-c0r"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Tcr-pH-dPT"/>
+                    </view>
+                    <navigationItem key="navigationItem" title=" 蓝牙机器人" prompt="jimu" id="hYs-Na-BYW">
+                        <barButtonItem key="rightBarButtonItem" title="建立通信" id="8IR-PU-0WS">
+                            <connections>
+                                <action selector="establishCommunication:" destination="5Ls-ZI-8MA" id="fpg-f0-PHX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bZ4-Bz-acV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1563" y="121"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="TBP-Ki-dxL">
+            <objects>
+                <navigationController id="JFE-wx-h4O" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gLI-lw-10j">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="2gg-Qu-lEy" kind="relationship" relationship="rootViewController" id="BmB-Tz-nOd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KEK-Vb-7L4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-61" y="117"/>
+        </scene>
+    </scenes>
+</document>

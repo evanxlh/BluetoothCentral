@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JFE-wx-h4O">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JFE-wx-h4O">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--扫描-->
+        <!--Bluetooth Scan-->
         <scene sceneID="UId-pL-tqy">
             <objects>
-                <tableViewController id="2gg-Qu-lEy" customClass="ScanViewController" sceneMemberID="viewController">
+                <tableViewController id="2gg-Qu-lEy" userLabel="Bluetooth Scan" customClass="ScanViewController" customModule="UniversalBlutooth" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4Pr-o1-iRS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -52,10 +53,10 @@
             </objects>
             <point key="canvasLocation" x="713" y="117"/>
         </scene>
-        <!-- 蓝牙机器人-->
+        <!--Bluetooth Device Controll-->
         <scene sceneID="P4P-Yn-jId">
             <objects>
-                <viewController storyboardIdentifier="BluetoothViewController" id="5Ls-ZI-8MA" customClass="BluetoothViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BluetoothViewController" id="5Ls-ZI-8MA" userLabel="Bluetooth Device Controll" customClass="BluetoothViewController" customModule="UniversalBlutooth" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x75-Zm-9O9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -261,7 +262,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Tcr-pH-dPT"/>
                     </view>
-                    <navigationItem key="navigationItem" title=" 蓝牙机器人" prompt="jimu" id="hYs-Na-BYW">
+                    <navigationItem key="navigationItem" title="蓝牙设备控制" prompt="jimu" id="hYs-Na-BYW">
                         <barButtonItem key="rightBarButtonItem" title="建立通信" id="8IR-PU-0WS">
                             <connections>
                                 <action selector="establishCommunication:" destination="5Ls-ZI-8MA" id="fpg-f0-PHX"/>

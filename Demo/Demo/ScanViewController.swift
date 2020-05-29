@@ -17,6 +17,7 @@ class ScanViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        KRProgressHUD.set(duration: 2.0)
         updateNavigationTitle()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "开始扫描", style: .plain, target: self, action: #selector(startScan))
         manager = CentralManager()
@@ -29,30 +30,26 @@ class ScanViewController: UITableViewController {
         discoveries.removeAll()
         tableView.reloadData()
         
-        manager.startScan(withMode: .fixedDuration(5.0), progressHandler: { [unowned self] (discoveries) in
+        manager.startScan(withMode: .fixedDuration(5.0), onProgress: { [unowned self] (discoveries) in
             // 扫描进度回调。每次扫描到新的 jimu 蓝牙设备时，就会触发一次。
             self.discoveries.append(contentsOf: discoveries)
             self.tableView.reloadData()
             
-        }) { [unowned self] (result) in
+        }, onCompletion: { [unowned self] (discoveries) in
             
             self.updateScanningStateTo(false)
-            
-            switch result {
-            case .success(let discoveries):
-                self.discoveries.removeAll()
-                self.discoveries.append(contentsOf: discoveries)
-                if discoveries.isEmpty {
-                    KRProgressHUD.showInfo(withMessage: "没有发现蓝牙设备，你可重新扫描")
-                } else {
-                    KRProgressHUD.showInfo(withMessage: "扫描完成")
-                }
-                
-            case .failure(let error):
-                KRProgressHUD.showError(withMessage: "扫描出错了: \(error.localizedDescription)")
+            self.discoveries.removeAll()
+            self.discoveries.append(contentsOf: discoveries)
+            if discoveries.isEmpty {
+                KRProgressHUD.showInfo(withMessage: "没有发现蓝牙设备，你可重新扫描")
+            } else {
+                KRProgressHUD.showInfo(withMessage: "扫描完成")
             }
-        }
-        
+            
+        }, onError: { [unowned self] error in
+            self.updateScanningStateTo(false)
+             KRProgressHUD.showError(withMessage: "扫描出错了: \(error.localizedDescription)")
+        })
     }
     
     fileprivate func stopScan() {
@@ -64,9 +61,12 @@ class ScanViewController: UITableViewController {
         
         stopScan()
         
-        manager.connect(withTimeout: 5.0, peripheral: peripheral) { [unowned self] (_, result) in
-            let bluetoothVC = self.storyboard!.instantiateViewController(withIdentifier: "BluetoothViewController")
+        manager.connect(withTimeout: 5.0, peripheral: peripheral, onSuccess: {
+            let bluetoothVC = self.storyboard!.instantiateViewController(withIdentifier: "BluetoothViewController") as! BluetoothViewController
+            bluetoothVC.manager = self.manager
             self.navigationController?.pushViewController(bluetoothVC, animated: true)
+        }) { (error) in
+            KRProgressHUD.showError(withMessage: error.localizedDescription)
         }
     }
     

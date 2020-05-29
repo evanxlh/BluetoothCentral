@@ -7,48 +7,46 @@
 import Foundation
 import CoreBluetooth
 
-internal extension Scanner {
-    
-    // MARK: - Datatype Definition
-    
-    typealias ScanCompletionHandler = (_ result: Result<[Discovery], Error>) -> Void
-    
-    enum Error: Swift.Error {
-        case busy
-    }
+internal final class Scanner {
+
+    // MARK: - Internal Stuff
     
     fileprivate enum State: Int {
         case idle
         case scanning
     }
-}
-
-internal final class Scanner {
-
-    // MARK: - Internal Stuff
-
-    fileprivate var state = State.idle
-    fileprivate var centralManager: CBCentralManager
     
-    fileprivate var scanningTimer: Timer?
+    fileprivate var centralManager: CBCentralManager
+    fileprivate var scanningTimer: DispatchTimer?
     fileprivate var discoveries = [Discovery]()
-    fileprivate var progressHandler: CentralManager.ScanProgressHandler?
-    fileprivate var completionHandler: ScanCompletionHandler?
+
+    fileprivate var progressHandler: (([Discovery]) -> Void)?
+    fileprivate var completionHandler: (([Discovery]) -> Void)?
+    
+    fileprivate let lock = MutexLock()
+    fileprivate var _state = State.idle
+    fileprivate var state: State {
+        lock.lock()
+        let state = _state
+        lock.unlock()
+        return state
+    }
     
     // MARK: - Accessible Within Framework
     
-    var filter: CentralManager.ScanFilter
+    var scanFilter = CentralManager.ScanFilter()
     
-    init(manager: CBCentralManager, filter: CentralManager.ScanFilter) {
-        self.filter = filter
+    init(manager: CBCentralManager) {
         self.centralManager = manager
     }
     
-    func start(withMode mode: CentralManager.ScanMode, progressHandler: CentralManager.ScanProgressHandler? = nil, completionHandler: @escaping ScanCompletionHandler) throws {
+    /// Throw `CentralManager.ScanError`
+    func startScan(withMode mode: CentralManager.ScanMode, filter: CentralManager.ScanFilter, onProgress: (([Discovery]) -> Void)?, onCompletion: @escaping ([Discovery]) -> Void) throws {
         do {
             try transitionToScanningState()
-            self.progressHandler = progressHandler
-            self.completionHandler = completionHandler
+            scanFilter = filter
+            progressHandler = onProgress
+            completionHandler = onCompletion
             
             let options = [CBCentralManagerScanOptionAllowDuplicatesKey: filter.isUpdateDuplicatesEnabled]
             centralManager.scanForPeripherals(withServices: filter.serviceUUIDs, options: options)
@@ -83,13 +81,10 @@ fileprivate extension Scanner {
     func startScanningTimer(_ duration: TimeInterval) {
         guard duration > 0 else { return }
         
-        if #available(iOS 10.0, *) {
-            scanningTimer = Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { [weak self] _ in
-                self?.endScan()
-            })
-        } else {
-            scanningTimer = Timer.scheduledTimer(timeInterval: duration, target: self, selector: #selector(endScan), userInfo: nil, repeats: false)
-        }
+        scanningTimer = DispatchTimer()
+        scanningTimer?.schedule(withTimeInterval: duration, repeats: false, handler: { [weak self] (_) in
+            self?.endScan()
+        })
     }
     
     @objc func endScan() {
@@ -98,8 +93,8 @@ fileprivate extension Scanner {
         
         let discoveries = self.discoveries
         self.discoveries.removeAll()
-        state = .idle
-        completionHandler?(.success(discoveries))
+        _state = .idle
+        completionHandler?(discoveries)
     }
     
     func invalidateScanningTimer() {
@@ -111,11 +106,16 @@ fileprivate extension Scanner {
     
     func transitionToScanningState() throws {
         guard state == .idle else {
-            throw Error.busy
+            throw CentralManager.ScanError.scanning
         }
-        state = .scanning
+        
+        let centralState = centralManager.unifiedState
+        guard centralState == .poweredOn else {
+            throw CentralManager.ScanError.bluetoothUnavailable(UnavailabilityReason(state: centralState))
+        }
+        
+        _state = .scanning
     }
-    
 }
 
 extension Scanner: CentralManagerDiscoveryDelegate {
@@ -127,7 +127,7 @@ extension Scanner: CentralManagerDiscoveryDelegate {
         
         let signalStrength = rssi.intValue
         let discovery = Discovery(advertisementData: advertisementData, peripheral: peripheral, rssi: signalStrength)
-        guard let filter = self.filter.customFilter, filter(discovery) else {
+        guard let filter = scanFilter.customFilter, filter(discovery) else {
             return
         }
         

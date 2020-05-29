@@ -10,14 +10,16 @@ import CoreBluetooth
 /// 保存蓝牙尝试连接的信息，连接成功后会被移除。
 internal final class ConnectionAttempt: Equatable {
 
-    let timer: Timer
+    let timer: DispatchTimer
     let peripheral: CBPeripheral
-    let completionHandler: ConnectionPool.CompletionHandler
+    let successHandler: () -> Void
+    let failureHandler: (CentralManager.ConnectionError) -> Void
 
-    init(peripheral: CBPeripheral, timer: Timer, completionHandler: @escaping ConnectionPool.CompletionHandler) {
+    init(peripheral: CBPeripheral, timer: DispatchTimer, successHandler: @escaping () -> Void, failureHandler: @escaping (CentralManager.ConnectionError) -> Void) {
         self.peripheral = peripheral
         self.timer = timer
-        self.completionHandler = completionHandler
+        self.successHandler = successHandler
+        self.failureHandler = failureHandler
     }
     
     static func == (lhs: ConnectionAttempt, rhs: ConnectionAttempt) -> Bool {

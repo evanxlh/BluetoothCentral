@@ -13,8 +13,6 @@
 		20B77CB2247FB7D000C1D503 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CB0247FB7D000C1D503 /* Logger.swift */; };
 		20B77CB4247FBB0D00C1D503 /* DispatchTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CB3247FBB0D00C1D503 /* DispatchTimer.swift */; };
 		20B77CB5247FBB0D00C1D503 /* DispatchTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CB3247FBB0D00C1D503 /* DispatchTimer.swift */; };
-		20B77CBA247FBB8700C1D503 /* CentralManagerDataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CB6247FBB8700C1D503 /* CentralManagerDataTypes.swift */; };
-		20B77CBB247FBB8700C1D503 /* CentralManagerDataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CB6247FBB8700C1D503 /* CentralManagerDataTypes.swift */; };
 		20B77CBC247FBB8700C1D503 /* Discovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CB7247FBB8700C1D503 /* Discovery.swift */; };
 		20B77CBD247FBB8700C1D503 /* Discovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CB7247FBB8700C1D503 /* Discovery.swift */; };
 		20B77CBE247FBB8700C1D503 /* Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CB8247FBB8700C1D503 /* Availability.swift */; };
@@ -23,8 +21,6 @@
 		20B77CC1247FBB8700C1D503 /* CentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CB9247FBB8700C1D503 /* CentralManager.swift */; };
 		20B77CC8247FBB9200C1D503 /* ConnectionAttempt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CC2247FBB9200C1D503 /* ConnectionAttempt.swift */; };
 		20B77CC9247FBB9200C1D503 /* ConnectionAttempt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CC2247FBB9200C1D503 /* ConnectionAttempt.swift */; };
-		20B77CCA247FBB9200C1D503 /* CentralStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CC3247FBB9200C1D503 /* CentralStateMachine.swift */; };
-		20B77CCB247FBB9200C1D503 /* CentralStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CC3247FBB9200C1D503 /* CentralStateMachine.swift */; };
 		20B77CCC247FBB9200C1D503 /* CentralManagerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CC4247FBB9200C1D503 /* CentralManagerDelegateProxy.swift */; };
 		20B77CCD247FBB9200C1D503 /* CentralManagerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CC4247FBB9200C1D503 /* CentralManagerDelegateProxy.swift */; };
 		20B77CCE247FBB9200C1D503 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CC5247FBB9200C1D503 /* Scanner.swift */; };
@@ -34,6 +30,10 @@
 		20B77CD2247FBB9200C1D503 /* ConnectionPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CC7247FBB9200C1D503 /* ConnectionPool.swift */; };
 		20B77CD3247FBB9200C1D503 /* ConnectionPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CC7247FBB9200C1D503 /* ConnectionPool.swift */; };
 		20B77D1F247FCC9F00C1D503 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D1E247FCC9F00C1D503 /* Helper.swift */; };
+		20B77D212480B17F00C1D503 /* Locks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D202480B17F00C1D503 /* Locks.swift */; };
+		20B77D222480B17F00C1D503 /* Locks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D202480B17F00C1D503 /* Locks.swift */; };
+		20B77D242480FA0B00C1D503 /* ErrorDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D232480FA0B00C1D503 /* ErrorDescription.swift */; };
+		20B77D252480FA0B00C1D503 /* ErrorDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D232480FA0B00C1D503 /* ErrorDescription.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,17 +45,17 @@
 		20B77CA7247FAE3E00C1D503 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20B77CB0247FB7D000C1D503 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		20B77CB3247FBB0D00C1D503 /* DispatchTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchTimer.swift; sourceTree = "<group>"; };
-		20B77CB6247FBB8700C1D503 /* CentralManagerDataTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CentralManagerDataTypes.swift; sourceTree = "<group>"; };
 		20B77CB7247FBB8700C1D503 /* Discovery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discovery.swift; sourceTree = "<group>"; };
 		20B77CB8247FBB8700C1D503 /* Availability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Availability.swift; sourceTree = "<group>"; };
 		20B77CB9247FBB8700C1D503 /* CentralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CentralManager.swift; sourceTree = "<group>"; };
 		20B77CC2247FBB9200C1D503 /* ConnectionAttempt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionAttempt.swift; sourceTree = "<group>"; };
-		20B77CC3247FBB9200C1D503 /* CentralStateMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CentralStateMachine.swift; sourceTree = "<group>"; };
 		20B77CC4247FBB9200C1D503 /* CentralManagerDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CentralManagerDelegateProxy.swift; sourceTree = "<group>"; };
 		20B77CC5247FBB9200C1D503 /* Scanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
 		20B77CC6247FBB9200C1D503 /* UnifiedManagerState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnifiedManagerState.swift; sourceTree = "<group>"; };
 		20B77CC7247FBB9200C1D503 /* ConnectionPool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionPool.swift; sourceTree = "<group>"; };
 		20B77D1E247FCC9F00C1D503 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		20B77D202480B17F00C1D503 /* Locks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locks.swift; sourceTree = "<group>"; };
+		20B77D232480FA0B00C1D503 /* ErrorDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDescription.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +129,7 @@
 				20B77CB0247FB7D000C1D503 /* Logger.swift */,
 				20B77CB3247FBB0D00C1D503 /* DispatchTimer.swift */,
 				20B77D1E247FCC9F00C1D503 /* Helper.swift */,
+				20B77D202480B17F00C1D503 /* Locks.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -137,7 +138,6 @@
 			isa = PBXGroup;
 			children = (
 				20B77CC4247FBB9200C1D503 /* CentralManagerDelegateProxy.swift */,
-				20B77CC3247FBB9200C1D503 /* CentralStateMachine.swift */,
 				20B77CC2247FBB9200C1D503 /* ConnectionAttempt.swift */,
 				20B77CC7247FBB9200C1D503 /* ConnectionPool.swift */,
 				20B77CC5247FBB9200C1D503 /* Scanner.swift */,
@@ -151,8 +151,8 @@
 			children = (
 				20B77CB8247FBB8700C1D503 /* Availability.swift */,
 				20B77CB9247FBB8700C1D503 /* CentralManager.swift */,
-				20B77CB6247FBB8700C1D503 /* CentralManagerDataTypes.swift */,
 				20B77CB7247FBB8700C1D503 /* Discovery.swift */,
+				20B77D232480FA0B00C1D503 /* ErrorDescription.swift */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -276,10 +276,10 @@
 			files = (
 				20B77CB1247FB7D000C1D503 /* Logger.swift in Sources */,
 				20B77CB4247FBB0D00C1D503 /* DispatchTimer.swift in Sources */,
+				20B77D212480B17F00C1D503 /* Locks.swift in Sources */,
 				20B77CBC247FBB8700C1D503 /* Discovery.swift in Sources */,
-				20B77CCA247FBB9200C1D503 /* CentralStateMachine.swift in Sources */,
+				20B77D242480FA0B00C1D503 /* ErrorDescription.swift in Sources */,
 				20B77CBE247FBB8700C1D503 /* Availability.swift in Sources */,
-				20B77CBA247FBB8700C1D503 /* CentralManagerDataTypes.swift in Sources */,
 				20B77CC8247FBB9200C1D503 /* ConnectionAttempt.swift in Sources */,
 				20B77CC0247FBB8700C1D503 /* CentralManager.swift in Sources */,
 				20B77CD0247FBB9200C1D503 /* UnifiedManagerState.swift in Sources */,
@@ -296,12 +296,12 @@
 			files = (
 				20B77CB2247FB7D000C1D503 /* Logger.swift in Sources */,
 				20B77CB5247FBB0D00C1D503 /* DispatchTimer.swift in Sources */,
+				20B77D222480B17F00C1D503 /* Locks.swift in Sources */,
 				20B77CBD247FBB8700C1D503 /* Discovery.swift in Sources */,
-				20B77CCB247FBB9200C1D503 /* CentralStateMachine.swift in Sources */,
 				20B77CBF247FBB8700C1D503 /* Availability.swift in Sources */,
-				20B77CBB247FBB8700C1D503 /* CentralManagerDataTypes.swift in Sources */,
 				20B77CC9247FBB9200C1D503 /* ConnectionAttempt.swift in Sources */,
 				20B77CC1247FBB8700C1D503 /* CentralManager.swift in Sources */,
+				20B77D252480FA0B00C1D503 /* ErrorDescription.swift in Sources */,
 				20B77CD1247FBB9200C1D503 /* UnifiedManagerState.swift in Sources */,
 				20B77CD3247FBB9200C1D503 /* ConnectionPool.swift in Sources */,
 				20B77CCF247FBB9200C1D503 /* Scanner.swift in Sources */,

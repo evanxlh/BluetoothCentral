@@ -41,7 +41,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		20B77CDD247FC0A300C1D503 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		20B77CDD247FC0A300C1D503 /* UniversalBlutooth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniversalBlutooth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20B77CE0247FC0A300C1D503 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20B77CE4247FC0A300C1D503 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		20B77CE7247FC0A300C1D503 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 		20B77CDE247FC0A300C1D503 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				20B77CDD247FC0A300C1D503 /* Demo.app */,
+				20B77CDD247FC0A300C1D503 /* UniversalBlutooth.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -173,7 +173,7 @@
 			);
 			name = "Demo-iOS";
 			productName = Demo;
-			productReference = 20B77CDD247FC0A300C1D503 /* Demo.app */;
+			productReference = 20B77CDD247FC0A300C1D503 /* UniversalBlutooth.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -382,14 +382,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8C3BZC843V;
 				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = me.evanxlh.Demo;
-				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = me.evanxlh.UniversalBlutoothDemo;
+				PRODUCT_NAME = UniversalBlutooth;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -400,14 +401,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8C3BZC843V;
 				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = me.evanxlh.Demo;
-				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = me.evanxlh.UniversalBlutoothDemo;
+				PRODUCT_NAME = UniversalBlutooth;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

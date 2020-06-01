@@ -7,14 +7,14 @@
 import Foundation
 import CoreBluetooth
 
-/// 根据职责将 `CBCentralManagerDelegate` 拆分，分别委托给不同的职责类。
+/// 根据职责将 `CBCentralManagerDelegate` 拆分，分别委托给不同的职责类。同时避免 delegate 方法在 framework 作用域以外可访问。
 ///
 /// 设计来自 [BluetoothKit](https://github.com/rhummelmose/BluetoothKit/blob/master/Source/BKCBCentralManagerDelegateProxy.swift)。
-internal class CentralManagerDelegateProxy: NSObject, CBCentralManagerDelegate {
+internal class CentralDelegateProxy: NSObject, CBCentralManagerDelegate {
 
-    weak var stateDelegate: CentralManagerStateDelegate?
-    weak var discoveryDelegate: CentralManagerDiscoveryDelegate?
-    weak var connectionDelegate: CentralManagerConnectionDelegate?
+    weak var stateDelegate: CentralStateDelegate?
+    weak var discoveryDelegate: CentralDiscoveryDelegate?
+    weak var connectionDelegate: CentralConnectionDelegate?
 
     // MARK: - State Delegate
     
@@ -53,15 +53,15 @@ internal class CentralManagerDelegateProxy: NSObject, CBCentralManagerDelegate {
     }
 }
 
-internal protocol CentralManagerStateDelegate: AnyObject {
+internal protocol CentralStateDelegate: AnyObject {
     func centralManagerDidUpdateState(_ central: CBCentralManager)
 }
 
-internal protocol CentralManagerDiscoveryDelegate: AnyObject {
+internal protocol CentralDiscoveryDelegate: AnyObject {
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi: NSNumber)
 }
 
-internal protocol CentralManagerConnectionDelegate: AnyObject {
+internal protocol CentralConnectionDelegate: AnyObject {
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral)
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?)
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?)

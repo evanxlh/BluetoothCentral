@@ -1,5 +1,5 @@
 //
-//  Discovery.swift
+//  BCDiscovery.swift
 //
 //  Created by Evan Xie on 2/21/20.
 //
@@ -8,7 +8,7 @@ import Foundation
 import CoreBluetooth
 
 /// 扫描发现的蓝牙设备信息
-public struct Discovery: Equatable {
+public struct BCDiscovery: Equatable {
     
     public let advertisementData: [String: Any]
     public let peripheral: CBPeripheral
@@ -24,7 +24,7 @@ public struct Discovery: Equatable {
         self.rssi = rssi
     }
 
-    public static func == (lhs: Discovery, rhs: Discovery) -> Bool {
+    public static func == (lhs: BCDiscovery, rhs: BCDiscovery) -> Bool {
         return lhs.peripheral == rhs.peripheral
     }
 }

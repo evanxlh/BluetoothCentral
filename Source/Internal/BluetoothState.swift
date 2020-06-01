@@ -1,5 +1,5 @@
 //
-//  UnifiedManagerState.swift
+//  BluetoothState.swift
 //
 //  Created by Evan Xie on 2/25/20.
 //
@@ -8,7 +8,7 @@ import Foundation
 import CoreBluetooth
 
 ///  统一蓝牙状态(`CBCentralManagerState` 和 `CBManagerState`)，不用再为 iOS 不同版本 API 的差异而分心。
-internal enum UnifiedManagerState: Int {
+internal enum BluetoothState: Int {
     
     /// 蓝牙已打开，可以正常使用
     case poweredOn
@@ -31,8 +31,8 @@ internal enum UnifiedManagerState: Int {
 
 extension CBCentralManager {
     
-    /// 不管是 `CBCentralManagerState`, 还是 `CBManagerState`, 统一成一个状态。
-    internal var unifiedState: UnifiedManagerState {
+    /// 不管是 `CBBCCentralState`, 还是 `CBManagerState`, 统一成一个状态。
+    internal var unifiedState: BluetoothState {
         switch state {
         case .poweredOn:
             return .poweredOn

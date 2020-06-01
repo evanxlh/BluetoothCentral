@@ -40,21 +40,21 @@ internal final class ConnectionPool {
         self.manager = manager
     }
 
-    func connectWithTimeout(_ timeout: TimeInterval, peripheral: CBPeripheral, onSuccess: @escaping () -> Void, onFailure: @escaping (CentralManager.ConnectionError) -> Void) {
+    func connectWithTimeout(_ timeout: TimeInterval, peripheral: CBPeripheral, onSuccess: @escaping () -> Void, onFailure: @escaping (BCCentral.ConnectionError) -> Void) {
         
         guard !connectedPeripherals.contains(peripheral) else {
-            runTaskOnMainThread { onFailure(CentralManager.ConnectionError.alreadyConnected) }
+            runTaskOnMainThread { onFailure(BCCentral.ConnectionError.alreadyConnected) }
             return
         }
         guard !connectionAttempts.map ({ $0.peripheral }).contains(peripheral) else {
-            runTaskOnMainThread { onFailure(CentralManager.ConnectionError.connecting) }
+            runTaskOnMainThread { onFailure(BCCentral.ConnectionError.connecting) }
             return
         }
         
         let centralState = manager.unifiedState
         guard centralState == .poweredOn else {
             runTaskOnMainThread {
-                onFailure(CentralManager.ConnectionError.bluetoothUnavailable(UnavailabilityReason(state: centralState)))
+                onFailure(BCCentral.ConnectionError.bluetoothUnavailable(UnavailabilityReason(state: centralState)))
             }
             return
         }
@@ -102,7 +102,7 @@ fileprivate extension ConnectionPool {
         return attempt
     }
 
-    func failConnectionAttempt(_ connectionAttempt: ConnectionAttempt, error: CentralManager.ConnectionError) {
+    func failConnectionAttempt(_ connectionAttempt: ConnectionAttempt, error: BCCentral.ConnectionError) {
         
         connectionAttempt.timer.invalidate()
         
@@ -131,7 +131,7 @@ fileprivate extension ConnectionPool {
     func cancelConnectionAttemps() {
         let attempts = connectionAttempts
         for attempt in attempts {
-            failConnectionAttempt(attempt, error: CentralManager.ConnectionError.cancelled)
+            failConnectionAttempt(attempt, error: BCCentral.ConnectionError.cancelled)
         }
         _connectionAttempts.removeAll()
     }
@@ -146,9 +146,9 @@ fileprivate extension ConnectionPool {
     
 }
 
-// MARK: CentralManagerConnectionDelegate Implementation
+// MARK: CentralConnectionDelegate Implementation
 
-extension ConnectionPool: CentralManagerConnectionDelegate {
+extension ConnectionPool: CentralConnectionDelegate {
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         guard let attempt = connectionAttemptForPeripheral(peripheral) else { return }

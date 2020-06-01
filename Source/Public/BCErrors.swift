@@ -1,13 +1,12 @@
 //
-//  ErrorDescription.swift
-//  UniversalBluetooth
+//  BCErrors.swift
 //
 //  Created by Evan Xie on 2020/5/29.
 //
 
 import Foundation
 
-extension CentralManager.ScanError {
+extension BCCentral.ScanError {
     
     public var localizedDescription: String {
         switch self {
@@ -19,7 +18,7 @@ extension CentralManager.ScanError {
     }
 }
 
-extension CentralManager.ConnectionError {
+extension BCCentral.ConnectionError {
     
     public var localizedDescription: String {
         switch self {

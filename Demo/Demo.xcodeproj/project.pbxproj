@@ -12,8 +12,6 @@
 		20B77CE8247FC0A300C1D503 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20B77CE6247FC0A300C1D503 /* Main.storyboard */; };
 		20B77CEA247FC0A500C1D503 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20B77CE9247FC0A500C1D503 /* Assets.xcassets */; };
 		20B77CED247FC0A500C1D503 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20B77CEB247FC0A500C1D503 /* LaunchScreen.storyboard */; };
-		20B77CF6247FC0DB00C1D503 /* UniversalBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B77CF5247FC0DB00C1D503 /* UniversalBluetooth.framework */; };
-		20B77CF7247FC0DB00C1D503 /* UniversalBluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 20B77CF5247FC0DB00C1D503 /* UniversalBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		20B77D12247FC4CF00C1D503 /* KRProgressHUDIconType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D08247FC4CF00C1D503 /* KRProgressHUDIconType.swift */; };
 		20B77D13247FC4CF00C1D503 /* InnerKRProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D09247FC4CF00C1D503 /* InnerKRProgressHUD.swift */; };
 		20B77D14247FC4CF00C1D503 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D0A247FC4CF00C1D503 /* Extensions.swift */; };
@@ -24,16 +22,18 @@
 		20B77D19247FC4CF00C1D503 /* KRActivityIndicatorViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D11247FC4CF00C1D503 /* KRActivityIndicatorViewStyle.swift */; };
 		20B77D1B247FC6BF00C1D503 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D1A247FC6BF00C1D503 /* ScanViewController.swift */; };
 		20B77D1D247FC6EB00C1D503 /* BluetoothViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D1C247FC6EB00C1D503 /* BluetoothViewController.swift */; };
+		20B77D492484DECE00C1D503 /* BluetoothCentral.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B77D482484DECE00C1D503 /* BluetoothCentral.framework */; };
+		20B77D4A2484DECE00C1D503 /* BluetoothCentral.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 20B77D482484DECE00C1D503 /* BluetoothCentral.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		20B77CF8247FC0DB00C1D503 /* Embed Frameworks */ = {
+		20B77D4B2484DECE00C1D503 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				20B77CF7247FC0DB00C1D503 /* UniversalBluetooth.framework in Embed Frameworks */,
+				20B77D4A2484DECE00C1D503 /* BluetoothCentral.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -60,6 +60,7 @@
 		20B77D11247FC4CF00C1D503 /* KRActivityIndicatorViewStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KRActivityIndicatorViewStyle.swift; sourceTree = "<group>"; };
 		20B77D1A247FC6BF00C1D503 /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		20B77D1C247FC6EB00C1D503 /* BluetoothViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothViewController.swift; sourceTree = "<group>"; };
+		20B77D482484DECE00C1D503 /* BluetoothCentral.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BluetoothCentral.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20B77CF6247FC0DB00C1D503 /* UniversalBluetooth.framework in Frameworks */,
+				20B77D492484DECE00C1D503 /* BluetoothCentral.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +109,7 @@
 		20B77CF4247FC0DB00C1D503 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				20B77D482484DECE00C1D503 /* BluetoothCentral.framework */,
 				20B77CF5247FC0DB00C1D503 /* UniversalBluetooth.framework */,
 			);
 			name = Frameworks;
@@ -165,7 +167,7 @@
 				20B77CD9247FC0A300C1D503 /* Sources */,
 				20B77CDA247FC0A300C1D503 /* Frameworks */,
 				20B77CDB247FC0A300C1D503 /* Resources */,
-				20B77CF8247FC0DB00C1D503 /* Embed Frameworks */,
+				20B77D4B2484DECE00C1D503 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

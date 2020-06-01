@@ -7,12 +7,12 @@
 
 import UIKit
 import CoreBluetooth
-import UniversalBluetooth
+import BluetoothCentral
 
 class ScanViewController: UITableViewController {
     
-    fileprivate var manager: CentralManager!
-    fileprivate var discoveries = [Discovery]()
+    fileprivate var manager: BCCentral!
+    fileprivate var discoveries = [BCDiscovery]()
     fileprivate var isScanning = false
 
     override func viewDidLoad() {
@@ -20,7 +20,7 @@ class ScanViewController: UITableViewController {
         KRProgressHUD.set(duration: 2.0)
         updateNavigationTitle()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "开始扫描", style: .plain, target: self, action: #selector(startScan))
-        manager = CentralManager()
+        manager = BCCentral()
         manager.delegate = self
     }
     
@@ -102,14 +102,14 @@ class ScanViewController: UITableViewController {
     }
 }
 
-extension ScanViewController: CentralManagerDelegate {
+extension ScanViewController: BCCentralDelegate {
     
-    func centralManager(_ centralManager: CentralManager, peripheralDidDisconnect peripheral: CBPeripheral) {
+    func central(_ centralManager: BCCentral, peripheralDidDisconnect peripheral: CBPeripheral) {
         navigationController?.popToRootViewController(animated: true)
         KRProgressHUD.showMessage("蓝牙[\(String(describing: peripheral.name))]断开连接了!!!")
     }
     
-    func centralManager(_ centralManager: CentralManager, availabilityDidUpdate availability: Availability) {
+    func central(_ centralManager: BCCentral, availabilityDidUpdate availability: BCAvailability) {
         switch availability {
         case .available:
             startScan()

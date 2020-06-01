@@ -7,11 +7,11 @@
 
 import UIKit
 import CoreBluetooth
-import UniversalBluetooth
+import BluetoothCentral
 
 class BluetoothViewController: UIViewController {
 
-    var manager: CentralManager?
+    var manager: BCCentral?
     var peripheral: CBPeripheral?
     
     override func viewDidLoad() {

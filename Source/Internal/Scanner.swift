@@ -18,10 +18,10 @@ internal final class Scanner {
     
     fileprivate var centralManager: CBCentralManager
     fileprivate var scanningTimer: DispatchTimer?
-    fileprivate var discoveries = [Discovery]()
+    fileprivate var discoveries = [BCDiscovery]()
 
-    fileprivate var progressHandler: (([Discovery]) -> Void)?
-    fileprivate var completionHandler: (([Discovery]) -> Void)?
+    fileprivate var progressHandler: (([BCDiscovery]) -> Void)?
+    fileprivate var completionHandler: (([BCDiscovery]) -> Void)?
     
     fileprivate let lock = MutexLock()
     fileprivate var _state = State.idle
@@ -34,14 +34,14 @@ internal final class Scanner {
     
     // MARK: - Accessible Within Framework
     
-    var scanFilter = CentralManager.ScanFilter()
+    var scanFilter = BCCentral.ScanFilter()
     
     init(manager: CBCentralManager) {
         self.centralManager = manager
     }
     
-    /// Throw `CentralManager.ScanError`
-    func startScan(withMode mode: CentralManager.ScanMode, filter: CentralManager.ScanFilter, onProgress: (([Discovery]) -> Void)?, onCompletion: @escaping ([Discovery]) -> Void) throws {
+    /// Throw `BCCentral.ScanError`
+    func startScan(withMode mode: BCCentral.ScanMode, filter: BCCentral.ScanFilter, onProgress: (([BCDiscovery]) -> Void)?, onCompletion: @escaping ([BCDiscovery]) -> Void) throws {
         do {
             try transitionToScanningState()
             scanFilter = filter
@@ -67,7 +67,7 @@ fileprivate extension Scanner {
     
     // MARK: - Private Functions
     
-    func processWorkingMode(_ mode: CentralManager.ScanMode) {
+    func processWorkingMode(_ mode: BCCentral.ScanMode) {
         switch mode {
         case .infinitely:
             return
@@ -106,27 +106,27 @@ fileprivate extension Scanner {
     
     func transitionToScanningState() throws {
         guard state == .idle else {
-            throw CentralManager.ScanError.scanning
+            throw BCCentral.ScanError.scanning
         }
         
         let centralState = centralManager.unifiedState
         guard centralState == .poweredOn else {
-            throw CentralManager.ScanError.bluetoothUnavailable(UnavailabilityReason(state: centralState))
+            throw BCCentral.ScanError.bluetoothUnavailable(UnavailabilityReason(state: centralState))
         }
         
         _state = .scanning
     }
 }
 
-extension Scanner: CentralManagerDiscoveryDelegate {
+extension Scanner: CentralDiscoveryDelegate {
     
-    // MARK: - CentralManagerDiscoveryDelegate Implementation
+    // MARK: - CentralBCDiscoveryDelegate Implementation
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi: NSNumber) {
         guard state == .scanning else { return }
         
         let signalStrength = rssi.intValue
-        let discovery = Discovery(advertisementData: advertisementData, peripheral: peripheral, rssi: signalStrength)
+        let discovery = BCDiscovery(advertisementData: advertisementData, peripheral: peripheral, rssi: signalStrength)
         guard let filter = scanFilter.customFilter, filter(discovery) else {
             return
         }

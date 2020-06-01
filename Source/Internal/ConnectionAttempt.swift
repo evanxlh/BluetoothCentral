@@ -13,9 +13,9 @@ internal final class ConnectionAttempt: Equatable {
     let timer: DispatchTimer
     let peripheral: CBPeripheral
     let successHandler: () -> Void
-    let failureHandler: (CentralManager.ConnectionError) -> Void
+    let failureHandler: (BCCentral.ConnectionError) -> Void
 
-    init(peripheral: CBPeripheral, timer: DispatchTimer, successHandler: @escaping () -> Void, failureHandler: @escaping (CentralManager.ConnectionError) -> Void) {
+    init(peripheral: CBPeripheral, timer: DispatchTimer, successHandler: @escaping () -> Void, failureHandler: @escaping (BCCentral.ConnectionError) -> Void) {
         self.peripheral = peripheral
         self.timer = timer
         self.successHandler = successHandler

@@ -1,5 +1,5 @@
 //
-//  CentralManager.swift
+//  BCCentral.swift
 //
 //  Created by Evan Xie on 2/24/20.
 //
@@ -7,31 +7,31 @@
 import Foundation
 import CoreBluetooth
 
-public protocol CentralManagerDelegate: NSObjectProtocol {
-    func centralManager(_ centralManager: CentralManager, availabilityDidUpdate availability: Availability)
-    func centralManager(_ centralManager: CentralManager, peripheralDidDisconnect peripheral: CBPeripheral)
+public protocol BCCentralDelegate: NSObjectProtocol {
+    func central(_ centralManager: BCCentral, availabilityDidUpdate availability: BCAvailability)
+    func central(_ centralManager: BCCentral, peripheralDidDisconnect peripheral: CBPeripheral)
 }
 
 // MARK: - Object Lifecycle
 
-public final class CentralManager: NSObject {
+public final class BCCentral: NSObject {
     
     fileprivate var manager: CBCentralManager
     fileprivate var scanner: Scanner
     fileprivate var connectionPool: ConnectionPool
     
-    fileprivate var delegateProxy: CentralManagerDelegateProxy
+    fileprivate var delegateProxy: CentralDelegateProxy
     
     /// 系统蓝牙的可用状态
-    public var availability: Availability {
-        return Availability(state: manager.unifiedState)
+    public var availability: BCAvailability {
+        return BCAvailability(state: manager.unifiedState)
     }
     
-    /// CentralManager 一些重要委托回调
-    public weak var delegate: CentralManagerDelegate? = nil
+    /// BCCentral 一些重要委托回调
+    public weak var delegate: BCCentralDelegate? = nil
     
     public override init() {
-        delegateProxy = CentralManagerDelegateProxy()
+        delegateProxy = CentralDelegateProxy()
         manager = CBCentralManager(delegate: nil, queue: nil, options: nil)
         scanner = Scanner(manager: manager)
         connectionPool = ConnectionPool(manager: manager)
@@ -47,7 +47,7 @@ public final class CentralManager: NSObject {
 
 // MARK: - 蓝牙设备获取
 
-public extension CentralManager {
+public extension BCCentral {
     
     /// 所有已连接上的蓝牙设备
     var connectedPeripherals: [CBPeripheral] {
@@ -69,7 +69,7 @@ public extension CentralManager {
 
 // MARK: - 蓝牙设备扫描
 
-public extension CentralManager {
+public extension BCCentral {
     
     /// 扫描蓝牙可能遇到的错误
     /// - bluetoothUnavailable 蓝牙不可用，原因见 `UnavailabilityReason`
@@ -88,7 +88,7 @@ public extension CentralManager {
     /// 扫描蓝牙设备过滤器
     struct ScanFilter {
         
-        public typealias CustomFilterHandler = (Discovery) -> Bool
+        public typealias CustomFilterHandler = (BCDiscovery) -> Bool
         
         /// 只扫描包含指定 service uuids 的蓝牙设备，默认为空(全部扫描).
         public var serviceUUIDs: [CBUUID]
@@ -116,7 +116,7 @@ public extension CentralManager {
     ///   - onProgress: 扫描进度，当发现新设备时，就会调用，所以这个回调可能会被多次触发。
     ///   - onCompletion: 扫描完成，返回本次扫描过程中所有发现的蓝牙设备。扫描时间到了，或主动调用 `stopScan`，都会触发这个回调。
     ///   - onError: 扫描出现错误时触发，返回 `ScanError`。
-    func startScan(withMode mode: ScanMode, filter: ScanFilter = ScanFilter(), onProgress: (([Discovery]) -> Void)? = nil, onCompletion: @escaping ([Discovery]) -> Void, onError: ((ScanError) -> Void)? = nil) {
+    func startScan(withMode mode: ScanMode, filter: ScanFilter = ScanFilter(), onProgress: (([BCDiscovery]) -> Void)? = nil, onCompletion: @escaping ([BCDiscovery]) -> Void, onError: ((ScanError) -> Void)? = nil) {
         do {
             try scanner.startScan(withMode: mode, filter: filter, onProgress: onProgress, onCompletion: onCompletion)
         } catch {
@@ -132,7 +132,7 @@ public extension CentralManager {
 
 // MARK: - 蓝牙设备连接
 
-public extension CentralManager {
+public extension BCCentral {
     
     /// 扫描蓝牙可能遇到的错误
     /// - bluetoothUnavailable 蓝牙不可用，原因见 `UnavailabilityReason`
@@ -167,9 +167,9 @@ public extension CentralManager {
     }
 }
 
-// MARK: - Handle CentralManager State
+// MARK: - Handle BCCentral State
 
-extension CentralManager: CentralManagerStateDelegate {
+extension BCCentral: CentralStateDelegate {
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         
@@ -177,14 +177,14 @@ extension CentralManager: CentralManagerStateDelegate {
         switch central.unifiedState {
         case .poweredOn:
             runTaskOnMainThread {
-                self.delegate?.centralManager(self, availabilityDidUpdate: .available)
+                self.delegate?.central(self, availabilityDidUpdate: .available)
             }
             
         default:
             let reason = UnavailabilityReason(state: unifiedState)
             stopOngoingTasks()
             runTaskOnMainThread {
-                self.delegate?.centralManager(self, availabilityDidUpdate: .unavailable(reason: reason))
+                self.delegate?.central(self, availabilityDidUpdate: .unavailable(reason: reason))
             }
         }
     }
@@ -195,11 +195,11 @@ extension CentralManager: CentralManagerStateDelegate {
     }
 }
 
-extension CentralManager: ConnectionPoolDelegate {
+extension BCCentral: ConnectionPoolDelegate {
     
     func connectionPool(_ connectionPool: ConnectionPool, peripheralDidDisconnect peripheral: CBPeripheral) {
         runTaskOnMainThread {
-            self.delegate?.centralManager(self, peripheralDidDisconnect: peripheral)
+            self.delegate?.central(self, peripheralDidDisconnect: peripheral)
         }
     }
 }

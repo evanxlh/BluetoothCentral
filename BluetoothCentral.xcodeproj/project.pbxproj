@@ -7,55 +7,54 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		20B77C9B247FAE2D00C1D503 /* UniversalBluetooth_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 20B77C99247FAE2D00C1D503 /* UniversalBluetooth_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		20B77CA8247FAE3E00C1D503 /* UniversalBluetooth_watchOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 20B77CA6247FAE3E00C1D503 /* UniversalBluetooth_watchOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20B77CB1247FB7D000C1D503 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CB0247FB7D000C1D503 /* Logger.swift */; };
 		20B77CB2247FB7D000C1D503 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CB0247FB7D000C1D503 /* Logger.swift */; };
 		20B77CB4247FBB0D00C1D503 /* DispatchTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CB3247FBB0D00C1D503 /* DispatchTimer.swift */; };
 		20B77CB5247FBB0D00C1D503 /* DispatchTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CB3247FBB0D00C1D503 /* DispatchTimer.swift */; };
-		20B77CBC247FBB8700C1D503 /* Discovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CB7247FBB8700C1D503 /* Discovery.swift */; };
-		20B77CBD247FBB8700C1D503 /* Discovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CB7247FBB8700C1D503 /* Discovery.swift */; };
-		20B77CBE247FBB8700C1D503 /* Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CB8247FBB8700C1D503 /* Availability.swift */; };
-		20B77CBF247FBB8700C1D503 /* Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CB8247FBB8700C1D503 /* Availability.swift */; };
-		20B77CC0247FBB8700C1D503 /* CentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CB9247FBB8700C1D503 /* CentralManager.swift */; };
-		20B77CC1247FBB8700C1D503 /* CentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CB9247FBB8700C1D503 /* CentralManager.swift */; };
+		20B77CBC247FBB8700C1D503 /* BCDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CB7247FBB8700C1D503 /* BCDiscovery.swift */; };
+		20B77CBD247FBB8700C1D503 /* BCDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CB7247FBB8700C1D503 /* BCDiscovery.swift */; };
+		20B77CBE247FBB8700C1D503 /* BCAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CB8247FBB8700C1D503 /* BCAvailability.swift */; };
+		20B77CBF247FBB8700C1D503 /* BCAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CB8247FBB8700C1D503 /* BCAvailability.swift */; };
+		20B77CC0247FBB8700C1D503 /* BCCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CB9247FBB8700C1D503 /* BCCentral.swift */; };
+		20B77CC1247FBB8700C1D503 /* BCCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CB9247FBB8700C1D503 /* BCCentral.swift */; };
 		20B77CC8247FBB9200C1D503 /* ConnectionAttempt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CC2247FBB9200C1D503 /* ConnectionAttempt.swift */; };
 		20B77CC9247FBB9200C1D503 /* ConnectionAttempt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CC2247FBB9200C1D503 /* ConnectionAttempt.swift */; };
-		20B77CCC247FBB9200C1D503 /* CentralManagerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CC4247FBB9200C1D503 /* CentralManagerDelegateProxy.swift */; };
-		20B77CCD247FBB9200C1D503 /* CentralManagerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CC4247FBB9200C1D503 /* CentralManagerDelegateProxy.swift */; };
 		20B77CCE247FBB9200C1D503 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CC5247FBB9200C1D503 /* Scanner.swift */; };
 		20B77CCF247FBB9200C1D503 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CC5247FBB9200C1D503 /* Scanner.swift */; };
-		20B77CD0247FBB9200C1D503 /* UnifiedManagerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CC6247FBB9200C1D503 /* UnifiedManagerState.swift */; };
-		20B77CD1247FBB9200C1D503 /* UnifiedManagerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CC6247FBB9200C1D503 /* UnifiedManagerState.swift */; };
+		20B77CD0247FBB9200C1D503 /* BluetoothState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CC6247FBB9200C1D503 /* BluetoothState.swift */; };
+		20B77CD1247FBB9200C1D503 /* BluetoothState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CC6247FBB9200C1D503 /* BluetoothState.swift */; };
 		20B77CD2247FBB9200C1D503 /* ConnectionPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CC7247FBB9200C1D503 /* ConnectionPool.swift */; };
 		20B77CD3247FBB9200C1D503 /* ConnectionPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CC7247FBB9200C1D503 /* ConnectionPool.swift */; };
 		20B77D1F247FCC9F00C1D503 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D1E247FCC9F00C1D503 /* Helper.swift */; };
 		20B77D212480B17F00C1D503 /* Locks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D202480B17F00C1D503 /* Locks.swift */; };
 		20B77D222480B17F00C1D503 /* Locks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D202480B17F00C1D503 /* Locks.swift */; };
-		20B77D242480FA0B00C1D503 /* ErrorDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D232480FA0B00C1D503 /* ErrorDescription.swift */; };
-		20B77D252480FA0B00C1D503 /* ErrorDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D232480FA0B00C1D503 /* ErrorDescription.swift */; };
+		20B77D242480FA0B00C1D503 /* BCErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D232480FA0B00C1D503 /* BCErrors.swift */; };
+		20B77D252480FA0B00C1D503 /* BCErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D232480FA0B00C1D503 /* BCErrors.swift */; };
+		20B77D422484D53800C1D503 /* CentralDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D412484D53800C1D503 /* CentralDelegateProxy.swift */; };
+		20B77D432484D53800C1D503 /* CentralDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D412484D53800C1D503 /* CentralDelegateProxy.swift */; };
+		20B77D452484DE0400C1D503 /* BluetoothCentral.h in Headers */ = {isa = PBXBuildFile; fileRef = 20B77C99247FAE2D00C1D503 /* BluetoothCentral.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20B77D462484DE0500C1D503 /* BluetoothCentral.h in Headers */ = {isa = PBXBuildFile; fileRef = 20B77C99247FAE2D00C1D503 /* BluetoothCentral.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20B77D472484DE1800C1D503 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D1E247FCC9F00C1D503 /* Helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		20B77C97247FAE2D00C1D503 /* UniversalBluetooth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UniversalBluetooth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		20B77C99247FAE2D00C1D503 /* UniversalBluetooth_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UniversalBluetooth_iOS.h; sourceTree = "<group>"; };
+		20B77C97247FAE2D00C1D503 /* BluetoothCentral.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BluetoothCentral.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		20B77C99247FAE2D00C1D503 /* BluetoothCentral.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BluetoothCentral.h; sourceTree = "<group>"; };
 		20B77C9A247FAE2D00C1D503 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		20B77CA4247FAE3E00C1D503 /* UniversalBluetooth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UniversalBluetooth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		20B77CA6247FAE3E00C1D503 /* UniversalBluetooth_watchOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UniversalBluetooth_watchOS.h; sourceTree = "<group>"; };
-		20B77CA7247FAE3E00C1D503 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20B77CA4247FAE3E00C1D503 /* BluetoothCentral.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BluetoothCentral.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20B77CB0247FB7D000C1D503 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		20B77CB3247FBB0D00C1D503 /* DispatchTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchTimer.swift; sourceTree = "<group>"; };
-		20B77CB7247FBB8700C1D503 /* Discovery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discovery.swift; sourceTree = "<group>"; };
-		20B77CB8247FBB8700C1D503 /* Availability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Availability.swift; sourceTree = "<group>"; };
-		20B77CB9247FBB8700C1D503 /* CentralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CentralManager.swift; sourceTree = "<group>"; };
+		20B77CB7247FBB8700C1D503 /* BCDiscovery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BCDiscovery.swift; sourceTree = "<group>"; };
+		20B77CB8247FBB8700C1D503 /* BCAvailability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BCAvailability.swift; sourceTree = "<group>"; };
+		20B77CB9247FBB8700C1D503 /* BCCentral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BCCentral.swift; sourceTree = "<group>"; };
 		20B77CC2247FBB9200C1D503 /* ConnectionAttempt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionAttempt.swift; sourceTree = "<group>"; };
-		20B77CC4247FBB9200C1D503 /* CentralManagerDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CentralManagerDelegateProxy.swift; sourceTree = "<group>"; };
 		20B77CC5247FBB9200C1D503 /* Scanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
-		20B77CC6247FBB9200C1D503 /* UnifiedManagerState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnifiedManagerState.swift; sourceTree = "<group>"; };
+		20B77CC6247FBB9200C1D503 /* BluetoothState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothState.swift; sourceTree = "<group>"; };
 		20B77CC7247FBB9200C1D503 /* ConnectionPool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionPool.swift; sourceTree = "<group>"; };
 		20B77D1E247FCC9F00C1D503 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		20B77D202480B17F00C1D503 /* Locks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locks.swift; sourceTree = "<group>"; };
-		20B77D232480FA0B00C1D503 /* ErrorDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDescription.swift; sourceTree = "<group>"; };
+		20B77D232480FA0B00C1D503 /* BCErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BCErrors.swift; sourceTree = "<group>"; };
+		20B77D412484D53800C1D503 /* CentralDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CentralDelegateProxy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				20B77CAC247FAE4500C1D503 /* Source */,
-				20B77C98247FAE2D00C1D503 /* UniversalBluetooth-iOS */,
-				20B77CA5247FAE3E00C1D503 /* UniversalBluetooth-watchOS */,
+				20B77C98247FAE2D00C1D503 /* BluetoothCentral */,
 				20B77C70247FAD9000C1D503 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -89,28 +87,19 @@
 		20B77C70247FAD9000C1D503 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				20B77C97247FAE2D00C1D503 /* UniversalBluetooth.framework */,
-				20B77CA4247FAE3E00C1D503 /* UniversalBluetooth.framework */,
+				20B77C97247FAE2D00C1D503 /* BluetoothCentral.framework */,
+				20B77CA4247FAE3E00C1D503 /* BluetoothCentral.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		20B77C98247FAE2D00C1D503 /* UniversalBluetooth-iOS */ = {
+		20B77C98247FAE2D00C1D503 /* BluetoothCentral */ = {
 			isa = PBXGroup;
 			children = (
-				20B77C99247FAE2D00C1D503 /* UniversalBluetooth_iOS.h */,
+				20B77C99247FAE2D00C1D503 /* BluetoothCentral.h */,
 				20B77C9A247FAE2D00C1D503 /* Info.plist */,
 			);
-			path = "UniversalBluetooth-iOS";
-			sourceTree = "<group>";
-		};
-		20B77CA5247FAE3E00C1D503 /* UniversalBluetooth-watchOS */ = {
-			isa = PBXGroup;
-			children = (
-				20B77CA6247FAE3E00C1D503 /* UniversalBluetooth_watchOS.h */,
-				20B77CA7247FAE3E00C1D503 /* Info.plist */,
-			);
-			path = "UniversalBluetooth-watchOS";
+			path = BluetoothCentral;
 			sourceTree = "<group>";
 		};
 		20B77CAC247FAE4500C1D503 /* Source */ = {
@@ -137,11 +126,11 @@
 		20B77CAE247FB20200C1D503 /* Internal */ = {
 			isa = PBXGroup;
 			children = (
-				20B77CC4247FBB9200C1D503 /* CentralManagerDelegateProxy.swift */,
+				20B77D412484D53800C1D503 /* CentralDelegateProxy.swift */,
 				20B77CC2247FBB9200C1D503 /* ConnectionAttempt.swift */,
 				20B77CC7247FBB9200C1D503 /* ConnectionPool.swift */,
 				20B77CC5247FBB9200C1D503 /* Scanner.swift */,
-				20B77CC6247FBB9200C1D503 /* UnifiedManagerState.swift */,
+				20B77CC6247FBB9200C1D503 /* BluetoothState.swift */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -149,10 +138,10 @@
 		20B77CAF247FB21500C1D503 /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				20B77CB8247FBB8700C1D503 /* Availability.swift */,
-				20B77CB9247FBB8700C1D503 /* CentralManager.swift */,
-				20B77CB7247FBB8700C1D503 /* Discovery.swift */,
-				20B77D232480FA0B00C1D503 /* ErrorDescription.swift */,
+				20B77CB8247FBB8700C1D503 /* BCAvailability.swift */,
+				20B77CB9247FBB8700C1D503 /* BCCentral.swift */,
+				20B77CB7247FBB8700C1D503 /* BCDiscovery.swift */,
+				20B77D232480FA0B00C1D503 /* BCErrors.swift */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -164,7 +153,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20B77C9B247FAE2D00C1D503 /* UniversalBluetooth_iOS.h in Headers */,
+				20B77D452484DE0400C1D503 /* BluetoothCentral.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,16 +161,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20B77CA8247FAE3E00C1D503 /* UniversalBluetooth_watchOS.h in Headers */,
+				20B77D462484DE0500C1D503 /* BluetoothCentral.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		20B77C96247FAE2D00C1D503 /* UniversalBluetooth-iOS */ = {
+		20B77C96247FAE2D00C1D503 /* BluetoothCentral-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 20B77C9C247FAE2D00C1D503 /* Build configuration list for PBXNativeTarget "UniversalBluetooth-iOS" */;
+			buildConfigurationList = 20B77C9C247FAE2D00C1D503 /* Build configuration list for PBXNativeTarget "BluetoothCentral-iOS" */;
 			buildPhases = (
 				20B77C92247FAE2D00C1D503 /* Headers */,
 				20B77C93247FAE2D00C1D503 /* Sources */,
@@ -192,14 +181,14 @@
 			);
 			dependencies = (
 			);
-			name = "UniversalBluetooth-iOS";
+			name = "BluetoothCentral-iOS";
 			productName = "UniversalBluetooth-iOS";
-			productReference = 20B77C97247FAE2D00C1D503 /* UniversalBluetooth.framework */;
+			productReference = 20B77C97247FAE2D00C1D503 /* BluetoothCentral.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		20B77CA3247FAE3E00C1D503 /* UniversalBluetooth-watchOS */ = {
+		20B77CA3247FAE3E00C1D503 /* BluetoothCentral-watchOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 20B77CA9247FAE3E00C1D503 /* Build configuration list for PBXNativeTarget "UniversalBluetooth-watchOS" */;
+			buildConfigurationList = 20B77CA9247FAE3E00C1D503 /* Build configuration list for PBXNativeTarget "BluetoothCentral-watchOS" */;
 			buildPhases = (
 				20B77C9F247FAE3E00C1D503 /* Headers */,
 				20B77CA0247FAE3E00C1D503 /* Sources */,
@@ -210,9 +199,9 @@
 			);
 			dependencies = (
 			);
-			name = "UniversalBluetooth-watchOS";
+			name = "BluetoothCentral-watchOS";
 			productName = "UniversalBluetooth-watchOS";
-			productReference = 20B77CA4247FAE3E00C1D503 /* UniversalBluetooth.framework */;
+			productReference = 20B77CA4247FAE3E00C1D503 /* BluetoothCentral.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -233,7 +222,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 20B77C67247FAD5500C1D503 /* Build configuration list for PBXProject "UniversalBluetooth" */;
+			buildConfigurationList = 20B77C67247FAD5500C1D503 /* Build configuration list for PBXProject "BluetoothCentral" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -246,8 +235,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				20B77C96247FAE2D00C1D503 /* UniversalBluetooth-iOS */,
-				20B77CA3247FAE3E00C1D503 /* UniversalBluetooth-watchOS */,
+				20B77C96247FAE2D00C1D503 /* BluetoothCentral-iOS */,
+				20B77CA3247FAE3E00C1D503 /* BluetoothCentral-watchOS */,
 			);
 		};
 /* End PBXProject section */
@@ -277,16 +266,16 @@
 				20B77CB1247FB7D000C1D503 /* Logger.swift in Sources */,
 				20B77CB4247FBB0D00C1D503 /* DispatchTimer.swift in Sources */,
 				20B77D212480B17F00C1D503 /* Locks.swift in Sources */,
-				20B77CBC247FBB8700C1D503 /* Discovery.swift in Sources */,
-				20B77D242480FA0B00C1D503 /* ErrorDescription.swift in Sources */,
-				20B77CBE247FBB8700C1D503 /* Availability.swift in Sources */,
+				20B77CBC247FBB8700C1D503 /* BCDiscovery.swift in Sources */,
+				20B77D242480FA0B00C1D503 /* BCErrors.swift in Sources */,
+				20B77CBE247FBB8700C1D503 /* BCAvailability.swift in Sources */,
+				20B77D422484D53800C1D503 /* CentralDelegateProxy.swift in Sources */,
 				20B77CC8247FBB9200C1D503 /* ConnectionAttempt.swift in Sources */,
-				20B77CC0247FBB8700C1D503 /* CentralManager.swift in Sources */,
-				20B77CD0247FBB9200C1D503 /* UnifiedManagerState.swift in Sources */,
+				20B77CC0247FBB8700C1D503 /* BCCentral.swift in Sources */,
+				20B77CD0247FBB9200C1D503 /* BluetoothState.swift in Sources */,
 				20B77CD2247FBB9200C1D503 /* ConnectionPool.swift in Sources */,
 				20B77D1F247FCC9F00C1D503 /* Helper.swift in Sources */,
 				20B77CCE247FBB9200C1D503 /* Scanner.swift in Sources */,
-				20B77CCC247FBB9200C1D503 /* CentralManagerDelegateProxy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,18 +283,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20B77D472484DE1800C1D503 /* Helper.swift in Sources */,
+				20B77D432484D53800C1D503 /* CentralDelegateProxy.swift in Sources */,
 				20B77CB2247FB7D000C1D503 /* Logger.swift in Sources */,
 				20B77CB5247FBB0D00C1D503 /* DispatchTimer.swift in Sources */,
 				20B77D222480B17F00C1D503 /* Locks.swift in Sources */,
-				20B77CBD247FBB8700C1D503 /* Discovery.swift in Sources */,
-				20B77CBF247FBB8700C1D503 /* Availability.swift in Sources */,
+				20B77CBD247FBB8700C1D503 /* BCDiscovery.swift in Sources */,
+				20B77CBF247FBB8700C1D503 /* BCAvailability.swift in Sources */,
 				20B77CC9247FBB9200C1D503 /* ConnectionAttempt.swift in Sources */,
-				20B77CC1247FBB8700C1D503 /* CentralManager.swift in Sources */,
-				20B77D252480FA0B00C1D503 /* ErrorDescription.swift in Sources */,
-				20B77CD1247FBB9200C1D503 /* UnifiedManagerState.swift in Sources */,
+				20B77CC1247FBB8700C1D503 /* BCCentral.swift in Sources */,
+				20B77D252480FA0B00C1D503 /* BCErrors.swift in Sources */,
+				20B77CD1247FBB9200C1D503 /* BluetoothState.swift in Sources */,
 				20B77CD3247FBB9200C1D503 /* ConnectionPool.swift in Sources */,
 				20B77CCF247FBB9200C1D503 /* Scanner.swift in Sources */,
-				20B77CCD247FBB9200C1D503 /* CentralManagerDelegateProxy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,7 +370,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "UniversalBluetooth-iOS/Info.plist";
+				INFOPLIST_FILE = BluetoothCentral/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -391,8 +381,8 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = me.evanxlh.UniversalBluetooth;
-				PRODUCT_NAME = "${PROJECT_NAME}";
+				PRODUCT_BUNDLE_IDENTIFIER = me.evanxlh.BluetoothCentral;
+				PRODUCT_NAME = BluetoothCentral;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
@@ -455,7 +445,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "UniversalBluetooth-iOS/Info.plist";
+				INFOPLIST_FILE = BluetoothCentral/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -465,8 +455,8 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = me.evanxlh.UniversalBluetooth;
-				PRODUCT_NAME = "${PROJECT_NAME}";
+				PRODUCT_BUNDLE_IDENTIFIER = me.evanxlh.BluetoothCentral;
+				PRODUCT_NAME = BluetoothCentral;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
@@ -537,7 +527,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "UniversalBluetooth-watchOS/Info.plist";
+				INFOPLIST_FILE = BluetoothCentral/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -547,8 +537,8 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = me.evanxlh.UniversalBluetooth;
-				PRODUCT_NAME = "${PROJECT_NAME}";
+				PRODUCT_BUNDLE_IDENTIFIER = me.evanxlh.BluetoothCentral;
+				PRODUCT_NAME = BluetoothCentral;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -612,7 +602,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "UniversalBluetooth-watchOS/Info.plist";
+				INFOPLIST_FILE = BluetoothCentral/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -621,8 +611,8 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = me.evanxlh.UniversalBluetooth;
-				PRODUCT_NAME = "${PROJECT_NAME}";
+				PRODUCT_BUNDLE_IDENTIFIER = me.evanxlh.BluetoothCentral;
+				PRODUCT_NAME = BluetoothCentral;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -639,7 +629,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		20B77C67247FAD5500C1D503 /* Build configuration list for PBXProject "UniversalBluetooth" */ = {
+		20B77C67247FAD5500C1D503 /* Build configuration list for PBXProject "BluetoothCentral" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				20B77C68247FAD5500C1D503 /* Debug */,
@@ -648,7 +638,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		20B77C9C247FAE2D00C1D503 /* Build configuration list for PBXNativeTarget "UniversalBluetooth-iOS" */ = {
+		20B77C9C247FAE2D00C1D503 /* Build configuration list for PBXNativeTarget "BluetoothCentral-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				20B77C9D247FAE2D00C1D503 /* Debug */,
@@ -657,7 +647,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		20B77CA9247FAE3E00C1D503 /* Build configuration list for PBXNativeTarget "UniversalBluetooth-watchOS" */ = {
+		20B77CA9247FAE3E00C1D503 /* Build configuration list for PBXNativeTarget "BluetoothCentral-watchOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				20B77CAA247FAE3E00C1D503 /* Debug */,

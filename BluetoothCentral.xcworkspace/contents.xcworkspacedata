@@ -5,6 +5,6 @@
       location = "group:Demo/Demo.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:/Users/evan/Documents/MyCodes/Bluetooth/UniversalBluetooth/BluetoothCentral.xcodeproj">
+      location = "group:BluetoothCentral.xcodeproj">
    </FileRef>
 </Workspace>

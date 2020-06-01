@@ -48,7 +48,6 @@
 		20B77CE9247FC0A500C1D503 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20B77CEC247FC0A500C1D503 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		20B77CEE247FC0A500C1D503 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		20B77CF5247FC0DB00C1D503 /* UniversalBluetooth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UniversalBluetooth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20B77D08247FC4CF00C1D503 /* KRProgressHUDIconType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KRProgressHUDIconType.swift; sourceTree = "<group>"; };
 		20B77D09247FC4CF00C1D503 /* InnerKRProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InnerKRProgressHUD.swift; sourceTree = "<group>"; };
 		20B77D0A247FC4CF00C1D503 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -110,7 +109,6 @@
 			isa = PBXGroup;
 			children = (
 				20B77D482484DECE00C1D503 /* BluetoothCentral.framework */,
-				20B77CF5247FC0DB00C1D503 /* UniversalBluetooth.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

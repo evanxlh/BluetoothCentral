@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		202CEDC624850ADF00110379 /* PacketMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202CEDC524850ADF00110379 /* PacketMaker.swift */; };
+		202CEDC824850D0200110379 /* Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202CEDC724850D0200110379 /* Packet.swift */; };
+		202CEDCA248513E300110379 /* PacketExpressible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202CEDC9248513E300110379 /* PacketExpressible.swift */; };
 		20B77CE1247FC0A300C1D503 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CE0247FC0A300C1D503 /* AppDelegate.swift */; };
 		20B77CE5247FC0A300C1D503 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CE4247FC0A300C1D503 /* ViewController.swift */; };
 		20B77CE8247FC0A300C1D503 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20B77CE6247FC0A300C1D503 /* Main.storyboard */; };
@@ -41,7 +44,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		20B77CDD247FC0A300C1D503 /* UniversalBlutooth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniversalBlutooth.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		202CEDC524850ADF00110379 /* PacketMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketMaker.swift; sourceTree = "<group>"; };
+		202CEDC724850D0200110379 /* Packet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet.swift; sourceTree = "<group>"; };
+		202CEDC9248513E300110379 /* PacketExpressible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PacketExpressible.swift; sourceTree = "<group>"; };
+		20B77CDD247FC0A300C1D503 /* BlutoothCentral.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlutoothCentral.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20B77CE0247FC0A300C1D503 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20B77CE4247FC0A300C1D503 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		20B77CE7247FC0A300C1D503 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -74,6 +80,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		202CEDC224850A8400110379 /* BluetoothProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				202CEDC724850D0200110379 /* Packet.swift */,
+				202CEDC9248513E300110379 /* PacketExpressible.swift */,
+				202CEDC524850ADF00110379 /* PacketMaker.swift */,
+			);
+			path = BluetoothProtocol;
+			sourceTree = "<group>";
+		};
 		20B77CD4247FC0A300C1D503 = {
 			isa = PBXGroup;
 			children = (
@@ -86,7 +102,7 @@
 		20B77CDE247FC0A300C1D503 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				20B77CDD247FC0A300C1D503 /* UniversalBlutooth.app */,
+				20B77CDD247FC0A300C1D503 /* BlutoothCentral.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,6 +115,7 @@
 				20B77D1A247FC6BF00C1D503 /* ScanViewController.swift */,
 				20B77D1C247FC6EB00C1D503 /* BluetoothViewController.swift */,
 				20B77CE6247FC0A300C1D503 /* Main.storyboard */,
+				202CEDC224850A8400110379 /* BluetoothProtocol */,
 				20B77D06247FC4CF00C1D503 /* Vendor */,
 				20B77D05247FC2B100C1D503 /* SupportingFiles */,
 			);
@@ -173,7 +190,7 @@
 			);
 			name = "Demo-iOS";
 			productName = Demo;
-			productReference = 20B77CDD247FC0A300C1D503 /* UniversalBlutooth.app */;
+			productReference = 20B77CDD247FC0A300C1D503 /* BlutoothCentral.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -234,6 +251,9 @@
 				20B77CE5247FC0A300C1D503 /* ViewController.swift in Sources */,
 				20B77D15247FC4CF00C1D503 /* KRProgressHUDViewController.swift in Sources */,
 				20B77D12247FC4CF00C1D503 /* KRProgressHUDIconType.swift in Sources */,
+				202CEDC624850ADF00110379 /* PacketMaker.swift in Sources */,
+				202CEDC824850D0200110379 /* Packet.swift in Sources */,
+				202CEDCA248513E300110379 /* PacketExpressible.swift in Sources */,
 				20B77D13247FC4CF00C1D503 /* InnerKRProgressHUD.swift in Sources */,
 				20B77D1D247FC6EB00C1D503 /* BluetoothViewController.swift in Sources */,
 				20B77CE1247FC0A300C1D503 /* AppDelegate.swift in Sources */,
@@ -390,7 +410,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.evanxlh.UniversalBlutoothDemo;
-				PRODUCT_NAME = UniversalBlutooth;
+				PRODUCT_NAME = BlutoothCentral;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -409,7 +429,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.evanxlh.UniversalBlutoothDemo;
-				PRODUCT_NAME = UniversalBlutooth;
+				PRODUCT_NAME = BlutoothCentral;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

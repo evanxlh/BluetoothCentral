@@ -64,6 +64,7 @@ class ScanViewController: UITableViewController {
         manager.connect(withTimeout: 5.0, peripheral: peripheral, onSuccess: {
             let bluetoothVC = self.storyboard!.instantiateViewController(withIdentifier: "BluetoothViewController") as! BluetoothViewController
             bluetoothVC.manager = self.manager
+            bluetoothVC.peripheral = peripheral
             self.navigationController?.pushViewController(bluetoothVC, animated: true)
         }) { (error) in
             KRProgressHUD.showError(withMessage: error.localizedDescription)

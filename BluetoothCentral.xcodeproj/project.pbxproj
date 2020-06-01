@@ -35,6 +35,8 @@
 		20B77D452484DE0400C1D503 /* BluetoothCentral.h in Headers */ = {isa = PBXBuildFile; fileRef = 20B77C99247FAE2D00C1D503 /* BluetoothCentral.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20B77D462484DE0500C1D503 /* BluetoothCentral.h in Headers */ = {isa = PBXBuildFile; fileRef = 20B77C99247FAE2D00C1D503 /* BluetoothCentral.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20B77D472484DE1800C1D503 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D1E247FCC9F00C1D503 /* Helper.swift */; };
+		20B77D502484F06600C1D503 /* BCSendDataChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D4F2484F06600C1D503 /* BCSendDataChannel.swift */; };
+		20B77D512484F06600C1D503 /* BCSendDataChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D4F2484F06600C1D503 /* BCSendDataChannel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +57,7 @@
 		20B77D202480B17F00C1D503 /* Locks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locks.swift; sourceTree = "<group>"; };
 		20B77D232480FA0B00C1D503 /* BCErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BCErrors.swift; sourceTree = "<group>"; };
 		20B77D412484D53800C1D503 /* CentralDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CentralDelegateProxy.swift; sourceTree = "<group>"; };
+		20B77D4F2484F06600C1D503 /* BCSendDataChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BCSendDataChannel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +144,7 @@
 				20B77CB8247FBB8700C1D503 /* BCAvailability.swift */,
 				20B77CB9247FBB8700C1D503 /* BCCentral.swift */,
 				20B77CB7247FBB8700C1D503 /* BCDiscovery.swift */,
+				20B77D4F2484F06600C1D503 /* BCSendDataChannel.swift */,
 				20B77D232480FA0B00C1D503 /* BCErrors.swift */,
 			);
 			path = Public;
@@ -263,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20B77D502484F06600C1D503 /* BCSendDataChannel.swift in Sources */,
 				20B77CB1247FB7D000C1D503 /* Logger.swift in Sources */,
 				20B77CB4247FBB0D00C1D503 /* DispatchTimer.swift in Sources */,
 				20B77D212480B17F00C1D503 /* Locks.swift in Sources */,
@@ -283,6 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20B77D512484F06600C1D503 /* BCSendDataChannel.swift in Sources */,
 				20B77D472484DE1800C1D503 /* Helper.swift in Sources */,
 				20B77D432484D53800C1D503 /* CentralDelegateProxy.swift in Sources */,
 				20B77CB2247FB7D000C1D503 /* Logger.swift in Sources */,

@@ -1,2 +1,3 @@
-# UniversalBluetooth
-A swift implemented bluetooth framework based Apple CoreBluetooth.
+# BluetoothCetral
+A swift implemented bluetooth central framework based Apple CoreBluetooth.
+

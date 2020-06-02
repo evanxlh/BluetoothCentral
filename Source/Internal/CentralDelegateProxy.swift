@@ -10,7 +10,7 @@ import CoreBluetooth
 /// 根据职责将 `CBCentralManagerDelegate` 拆分，分别委托给不同的职责类。同时避免 delegate 方法在 framework 作用域以外可访问。
 ///
 /// 设计来自 [BluetoothKit](https://github.com/rhummelmose/BluetoothKit/blob/master/Source/BKCBCentralManagerDelegateProxy.swift)。
-internal class CentralDelegateProxy: NSObject, CBCentralManagerDelegate {
+internal final class CentralDelegateProxy: NSObject, CBCentralManagerDelegate {
 
     weak var stateDelegate: CentralStateDelegate?
     weak var discoveryDelegate: CentralDiscoveryDelegate?

@@ -1,5 +1,5 @@
 //
-//  BCSendDataChannel.swift
+//  SendDataChannel.swift
 //
 //  Created by Evan Xie on 2020/6/1.
 //
@@ -11,7 +11,7 @@ import CoreBluetooth
 /// 您给以给每个 `CBCharacteristic` 都创建一个数据通道用来发送数据。
 ///
 /// 支持发送任意数据，如果数据太大，data channel 会自动拆分成小数据包再发进行发送。
-public class BCSendDataChannel: NSObject {
+public class SendDataChannel: NSObject {
     
     fileprivate let maxDataLengthPerWrite: Int
     fileprivate let peripheral: CBPeripheral
@@ -55,7 +55,7 @@ public class BCSendDataChannel: NSObject {
     }
 }
 
-fileprivate extension BCSendDataChannel {
+fileprivate extension SendDataChannel {
     
     /// 处理数据发送队列中的等待任务。
     func processSendDataTasks() {

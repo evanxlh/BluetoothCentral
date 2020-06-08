@@ -18,10 +18,10 @@ internal final class Scanner {
     
     fileprivate var centralManager: CBCentralManager
     fileprivate var scanningTimer: DispatchTimer?
-    fileprivate var discoveries = [BCDiscovery]()
+    fileprivate var discoveries = [PeripheralDiscovery]()
 
-    fileprivate var progressHandler: (([BCDiscovery]) -> Void)?
-    fileprivate var completionHandler: (([BCDiscovery]) -> Void)?
+    fileprivate var progressHandler: ((CentralManager.PeripheralDiscoveryChange) -> Void)?
+    fileprivate var completionHandler: (([PeripheralDiscovery]) -> Void)?
     
     fileprivate let lock = MutexLock()
     fileprivate var _state = State.idle
@@ -34,14 +34,14 @@ internal final class Scanner {
     
     // MARK: - Accessible Within Framework
     
-    var scanFilter = BCCentral.ScanFilter()
+    var scanFilter = CentralManager.ScanFilter()
     
     init(manager: CBCentralManager) {
         self.centralManager = manager
     }
     
-    /// Throw `BCCentral.ScanError`
-    func startScan(withMode mode: BCCentral.ScanMode, filter: BCCentral.ScanFilter, onProgress: (([BCDiscovery]) -> Void)?, onCompletion: @escaping ([BCDiscovery]) -> Void) throws {
+    /// Throw `CentralManager.ScanError`
+    func startScan(withMode mode: CentralManager.ScanMode, filter: CentralManager.ScanFilter, onProgress: ((CentralManager.PeripheralDiscoveryChange) -> Void)?, onCompletion: @escaping ([PeripheralDiscovery]) -> Void) throws {
         do {
             try transitionToScanningState()
             scanFilter = filter
@@ -67,7 +67,7 @@ fileprivate extension Scanner {
     
     // MARK: - Private Functions
     
-    func processWorkingMode(_ mode: BCCentral.ScanMode) {
+    func processWorkingMode(_ mode: CentralManager.ScanMode) {
         switch mode {
         case .infinitely:
             return
@@ -94,7 +94,10 @@ fileprivate extension Scanner {
         let discoveries = self.discoveries
         self.discoveries.removeAll()
         _state = .idle
-        completionHandler?(discoveries)
+        
+        runTaskOnMainThread { [weak self] in
+            self?.completionHandler?(discoveries)
+        }
     }
     
     func invalidateScanningTimer() {
@@ -106,12 +109,12 @@ fileprivate extension Scanner {
     
     func transitionToScanningState() throws {
         guard state == .idle else {
-            throw BCCentral.ScanError.scanning
+            throw CentralManager.ScanError.scanning
         }
         
         let centralState = centralManager.unifiedState
         guard centralState == .poweredOn else {
-            throw BCCentral.ScanError.bluetoothUnavailable(UnavailabilityReason(state: centralState))
+            throw CentralManager.ScanError.bluetoothUnavailable(UnavailabilityReason(state: centralState))
         }
         
         _state = .scanning
@@ -120,24 +123,29 @@ fileprivate extension Scanner {
 
 extension Scanner: CentralDiscoveryDelegate {
     
-    // MARK: - CentralBCDiscoveryDelegate Implementation
+    // MARK: - CentralPeripheralDiscoveryDelegate Implementation
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi: NSNumber) {
+        
         guard state == .scanning else { return }
         
-        let signalStrength = rssi.intValue
-        let discovery = BCDiscovery(advertisementData: advertisementData, peripheral: peripheral, rssi: signalStrength)
-        guard let filter = scanFilter.customFilter, filter(discovery) else {
+        let aPeripheral = Peripheral(peripheral: peripheral)
+        let discovery = PeripheralDiscovery(advertisementData: advertisementData, peripheral: aPeripheral, rssi: rssi)
+        if let filter = scanFilter.customFilter, !filter(discovery) {
             return
         }
         
         // 如果扫描暂存数组中包含了已发现的蓝牙设备，则更新已有蓝牙设备信息。反之，则添加一个新记录。
         if let existIndex = discoveries.firstIndex(of: discovery) {
             discoveries[existIndex] = discovery
+            runTaskOnMainThread { [weak self] in
+                self?.progressHandler?(.updated(discovery, existIndex))
+            }
         } else {
             discoveries.append(discovery)
+            runTaskOnMainThread { [weak self] in
+                self?.progressHandler?(.new(discovery))
+            }
         }
-        
-        progressHandler?([discovery])
     }
 }

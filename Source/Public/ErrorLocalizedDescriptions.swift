@@ -6,7 +6,7 @@
 
 import Foundation
 
-extension BCCentral.ScanError {
+extension CentralManager.ScanError {
     
     public var localizedDescription: String {
         switch self {
@@ -18,7 +18,7 @@ extension BCCentral.ScanError {
     }
 }
 
-extension BCCentral.ConnectionError {
+extension CentralManager.ConnectionError {
     
     public var localizedDescription: String {
         switch self {

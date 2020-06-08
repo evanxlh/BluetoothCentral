@@ -1,5 +1,5 @@
 //
-//  BCDiscoverServiceFilter.swift
+//  ServiceInterested.swift
 //
 //  Created by Evan Xie on 2020/6/2.
 //
@@ -7,10 +7,15 @@
 import Foundation
 import CoreBluetooth
 
-public struct BCDiscoverServiceFilter {
-    public let serviceUUID: String
-    public let characteristicUUIDs: [String]
+/// 您感兴趣的 `service` 及该 `service` 下您感兴趣的 `chracteristics`.
+public struct ServiceInterested {
     
+    /// UUID of CBService
+    public let serviceUUID: String
+    
+    /// 该 `service` 下的您感兴趣的 `characteristics` 的 UUIDs.
+    /// 如为空代表所有的 `characteristics` 都感兴趣。
+    public let characteristicUUIDs: [String]
     
     /// `characteristicUUIDs` 默认为空，即查找此 `service` 所有的 `characteristics`。
     public init(serviceUUID: String, characteristicUUIDs: [String] = []) {
@@ -19,14 +24,14 @@ public struct BCDiscoverServiceFilter {
     }
 }
 
-internal extension BCDiscoverServiceFilter {
+internal extension ServiceInterested {
     
-    static func serviceCBUUIDs(from filters: [BCDiscoverServiceFilter]) -> [CBUUID]? {
+    static func serviceCBUUIDs(from filters: [ServiceInterested]) -> [CBUUID]? {
         if filters.count == 0 {  return nil }
         return filters.map { CBUUID(string: $0.serviceUUID) }
     }
     
-    static func characteristicCBUUIDs(from filters: [BCDiscoverServiceFilter], forService service: CBService) -> [CBUUID]? {
+    static func characteristicCBUUIDs(from filters: [ServiceInterested], forService service: CBService) -> [CBUUID]? {
         if filters.count == 0 {  return nil }
         guard let filter = filters.filter({ $0.serviceUUID == service.uuid.uuidString }).first else { return nil }
        

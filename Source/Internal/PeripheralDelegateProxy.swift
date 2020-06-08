@@ -7,7 +7,7 @@
 import Foundation
 import CoreBluetooth
 
-internal protocol PeripheralDelegate: AnyObject {
+internal protocol InternalPeripheralDelegate: AnyObject {
     
     func peripheralIsReadyToSendData(_ peripheral: CBPeripheral)
     func peripheralDidDiscoverServices(_ peripheral: CBPeripheral)
@@ -20,9 +20,10 @@ internal protocol PeripheralDelegate: AnyObject {
 
 internal final class PeripheralDelegateProxy: NSObject, CBPeripheralDelegate {
     
-    weak var delegate: PeripheralDelegate?
+    weak var delegate: InternalPeripheralDelegate?
     
     func peripheralIsReady(toSendWriteWithoutResponse peripheral: CBPeripheral) {
+        Logger.tag("Peripheral", message: "peripheralIsReady toSendWriteWithoutResponse")
         delegate?.peripheralIsReadyToSendData(peripheral)
     }
     
@@ -53,15 +54,15 @@ internal final class PeripheralDelegateProxy: NSObject, CBPeripheralDelegate {
     // MARK: - 不常用，，暂不实现
     
     func peripheralDidUpdateName(_ peripheral: CBPeripheral) {
-        
+        Logger.tag("Peripheral", message: "peripheralDidUpdateName: \(String(describing: peripheral.name))")
     }
     
     func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
-        
+        Logger.tag("Peripheral", message: "didReadRSSI: \(RSSI)")
     }
     
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
-        
+        Logger.tag("Peripheral", message: "didWriteValueForCharacteristic: \(characteristic.uuid.uuidString), error: \(String(describing: error))")
     }
     
     func peripheral(_ peripheral: CBPeripheral, didModifyServices invalidatedServices: [CBService]) {
@@ -69,7 +70,7 @@ internal final class PeripheralDelegateProxy: NSObject, CBPeripheralDelegate {
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
-        
+        Logger.tag("Peripheral", message: "didUpdateNotificationStateForCharacteristic: \(characteristic.uuid.uuidString), error: \(String(describing: error))")
     }
     
     // MARK: - 极少用，暂不实现

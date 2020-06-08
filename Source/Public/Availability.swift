@@ -1,5 +1,5 @@
 //
-//  BCAvailability.swift
+//  Availability.swift
 //
 //  Created by Evan Xie on 2/24/20.
 //
@@ -8,7 +8,7 @@ import Foundation
 import CoreBluetooth
 
 /// Bluetooth LE 可用性
-public enum BCAvailability: Equatable {
+public enum Availability: Equatable {
 
     /// Bluetooth LE 当前可用
     case available
@@ -16,7 +16,7 @@ public enum BCAvailability: Equatable {
     /// Bluetooth LE 当前不可用，及其原因
     case unavailable(reason: UnavailabilityReason)
 
-    internal init(state: BluetoothState) {
+    internal init(state: CentralState) {
         switch state {
         case .poweredOn:
             self = .available
@@ -25,7 +25,7 @@ public enum BCAvailability: Equatable {
         }
     }
     
-    internal func toUnifiedState() -> BluetoothState {
+    internal func toUnifiedState() -> CentralState {
         switch self {
         case .available:
             return .poweredOn
@@ -34,7 +34,7 @@ public enum BCAvailability: Equatable {
         }
     }
     
-    public static func == (lhs: BCAvailability, rhs: BCAvailability) -> Bool {
+    public static func == (lhs: Availability, rhs: Availability) -> Bool {
         switch (lhs, rhs) {
             case (.available, .available):
                 return true
@@ -65,7 +65,7 @@ public enum UnavailabilityReason: CustomDebugStringConvertible {
     /// 未知的临时状态，Core Bluetooth 初始化完成，或重置后，此状态会被更新。
     case unknown
 
-    internal init(state: BluetoothState) {
+    internal init(state: CentralState) {
         switch state {
         case .poweredOff:
             self = .poweredOff
@@ -97,7 +97,7 @@ public enum UnavailabilityReason: CustomDebugStringConvertible {
         }
     }
     
-    internal func toUnifiedState() -> BluetoothState {
+    internal func toUnifiedState() -> CentralState {
         switch self {
         case .poweredOff:
             return .poweredOff

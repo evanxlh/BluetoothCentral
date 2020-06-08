@@ -6,55 +6,56 @@
 
 import Foundation
 
-internal struct Logger {
+/// 简单的控制台 log 输出
+public struct Logger {
     
-    static var isEnabled = true
-    
-    private static var _dateFormatter: DateFormatter? = nil
-    
-    private static var dateFormatter: DateFormatter {
-        if _dateFormatter == nil {
-            _dateFormatter = DateFormatter()
-            _dateFormatter?.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+    private static var _dateFormatter: DateFormatter {
+        if dateFormatter == nil {
+            dateFormatter = DateFormatter()
+            dateFormatter?.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
         }
-        return _dateFormatter!
+        return dateFormatter!
     }
     
-    static func trace(file: String = #file, method: String = #function) {
-        if isEnabled {
-            print("[Trace] \(dateFormatter.string(from: Date())) \(method)]")
-        }
-    }
+    /// 是否开启 log, 默认为关闭。
+    public static var isEnabled = false
     
-    static func debug<T>(_ message: T, file: String = #file, method: String = #function) {
+    /// Log 输出的日期显示格式，不提供则使用默认格式。
+    public static var dateFormatter: DateFormatter? = nil
+    
+    public static func trace(file: String = #file, method: String = #function) {
         if isEnabled {
-            print("[Debug] \(dateFormatter.string(from: Date())) \(message)")
+            print("\(_dateFormatter.string(from: Date())) [Trace] \(method)]")
         }
     }
     
-    
-    
-    static func info<T>(_ message: T, file: String = #file, method: String = #function) {
+    public static func debug<T>(_ message: T, file: String = #file, method: String = #function) {
         if isEnabled {
-            print("[Info] \(dateFormatter.string(from: Date())) \(message)")
+            print("\(_dateFormatter.string(from: Date())) [Debug] \(message)")
         }
     }
     
-    static func warning<T>(_ message: T, file: String = #file, method: String = #function) {
+    public static func info<T>(_ message: T, file: String = #file, method: String = #function) {
         if isEnabled {
-            print("⚠️ \(dateFormatter.string(from: Date())) \(message)")
+            print("\(_dateFormatter.string(from: Date())) [Info] \(message)")
         }
     }
     
-    static func error<T>(_ message: T, file: String = #file, method: String = #function) {
+    public static func warning<T>(_ message: T, file: String = #file, method: String = #function) {
         if isEnabled {
-            print("❌ \(dateFormatter.string(from: Date())) \(message)")
+            print("\(_dateFormatter.string(from: Date())) [⚠️] \(message)")
         }
     }
     
-    static func tag<T>(_ tag: String, message: T, file: String = #file, method: String = #function) {
+    public static func error<T>(_ message: T, file: String = #file, method: String = #function) {
         if isEnabled {
-            print("[\(tag)] \(dateFormatter.string(from: Date())) \(message)")
+            print("\(_dateFormatter.string(from: Date())) [❌]  \(message)")
+        }
+    }
+    
+    public static func tag<T>(_ tag: String, message: T, file: String = #file, method: String = #function) {
+        if isEnabled {
+            print("\(_dateFormatter.string(from: Date())) [\(tag)] \(message)")
         }
     }
 }

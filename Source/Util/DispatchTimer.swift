@@ -7,7 +7,7 @@
 import Foundation
 
 /// Dispatch Timer，
-internal class DispatchTimer {
+public class DispatchTimer {
     
     private var timer: DispatchSourceTimer?
     private var isInvalidated: Bool {
@@ -15,11 +15,11 @@ internal class DispatchTimer {
     }
     private var isRunning = false
     
-    init(flags: DispatchSource.TimerFlags = [], queue: DispatchQueue = .main) {
+    public init(flags: DispatchSource.TimerFlags = [], queue: DispatchQueue = .main) {
         timer = DispatchSource.makeTimerSource(flags: flags, queue: queue)
     }
     
-    func schedule(withTimeInterval interval: TimeInterval, repeats: Bool, handler: @escaping (_ timer: DispatchTimer) -> Void) {
+    public func schedule(withTimeInterval interval: TimeInterval, repeats: Bool, handler: @escaping (_ timer: DispatchTimer) -> Void) {
 
         guard !isInvalidated else {
             print("Warning: DispatchTimer has already invalidated, please create a new one")
@@ -49,7 +49,7 @@ internal class DispatchTimer {
         timer?.resume()
     }
     
-    func invalidate() {
+    public func invalidate() {
         guard let timer = self.timer, !timer.isCancelled else {
             return
         }

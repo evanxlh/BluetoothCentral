@@ -1,5 +1,5 @@
 //
-//  BluetoothState.swift
+//  CentralState.swift
 //
 //  Created by Evan Xie on 2/25/20.
 //
@@ -8,7 +8,7 @@ import Foundation
 import CoreBluetooth
 
 ///  统一蓝牙状态(`CBCentralManagerState` 和 `CBManagerState`)，不用再为 iOS 不同版本 API 的差异而分心。
-internal enum BluetoothState: Int {
+internal enum CentralState: Int {
     
     /// 蓝牙已打开，可以正常使用
     case poweredOn
@@ -31,8 +31,8 @@ internal enum BluetoothState: Int {
 
 extension CBCentralManager {
     
-    /// 不管是 `CBBCCentralState`, 还是 `CBManagerState`, 统一成一个状态。
-    internal var unifiedState: BluetoothState {
+    /// 不管是 `CBCentralManagerState`, 还是 `CBManagerState`, 统一成一个状态。
+    internal var unifiedState: CentralState {
         switch state {
         case .poweredOn:
             return .poweredOn
@@ -49,5 +49,19 @@ extension CBCentralManager {
         @unknown default:
             return .unknown
         }
+    }
+}
+
+/// 内部维护的蓝牙可用性
+internal struct InternalAvailability {
+    
+    private static var _availability: Availability = .unavailable(reason: .unknown)
+    
+    static var availability: Availability {
+        return _availability
+    }
+
+    static func updateAvailability(_ availability: Availability) {
+        _availability = availability
     }
 }

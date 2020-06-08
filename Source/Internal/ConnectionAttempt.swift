@@ -8,21 +8,24 @@ import Foundation
 import CoreBluetooth
 
 /// 保存蓝牙尝试连接的信息，连接成功后会被移除。
-internal final class ConnectionAttempt: Equatable {
+internal final class ConnectionAttempt: NSObject {
 
     let timer: DispatchTimer
-    let peripheral: CBPeripheral
-    let successHandler: () -> Void
-    let failureHandler: (BCCentral.ConnectionError) -> Void
+    let peripheral: Peripheral
+    let successHandler: CentralManager.ConnectionSuccessBlock
+    let failureHandler: CentralManager.ConnectionFailureBlock
 
-    init(peripheral: CBPeripheral, timer: DispatchTimer, successHandler: @escaping () -> Void, failureHandler: @escaping (BCCentral.ConnectionError) -> Void) {
+    init(peripheral: Peripheral, timer: DispatchTimer, successHandler: @escaping CentralManager.ConnectionSuccessBlock, failureHandler: @escaping CentralManager.ConnectionFailureBlock) {
         self.peripheral = peripheral
         self.timer = timer
         self.successHandler = successHandler
         self.failureHandler = failureHandler
     }
     
-    static func == (lhs: ConnectionAttempt, rhs: ConnectionAttempt) -> Bool {
-        return (lhs.peripheral.identifier == rhs.peripheral.identifier)
+    override func isEqual(_ object: Any?) -> Bool {
+        guard object != nil, let castObject = object as? ConnectionAttempt else {
+            return false
+        }
+        return castObject.peripheral == peripheral
     }
 }

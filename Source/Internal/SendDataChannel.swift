@@ -63,7 +63,7 @@ fileprivate extension SendDataChannel {
             return
         }
         
-        var nextTask = sendDataTasks.first!
+        let nextTask = sendDataTasks.first!
         if nextTask.isAllDataSent {
             sendDataTasks.removeFirst()
             processSendDataTasks()
@@ -72,7 +72,15 @@ fileprivate extension SendDataChannel {
         
         // 如果数据还没有发送完
         if let nextSendData = nextTask.dataForNextSend {
-            peripheral.writeValue(nextSendData, for: characteristic, type: .withoutResponse)
+            let properties = characteristic.properties
+            if properties.contains(.writeWithoutResponse) {
+                peripheral.writeValue(nextSendData, for: characteristic, type: .withoutResponse)
+            } else if properties.contains(.write) {
+                peripheral.writeValue(nextSendData, for: characteristic, type: .withResponse)
+            } else {
+                fatalError("这个 characteristic 不支持写数据")
+            }
+            
             nextTask.offset += nextSendData.count
             processSendDataTasks()
             return
@@ -80,7 +88,7 @@ fileprivate extension SendDataChannel {
     }
 }
 
-fileprivate struct SendDataTask: Equatable {
+fileprivate final class SendDataTask: Equatable {
     
     private let data: Data
     private let maxDataLenghtCanSentOnce: Int

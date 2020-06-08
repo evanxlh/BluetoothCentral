@@ -19,6 +19,7 @@ internal final class CentralDelegateProxy: NSObject, CBCentralManagerDelegate {
     // MARK: - State Delegate
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        InternalAvailability.updateAvailability(Availability(state: central.unifiedState))
         stateDelegate?.centralManagerDidUpdateState(central)
     }
     

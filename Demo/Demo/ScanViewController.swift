@@ -77,14 +77,14 @@ class ScanViewController: UITableViewController {
         
         manager.connect(withTimeout: 3.0, peripheral: peripheral, onSuccess: { (remotePeripheral) in
             print("Connected \(peripheral) => \(remotePeripheral)")
-//            let bluetoothVC = self.storyboard!.instantiateViewController(withIdentifier: "BluetoothViewController") as! BluetoothViewController
-//            bluetoothVC.manager = self.manager
-//            bluetoothVC.peripheral = peripheral
-//            self.navigationController?.pushViewController(bluetoothVC, animated: true)
+            let bluetoothVC = self.storyboard!.instantiateViewController(withIdentifier: "BluetoothDeviceViewController") as! BluetoothDeviceViewController
+            bluetoothVC.manager = self.manager
+            bluetoothVC.peripheral = peripheral
+            self.navigationController?.pushViewController(bluetoothVC, animated: true)
             
         }) { (remotePeripheral, error) in
             print("Connected error: \(error) => \(remotePeripheral)")
-//            KRProgressHUD.showError(withMessage: error.localizedDescription)
+            KRProgressHUD.showError(withMessage: error.localizedDescription)
         }
     }
     

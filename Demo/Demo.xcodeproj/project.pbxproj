@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		203CE2C0248E20C300558F8B /* RoleSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203CE2BF248E20C300558F8B /* RoleSelectionViewController.swift */; };
+		203CE2C2248E29A500558F8B /* PublishBluetoothServiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203CE2C1248E29A500558F8B /* PublishBluetoothServiceVC.swift */; };
+		203CE2C6248E689000558F8B /* ServiceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203CE2C5248E689000558F8B /* ServiceConfiguration.swift */; };
 		20B77CE1247FC0A300C1D503 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77CE0247FC0A300C1D503 /* AppDelegate.swift */; };
 		20B77CE8247FC0A300C1D503 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20B77CE6247FC0A300C1D503 /* Main.storyboard */; };
 		20B77CEA247FC0A500C1D503 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20B77CE9247FC0A500C1D503 /* Assets.xcassets */; };
@@ -20,7 +23,7 @@
 		20B77D18247FC4CF00C1D503 /* KRActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D10247FC4CF00C1D503 /* KRActivityIndicatorView.swift */; };
 		20B77D19247FC4CF00C1D503 /* KRActivityIndicatorViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D11247FC4CF00C1D503 /* KRActivityIndicatorViewStyle.swift */; };
 		20B77D1B247FC6BF00C1D503 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D1A247FC6BF00C1D503 /* ScanViewController.swift */; };
-		20B77D1D247FC6EB00C1D503 /* BluetoothViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D1C247FC6EB00C1D503 /* BluetoothViewController.swift */; };
+		20B77D1D247FC6EB00C1D503 /* BluetoothDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B77D1C247FC6EB00C1D503 /* BluetoothDeviceViewController.swift */; };
 		20B77D492484DECE00C1D503 /* BluetoothCentral.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B77D482484DECE00C1D503 /* BluetoothCentral.framework */; };
 		20B77D4A2484DECE00C1D503 /* BluetoothCentral.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 20B77D482484DECE00C1D503 /* BluetoothCentral.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		20D4BCA32489E39C0010620C /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20D4BCA22489E39C0010620C /* CoreBluetooth.framework */; };
@@ -41,6 +44,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		203CE2BF248E20C300558F8B /* RoleSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleSelectionViewController.swift; sourceTree = "<group>"; };
+		203CE2C1248E29A500558F8B /* PublishBluetoothServiceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishBluetoothServiceVC.swift; sourceTree = "<group>"; };
+		203CE2C5248E689000558F8B /* ServiceConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceConfiguration.swift; sourceTree = "<group>"; };
 		20B77CDD247FC0A300C1D503 /* BlutoothCentral.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlutoothCentral.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20B77CE0247FC0A300C1D503 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20B77CE7247FC0A300C1D503 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -57,7 +63,7 @@
 		20B77D10247FC4CF00C1D503 /* KRActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KRActivityIndicatorView.swift; sourceTree = "<group>"; };
 		20B77D11247FC4CF00C1D503 /* KRActivityIndicatorViewStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KRActivityIndicatorViewStyle.swift; sourceTree = "<group>"; };
 		20B77D1A247FC6BF00C1D503 /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
-		20B77D1C247FC6EB00C1D503 /* BluetoothViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothViewController.swift; sourceTree = "<group>"; };
+		20B77D1C247FC6EB00C1D503 /* BluetoothDeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDeviceViewController.swift; sourceTree = "<group>"; };
 		20B77D482484DECE00C1D503 /* BluetoothCentral.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BluetoothCentral.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20D4BCA22489E39C0010620C /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -96,8 +102,11 @@
 			isa = PBXGroup;
 			children = (
 				20B77CE0247FC0A300C1D503 /* AppDelegate.swift */,
+				203CE2C5248E689000558F8B /* ServiceConfiguration.swift */,
+				203CE2BF248E20C300558F8B /* RoleSelectionViewController.swift */,
 				20B77D1A247FC6BF00C1D503 /* ScanViewController.swift */,
-				20B77D1C247FC6EB00C1D503 /* BluetoothViewController.swift */,
+				20B77D1C247FC6EB00C1D503 /* BluetoothDeviceViewController.swift */,
+				203CE2C1248E29A500558F8B /* PublishBluetoothServiceVC.swift */,
 				20B77CE6247FC0A300C1D503 /* Main.storyboard */,
 				20B77D06247FC4CF00C1D503 /* Vendor */,
 				20B77D05247FC2B100C1D503 /* SupportingFiles */,
@@ -227,15 +236,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				203CE2C6248E689000558F8B /* ServiceConfiguration.swift in Sources */,
 				20B77D16247FC4CF00C1D503 /* KRProgressHUD.swift in Sources */,
 				20B77D17247FC4CF00C1D503 /* CAGradientLayerExtensions.swift in Sources */,
 				20B77D19247FC4CF00C1D503 /* KRActivityIndicatorViewStyle.swift in Sources */,
+				203CE2C2248E29A500558F8B /* PublishBluetoothServiceVC.swift in Sources */,
 				20B77D1B247FC6BF00C1D503 /* ScanViewController.swift in Sources */,
 				20B77D14247FC4CF00C1D503 /* Extensions.swift in Sources */,
+				203CE2C0248E20C300558F8B /* RoleSelectionViewController.swift in Sources */,
 				20B77D15247FC4CF00C1D503 /* KRProgressHUDViewController.swift in Sources */,
 				20B77D12247FC4CF00C1D503 /* KRProgressHUDIconType.swift in Sources */,
 				20B77D13247FC4CF00C1D503 /* InnerKRProgressHUD.swift in Sources */,
-				20B77D1D247FC6EB00C1D503 /* BluetoothViewController.swift in Sources */,
+				20B77D1D247FC6EB00C1D503 /* BluetoothDeviceViewController.swift in Sources */,
 				20B77CE1247FC0A300C1D503 /* AppDelegate.swift in Sources */,
 				20B77D18247FC4CF00C1D503 /* KRActivityIndicatorView.swift in Sources */,
 			);
@@ -389,7 +401,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = me.evanxlh.BlutoothCentral;
+				PRODUCT_BUNDLE_IDENTIFIER = me.yunhua.BlutoothCentral;
 				PRODUCT_NAME = BlutoothCentral;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -408,7 +420,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = me.evanxlh.BlutoothCentral;
+				PRODUCT_BUNDLE_IDENTIFIER = me.yunhua.BlutoothCentral;
 				PRODUCT_NAME = BlutoothCentral;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

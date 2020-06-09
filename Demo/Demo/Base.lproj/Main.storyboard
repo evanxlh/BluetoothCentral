@@ -8,6 +8,62 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--蓝牙角色-->
+        <scene sceneID="cA1-H7-c4r">
+            <objects>
+                <viewController id="9jf-6k-7hA" customClass="RoleSelectionViewController" customModule="BlutoothCentral" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RCG-7A-AS4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOE-aO-eKM">
+                                <rect key="frame" x="112" y="260" width="190" height="136"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="190" id="3OL-7z-gek"/>
+                                    <constraint firstAttribute="height" constant="136" id="b4f-Yg-YxG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="主模式">
+                                    <color key="titleColor" red="1" green="0.1857388616" blue="0.57339501380000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="beAsMaster:" destination="9jf-6k-7hA" eventType="touchUpInside" id="N3B-6E-VbD"/>
+                                    <segue destination="2gg-Qu-lEy" kind="show" id="sJ1-F6-Sil"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UyN-g9-eRI">
+                                <rect key="frame" x="112" y="500" width="190" height="136"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="136" id="ZbV-T4-XMU"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="190" id="cG9-PT-Hv9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="从模式"/>
+                                <connections>
+                                    <action selector="beAsSlave:" destination="9jf-6k-7hA" eventType="touchUpInside" id="lzQ-xh-39d"/>
+                                    <segue destination="bHw-zh-Cgt" kind="show" id="LJD-AW-9xb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="yOE-aO-eKM" firstAttribute="centerY" secondItem="RCG-7A-AS4" secondAttribute="centerY" constant="-120" id="34h-G0-VUw"/>
+                            <constraint firstItem="UyN-g9-eRI" firstAttribute="centerX" secondItem="RCG-7A-AS4" secondAttribute="centerX" id="DFD-PJ-m6O"/>
+                            <constraint firstItem="UyN-g9-eRI" firstAttribute="centerY" secondItem="RCG-7A-AS4" secondAttribute="centerY" constant="120" id="NZc-ZT-4Bv"/>
+                            <constraint firstItem="yOE-aO-eKM" firstAttribute="centerX" secondItem="RCG-7A-AS4" secondAttribute="centerX" id="gc2-t7-BDx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="93G-dF-eTx"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="蓝牙角色" prompt="请为您的 iOS 设备选择一种角色" largeTitleDisplayMode="always" id="Q2h-Ra-wIO"/>
+                    <connections>
+                        <outlet property="masterModeButton" destination="yOE-aO-eKM" id="0m4-Qe-Rsr"/>
+                        <outlet property="slaveModeButton" destination="UyN-g9-eRI" id="L1F-So-K5X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fYk-Oe-i0I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="720" y="117"/>
+        </scene>
         <!--Bluetooth Scan-->
         <scene sceneID="UId-pL-tqy">
             <objects>
@@ -51,29 +107,176 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="acu-8A-iFs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="713" y="117"/>
+            <point key="canvasLocation" x="1491" y="-190"/>
+        </scene>
+        <!--蓝牙服务发布中心-->
+        <scene sceneID="Evj-hd-4Cq">
+            <objects>
+                <viewController id="bHw-zh-Cgt" customClass="PublishBluetoothServiceVC" customModule="BlutoothCentral" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="poL-KB-StD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x9R-2z-Mvf">
+                                <rect key="frame" x="145.5" y="153" width="123" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="发布蓝牙服务"/>
+                                <state key="selected" title="关闭蓝牙服务">
+                                    <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleBluetoothServiceButtonEvent:" destination="bHw-zh-Cgt" eventType="touchUpInside" id="O7w-j0-lbM"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Log" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DRR-7y-596">
+                                <rect key="frame" x="0.0" y="264" width="414" height="598"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="DRR-7y-596" firstAttribute="top" secondItem="x9R-2z-Mvf" secondAttribute="bottom" constant="75" id="84m-Sk-EFN"/>
+                            <constraint firstItem="DRR-7y-596" firstAttribute="trailing" secondItem="7Pv-iU-JUA" secondAttribute="trailing" id="8An-iW-OYU"/>
+                            <constraint firstItem="DRR-7y-596" firstAttribute="bottom" secondItem="7Pv-iU-JUA" secondAttribute="bottom" id="HII-YP-cNf"/>
+                            <constraint firstItem="x9R-2z-Mvf" firstAttribute="centerX" secondItem="poL-KB-StD" secondAttribute="centerX" id="WgB-B1-W32"/>
+                            <constraint firstItem="x9R-2z-Mvf" firstAttribute="top" secondItem="7Pv-iU-JUA" secondAttribute="top" constant="65" id="Z27-cu-5Na"/>
+                            <constraint firstItem="DRR-7y-596" firstAttribute="leading" secondItem="7Pv-iU-JUA" secondAttribute="leading" id="dhS-Oe-7uG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7Pv-iU-JUA"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="蓝牙服务发布中心" id="zfr-AQ-ppi"/>
+                    <connections>
+                        <outlet property="logView" destination="DRR-7y-596" id="0Cm-Rs-FM1"/>
+                        <outlet property="serviceButton" destination="x9R-2z-Mvf" id="XLN-sk-bRY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dAI-ab-ilW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1489.8550724637682" y="515.625"/>
         </scene>
         <!--Bluetooth Device Controll-->
         <scene sceneID="P4P-Yn-jId">
             <objects>
-                <viewController storyboardIdentifier="BluetoothViewController" id="5Ls-ZI-8MA" userLabel="Bluetooth Device Controll" customClass="BluetoothViewController" customModule="BlutoothCentral" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BluetoothDeviceViewController" id="5Ls-ZI-8MA" userLabel="Bluetooth Device Controll" customClass="BluetoothDeviceViewController" customModule="BlutoothCentral" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x75-Zm-9O9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gro-NG-fM9">
+                                <rect key="frame" x="20" y="95" width="129" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="读取特征1的数据"/>
+                                <connections>
+                                    <action selector="read1:" destination="pE0-rS-owA" eventType="touchUpInside" id="5vC-cr-yht"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YCd-EG-GCD">
+                                <rect key="frame" x="282" y="95" width="112" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="向特征1写数据"/>
+                                <connections>
+                                    <action selector="write1:" destination="pE0-rS-owA" eventType="touchUpInside" id="eJX-uy-lft"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Psc-UA-KEw">
+                                <rect key="frame" x="20" y="175" width="132" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="读取特征2的数据"/>
+                                <connections>
+                                    <action selector="read2:" destination="pE0-rS-owA" eventType="touchUpInside" id="yfw-oV-I6T"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LZd-jZ-Xfe">
+                                <rect key="frame" x="20" y="253" width="132" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="读取特征3的数据"/>
+                                <connections>
+                                    <action selector="read3:" destination="pE0-rS-owA" eventType="touchUpInside" id="NGi-4I-AeK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QYe-Ss-1JK">
+                                <rect key="frame" x="279" y="253" width="115" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="向特征3写数据"/>
+                                <connections>
+                                    <action selector="write3:" destination="pE0-rS-owA" eventType="touchUpInside" id="ipi-1g-Jbm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jl4-Gv-3UV">
+                                <rect key="frame" x="280" y="175" width="114" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="向特征2写数据"/>
+                                <connections>
+                                    <action selector="write2:" destination="pE0-rS-owA" eventType="touchUpInside" id="ubA-jz-Twq"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="只读属性的特征1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JdQ-jf-TZY">
+                                <rect key="frame" x="20" y="69" width="114" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="只写属性的特征2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ii6-by-Ek3">
+                                <rect key="frame" x="20" y="149" width="116" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="只写属性的特征2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzn-Ou-flg">
+                                <rect key="frame" x="20" y="227" width="116" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Log" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iKv-29-wp9">
+                                <rect key="frame" x="0.0" y="323" width="414" height="539"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ii6-by-Ek3" firstAttribute="leading" secondItem="Tcr-pH-dPT" secondAttribute="leading" constant="20" id="1Hs-wu-bpk"/>
+                            <constraint firstItem="iKv-29-wp9" firstAttribute="trailing" secondItem="Tcr-pH-dPT" secondAttribute="trailing" id="7cZ-bN-I8v"/>
+                            <constraint firstItem="Tcr-pH-dPT" firstAttribute="trailing" secondItem="QYe-Ss-1JK" secondAttribute="trailing" constant="20" id="9dO-UA-nVy"/>
+                            <constraint firstItem="QYe-Ss-1JK" firstAttribute="centerY" secondItem="LZd-jZ-Xfe" secondAttribute="centerY" id="AGv-dG-c7f"/>
+                            <constraint firstItem="iKv-29-wp9" firstAttribute="leading" secondItem="Tcr-pH-dPT" secondAttribute="leading" id="F8w-1W-Zmy"/>
+                            <constraint firstItem="vzn-Ou-flg" firstAttribute="leading" secondItem="Tcr-pH-dPT" secondAttribute="leading" constant="20" id="GVX-bM-iVP"/>
+                            <constraint firstItem="JdQ-jf-TZY" firstAttribute="leading" secondItem="Tcr-pH-dPT" secondAttribute="leading" constant="20" id="ILJ-Kr-KA9"/>
+                            <constraint firstItem="iKv-29-wp9" firstAttribute="bottom" secondItem="Tcr-pH-dPT" secondAttribute="bottom" id="J5c-m8-WDa"/>
+                            <constraint firstItem="gro-NG-fM9" firstAttribute="leading" secondItem="Tcr-pH-dPT" secondAttribute="leading" constant="20" id="M6Z-1D-vDb"/>
+                            <constraint firstItem="ii6-by-Ek3" firstAttribute="top" secondItem="gro-NG-fM9" secondAttribute="bottom" constant="21" id="PSj-io-P0y"/>
+                            <constraint firstItem="LZd-jZ-Xfe" firstAttribute="top" secondItem="vzn-Ou-flg" secondAttribute="bottom" constant="8" id="Qj5-Ty-fr8"/>
+                            <constraint firstItem="JdQ-jf-TZY" firstAttribute="top" secondItem="Tcr-pH-dPT" secondAttribute="top" constant="25" id="Wq5-gS-LHf"/>
+                            <constraint firstItem="YCd-EG-GCD" firstAttribute="centerY" secondItem="gro-NG-fM9" secondAttribute="centerY" id="YO1-eT-xoH"/>
+                            <constraint firstItem="Tcr-pH-dPT" firstAttribute="trailing" secondItem="YCd-EG-GCD" secondAttribute="trailing" constant="20" id="atZ-sr-rkK"/>
+                            <constraint firstItem="jl4-Gv-3UV" firstAttribute="centerY" secondItem="Psc-UA-KEw" secondAttribute="centerY" id="f1H-fP-bQ6"/>
+                            <constraint firstItem="gro-NG-fM9" firstAttribute="top" secondItem="JdQ-jf-TZY" secondAttribute="bottom" constant="8" id="iSH-St-owb"/>
+                            <constraint firstItem="Psc-UA-KEw" firstAttribute="leading" secondItem="Tcr-pH-dPT" secondAttribute="leading" constant="20" id="iss-H3-TkA"/>
+                            <constraint firstItem="iKv-29-wp9" firstAttribute="top" secondItem="LZd-jZ-Xfe" secondAttribute="bottom" constant="37" id="jGs-vI-L64"/>
+                            <constraint firstItem="Psc-UA-KEw" firstAttribute="top" secondItem="ii6-by-Ek3" secondAttribute="bottom" constant="8" id="jWh-Cz-IWO"/>
+                            <constraint firstItem="vzn-Ou-flg" firstAttribute="top" secondItem="Psc-UA-KEw" secondAttribute="bottom" constant="19" id="udf-bN-g3q"/>
+                            <constraint firstItem="LZd-jZ-Xfe" firstAttribute="leading" secondItem="Tcr-pH-dPT" secondAttribute="leading" constant="20" id="vHE-75-LSu"/>
+                            <constraint firstItem="Tcr-pH-dPT" firstAttribute="trailing" secondItem="jl4-Gv-3UV" secondAttribute="trailing" constant="20" id="y0o-RV-Irv"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Tcr-pH-dPT"/>
                     </view>
                     <navigationItem key="navigationItem" title="蓝牙设备控制" prompt="jimu" id="hYs-Na-BYW">
-                        <barButtonItem key="rightBarButtonItem" title="建立通信" id="8IR-PU-0WS">
-                            <connections>
-                                <action selector="establishCommunication:" destination="5Ls-ZI-8MA" id="fpg-f0-PHX"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="建立通信" id="8IR-PU-0WS"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="logView" destination="iKv-29-wp9" id="3wt-fD-6tS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bZ4-Bz-acV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="pE0-rS-owA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1563" y="121"/>
+            <point key="canvasLocation" x="2273.913043478261" y="-190.17857142857142"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TBP-Ki-dxL">
@@ -84,7 +287,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="2gg-Qu-lEy" kind="relationship" relationship="rootViewController" id="BmB-Tz-nOd"/>
+                        <segue destination="9jf-6k-7hA" kind="relationship" relationship="rootViewController" id="uhr-7h-Oeo"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KEK-Vb-7L4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

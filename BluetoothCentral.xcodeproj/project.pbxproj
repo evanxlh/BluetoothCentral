@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2043F478248F830F00A8B93A /* ServiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043F477248F830F00A8B93A /* ServiceInfo.swift */; };
+		2043F479248F830F00A8B93A /* ServiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043F477248F830F00A8B93A /* ServiceInfo.swift */; };
 		2092CA482485E42C00CB5930 /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2092CA472485E42C00CB5930 /* Peripheral.swift */; };
 		2092CA492485E42C00CB5930 /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2092CA472485E42C00CB5930 /* Peripheral.swift */; };
 		2092CA4B2485E46900CB5930 /* PeripheralDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2092CA4A2485E46900CB5930 /* PeripheralDelegateProxy.swift */; };
@@ -48,6 +50,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2043F477248F830F00A8B93A /* ServiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceInfo.swift; sourceTree = "<group>"; };
 		2092CA472485E42C00CB5930 /* Peripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peripheral.swift; sourceTree = "<group>"; };
 		2092CA4A2485E46900CB5930 /* PeripheralDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralDelegateProxy.swift; sourceTree = "<group>"; };
 		2092CA4D2485ECB000CB5930 /* ServiceInterested.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceInterested.swift; sourceTree = "<group>"; };
@@ -160,6 +163,7 @@
 				20B77CB9247FBB8700C1D503 /* CentralManager.swift */,
 				20B77CB7247FBB8700C1D503 /* PeripheralDiscovery.swift */,
 				2092CA472485E42C00CB5930 /* Peripheral.swift */,
+				2043F477248F830F00A8B93A /* ServiceInfo.swift */,
 				2092CA4D2485ECB000CB5930 /* ServiceInterested.swift */,
 				20B77D232480FA0B00C1D503 /* ErrorLocalizedDescriptions.swift */,
 			);
@@ -298,6 +302,7 @@
 				2092CA5E2488D5EB00CB5930 /* DataFormatter.swift in Sources */,
 				20B77CD0247FBB9200C1D503 /* InternalAvailability.swift in Sources */,
 				20B77CD2247FBB9200C1D503 /* ConnectionPool.swift in Sources */,
+				2043F478248F830F00A8B93A /* ServiceInfo.swift in Sources */,
 				2092CA4E2485ECB000CB5930 /* ServiceInterested.swift in Sources */,
 				20B77D1F247FCC9F00C1D503 /* Helper.swift in Sources */,
 				20B77CCE247FBB9200C1D503 /* Scanner.swift in Sources */,
@@ -323,6 +328,7 @@
 				2092CA5F2488D5EB00CB5930 /* DataFormatter.swift in Sources */,
 				20B77D252480FA0B00C1D503 /* ErrorLocalizedDescriptions.swift in Sources */,
 				20B77CD1247FBB9200C1D503 /* InternalAvailability.swift in Sources */,
+				2043F479248F830F00A8B93A /* ServiceInfo.swift in Sources */,
 				2092CA4F2485ECB000CB5930 /* ServiceInterested.swift in Sources */,
 				20B77CD3247FBB9200C1D503 /* ConnectionPool.swift in Sources */,
 				20B77CCF247FBB9200C1D503 /* Scanner.swift in Sources */,
@@ -411,7 +417,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = me.evanxlh.BluetoothCentral;
+				PRODUCT_BUNDLE_IDENTIFIER = me.yunhua.BluetoothCentral;
 				PRODUCT_NAME = BluetoothCentral;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -485,7 +491,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = me.evanxlh.BluetoothCentral;
+				PRODUCT_BUNDLE_IDENTIFIER = me.yunhua.BluetoothCentral;
 				PRODUCT_NAME = BluetoothCentral;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -567,7 +573,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = me.evanxlh.BluetoothCentral;
+				PRODUCT_BUNDLE_IDENTIFIER = me.yunhua.BluetoothCentral;
 				PRODUCT_NAME = BluetoothCentral;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -641,7 +647,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = me.evanxlh.BluetoothCentral;
+				PRODUCT_BUNDLE_IDENTIFIER = me.yunhua.BluetoothCentral;
 				PRODUCT_NAME = BluetoothCentral;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;

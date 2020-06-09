@@ -29,7 +29,7 @@ class BluetoothDeviceViewController: UIViewController {
         KRProgressHUD.showInfo(withMessage: "建立通信中")
         
         let service = ServiceInterested(serviceUUID: serviceUUID_1, characteristicUUIDs: [characteristicUUID_1_1, characteristicUUID_1_2, characteristicUUID_1_3])
-        peripheral.startDataChannel([service], successHandler: { (serviceInfos) in
+        peripheral.prepareServicesToReady([service], successHandler: { (serviceInfos) in
             
         }) { (error) in
             
@@ -41,13 +41,13 @@ class BluetoothDeviceViewController: UIViewController {
     }
     
     @IBAction func write1(_ sender: Any) {
-        try? peripheral.sendData("Hello, Master command 1_1".data(using: .utf8)!, toCharacteristic: characteristicUUID_1_1)
+        try? peripheral.writeData("Hello, Master command 1_1".data(using: .utf8)!, toCharacteristic: characteristicUUID_1_1)
     }
     @IBAction func read2(_ sender: Any) {
     }
     
     @IBAction func write2(_ sender: Any) {
-        try? peripheral.sendData("Hello, Master command 1_2".data(using: .utf8)!, toCharacteristic: characteristicUUID_1_2)
+        try? peripheral.writeData("Hello, Master command 1_2".data(using: .utf8)!, toCharacteristic: characteristicUUID_1_2)
     }
     
     
@@ -55,7 +55,7 @@ class BluetoothDeviceViewController: UIViewController {
     }
     
     @IBAction func write3(_ sender: Any) {
-        try? peripheral.sendData("Hello, Master command 1_3".data(using: .utf8)!, toCharacteristic: characteristicUUID_1_3)
+        try? peripheral.writeData("Hello, Master command 1_3".data(using: .utf8)!, toCharacteristic: characteristicUUID_1_3)
     }
     
     func showAlertWithMessage(_ message: String) {

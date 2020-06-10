@@ -60,10 +60,11 @@ public class Peripheral: NSObject {
 
 extension Peripheral {
     
-    public enum State: Int {
+    public enum State {
         case notReady
         case preparing
         case ready
+        case error(underlyingError: Swift.Error)
     }
     
     public enum ConnectionState: Int {
@@ -281,7 +282,7 @@ extension Peripheral: InternalPeripheralDelegate {
     }
     
     func peripheral(_ peripheral: CBPeripheral, didFailToDiscoverServices error: Swift.Error) {
-        
+        transitState(to: .error(underlyingError: error))
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService) {
@@ -314,6 +315,8 @@ extension Peripheral: InternalPeripheralDelegate {
             }
         }
         
+        transitState(to: .ready)
+        
         runTaskOnMainThread { [weak self] in
             guard let `self` = self else { return }
             self.startChannelSuccessHandler?(self.cacheForServiceInfos)
@@ -321,7 +324,7 @@ extension Peripheral: InternalPeripheralDelegate {
     }
     
     func peripheral(_ peripheral: CBPeripheral, didFailToDiscoverCharacteristicsForService service: CBService, error: Swift.Error) {
-        
+        transitState(to: .error(underlyingError: error))
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic) {

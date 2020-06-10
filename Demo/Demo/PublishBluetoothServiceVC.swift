@@ -13,6 +13,15 @@ class PublishBluetoothServiceVC: UIViewController {
     
     fileprivate let manager =  CBPeripheralManager()
     fileprivate var characteristics = [CBCharacteristic]()
+    fileprivate var batteryTimer: DispatchTimer?
+    fileprivate var logBuffer = String()
+    
+    fileprivate var batteryLevelCharacteristic: CBMutableCharacteristic?
+    fileprivate var modelNumberCharacteristic: CBMutableCharacteristic?
+    fileprivate var manufacturerCharacteristic: CBMutableCharacteristic?
+    fileprivate var readCharacteristic: CBMutableCharacteristic?
+    fileprivate var writeCharacteristic: CBMutableCharacteristic?
+    fileprivate var writeAndNotifyCharacteristic: CBMutableCharacteristic?
     
     @IBOutlet weak var serviceButton: UIButton!
     @IBOutlet weak var logView: UITextView!
@@ -20,8 +29,8 @@ class PublishBluetoothServiceVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         manager.delegate = self
-        
-        prepareServices()
+        logView.text = logBuffer
+        logView.isEditable = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -36,8 +45,10 @@ class PublishBluetoothServiceVC: UIViewController {
         }
         
         if serviceButton.isSelected {
+            outputLog("stop advertising...")
             manager.stopAdvertising()
         } else {
+            outputLog("start advertising...")
             manager.startAdvertising(composeAdvertisementData())
         }
         
@@ -49,9 +60,9 @@ fileprivate extension PublishBluetoothServiceVC {
     
     func composeAdvertisementData() -> [String: Any] {
         return [
-            CBAdvertisementDataLocalNameKey: "I'm NO.Slave",
+            CBAdvertisementDataLocalNameKey: "I'm NO.1 Slave",
             CBAdvertisementDataIsConnectable: true,
-            CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: serviceUUID_1)],
+            CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: dataServiceUUID)],
             CBAdvertisementDataTxPowerLevelKey: 200,
             CBAdvertisementDataManufacturerDataKey: "Apple iPhone".data(using: .utf8)!
         ]
@@ -59,84 +70,140 @@ fileprivate extension PublishBluetoothServiceVC {
     
     func prepareServices() {
         
+        outputLog("Preparing services")
+        
         characteristics.removeAll()
         
-        let data1 = "I'm character 1_1".data(using: .utf8)!
+        let data1 = "I'm just a readable character".data(using: .utf8)!
         
-        let service1 = CBMutableService(type: CBUUID(string: serviceUUID_1), primary: true)
+        let service1 = CBMutableService(type: CBUUID(string: dataServiceUUID), primary: true)
         
-        // Characteristic 如果带初始数据的话，属性必须为 read
-        let characteristic1 = CBMutableCharacteristic(type: CBUUID(string: characteristicUUID_1_1), properties: CBCharacteristicProperties.read, value: data1, permissions: .readable)
-        let characteristic2 = CBMutableCharacteristic(type: CBUUID(string: characteristicUUID_1_2), properties: CBCharacteristicProperties.write, value: nil, permissions: .readable)
-        let characteristic3 = CBMutableCharacteristic(type: CBUUID(string: characteristicUUID_1_3), properties: [.write, .notify], value: nil, permissions: [.writeable])
-        characteristics.append(contentsOf: [characteristic1, characteristic2, characteristic3])
+        // Characteristic 如果带 cache value的话，属性必须为 readonly, 否则会 crash，报错误： 'Characteristics with cached values must be read-only'
+        readCharacteristic = CBMutableCharacteristic(type: CBUUID(string: readCharacteristicUUID), properties: CBCharacteristicProperties.read, value: data1, permissions: .readable)
+        writeCharacteristic = CBMutableCharacteristic(type: CBUUID(string: writeCharacteristicUUID), properties: CBCharacteristicProperties.write, value: nil, permissions: .readable)
+        writeAndNotifyCharacteristic = CBMutableCharacteristic(type: CBUUID(string: writeAndNotifyCharacteristicUUID), properties: [.write, .notify], value: nil, permissions: [.writeable])
+        characteristics.append(contentsOf: [readCharacteristic!, writeCharacteristic!, writeAndNotifyCharacteristic!])
         
         service1.characteristics = characteristics
         
+        
+        let service2 = CBMutableService(type: CBUUID(string: batteryServiceUUID), primary: true)
+        let character21 = CBMutableCharacteristic(type: CBUUID(string: batteryLevelCharacteristicUUID), properties: [.notify, .read], value: nil, permissions: .readable)
+        service2.characteristics = [character21]
+        
+        let modelNumber = "MK34A/P".data(using: .utf8)!
+        let manufacturerName = "Apple".data(using: .utf8)!
+        let service3 = CBMutableService(type: CBUUID(string: deviceInfoServiceUUID), primary: true)
+        
+        let character31 = CBMutableCharacteristic(type: CBUUID(string: characteristicManufacturerNameUUID), properties: .read, value: manufacturerName, permissions: .readable)
+        let character32 = CBMutableCharacteristic(type: CBUUID(string: characteristicModelNumberUUID), properties: .read, value: modelNumber, permissions: .readable)
+        service3.characteristics = [character31, character32]
+    
         manager.add(service1)
-        manager.startAdvertising(composeAdvertisementData())
+        manager.add(service2)
+        manager.add(service3)
+    }
+    
+    func updateBatteryLevelPeriodically() {
+        
+        outputLog("start notify battery level")
+        
+        batteryTimer = DispatchTimer()
+        batteryTimer?.schedule(withTimeInterval: 5, repeats: true, handler: { [weak self] (_) in
+            guard let `self` = self else { return }
+            let batteryLevel = UInt8(arc4random() % 100)
+            if let characteristic = self.batteryLevelCharacteristic {
+                self.manager.updateValue(Data([batteryLevel]), for: characteristic, onSubscribedCentrals: nil)
+                self.outputLog("notify battery level: \(batteryLevel)")
+            }
+        })
+    }
+    
+    func outputLog(_ message: String) {
+        DispatchQueue.main.async {
+            self.logBuffer.append("\(message)\n")
+            self.logView.text = self.logBuffer
+        }
     }
 }
 
 extension PublishBluetoothServiceVC: CBPeripheralManagerDelegate {
     
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
-        print("DidUpdateState")
+        outputLog("DidUpdateState: \(peripheral.state.rawValue)")
+        
+        if peripheral.state == .poweredOn {
+            prepareServices()
+        }
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest) {
-        print("didReceiveRead: [\(request.characteristic.uuid.uuidString), \(request.offset), \(String(describing: request.value))]")
+        outputLog("didReceiveRead: [\(request.characteristic.uuid.uuidString), \(request.offset), \(String(describing: request.value))]")
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {
-        print("didReceiveWrite")
         for request in requests {
-            peripheral.respond(to: request, withResult: .success)
+            let uuid = request.characteristic.uuid.uuidString
+            let message: String?
+            if let data = request.characteristic.value {
+                message = String(data: data, encoding: .utf8)
+            } else {
+                message = nil
+            }
+            outputLog("Receive message from \(uuid): \(String(describing: message))")
+            
+            if request.characteristic.properties.contains(.write) {
+                 peripheral.respond(to: request, withResult: .success)
+            }
             
             if request.characteristic.properties.contains(.notify) {
                 let response = "Recevied request: \(request.characteristic.uuid.uuidString)".data(using: .utf8)!
                 if !peripheral.updateValue(response, for: request.characteristic as! CBMutableCharacteristic, onSubscribedCentrals: nil) {
-                    print("Notify \(request.characteristic.uuid.uuidString) failed")
+                    outputLog("Notify \(request.characteristic.uuid.uuidString) failed")
                 }
             }
         }
     }
     
     func peripheralManagerIsReady(toUpdateSubscribers peripheral: CBPeripheralManager) {
-        print("toUpdateSubscribers")
+        outputLog("peripheralManagerIsReady toUpdateSubscribers")
     }
     
     func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: Error?) {
-        print("DidStartAdvertising, error: \(String(describing: error))")
+        outputLog("DidStartAdvertising, error: \(String(describing: error))")
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didAdd service: CBService, error: Error?) {
-        print("didAddService")
+        outputLog("didAddService: \(service.uuid.uuidString)")
     }
     
     @available(iOS 11.0, *)
     func peripheralManager(_ peripheral: CBPeripheralManager, didOpen channel: CBL2CAPChannel?, error: Error?) {
-        print("didOpenChannel, error: \(String(describing: error))")
+        outputLog("didOpenChannel, error: \(String(describing: error))")
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didPublishL2CAPChannel PSM: CBL2CAPPSM, error: Error?) {
-        print("didPublishL2CAPChannel")
+        outputLog("didPublishL2CAPChannel")
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didUnpublishL2CAPChannel PSM: CBL2CAPPSM, error: Error?) {
-        print("didUnpublishL2CAPChannel")
+        outputLog("didUnpublishL2CAPChannel")
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didSubscribeTo characteristic: CBCharacteristic) {
-        print("didSubscribeTo")
+        outputLog("didSubscribeTo characteristic: \(characteristic.uuid.uuidString)")
+        
+        if characteristic.uuid.uuidString == batteryLevelCharacteristicUUID {
+            updateBatteryLevelPeriodically()
+        }
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didUnsubscribeFrom characteristic: CBCharacteristic) {
-        print("didUnsubscribeFrom")
+        outputLog("didUnsubscribeFrom characteristic: \(characteristic.uuid.uuidString)")
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, willRestoreState dict: [String : Any]) {
-        print("willRestoreState")
+        outputLog("willRestoreState")
     }
     
 }

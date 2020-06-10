@@ -46,8 +46,15 @@ public struct CharacteristicInfo: Equatable {
         case unsupported
     }
     
+    private var data: Data? = nil
     public let uuid: String
     public let properties: CBCharacteristicProperties
+    
+    /// 属性为 readonly 的 characteristic 的数据。
+    /// writable 的 characteristics 数据为 nil.
+    public var value: Data? {
+        return data
+    }
     
     public var isReadable: Bool {
         return properties.contains(.read)
@@ -67,9 +74,10 @@ public struct CharacteristicInfo: Equatable {
         }
     }
     
-    internal init(uuid: String, properties: CBCharacteristicProperties) {
+    internal init(uuid: String, properties: CBCharacteristicProperties, data: Data? = nil) {
         self.uuid = uuid
         self.properties = properties
+        self.data = data
     }
     
     public static func == (lhs: CharacteristicInfo, rhs: CharacteristicInfo) -> Bool {

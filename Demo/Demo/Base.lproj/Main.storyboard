@@ -166,67 +166,67 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gro-NG-fM9">
-                                <rect key="frame" x="20" y="95" width="129" height="33"/>
+                                <rect key="frame" x="20" y="95" width="52" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="读取特征1的数据"/>
+                                <state key="normal" title="读数据"/>
                                 <connections>
-                                    <action selector="read1:" destination="pE0-rS-owA" eventType="touchUpInside" id="5vC-cr-yht"/>
+                                    <action selector="readFromReadCharacteristic:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="gpA-dd-k3G"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YCd-EG-GCD">
-                                <rect key="frame" x="282" y="95" width="112" height="33"/>
+                                <rect key="frame" x="342" y="95" width="52" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="向特征1写数据"/>
+                                <state key="normal" title="写数据"/>
                                 <connections>
-                                    <action selector="write1:" destination="pE0-rS-owA" eventType="touchUpInside" id="eJX-uy-lft"/>
+                                    <action selector="writeToReadCharacteristic:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="LN7-hr-kPh"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Psc-UA-KEw">
-                                <rect key="frame" x="20" y="175" width="132" height="33"/>
+                                <rect key="frame" x="20" y="175" width="52" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="读取特征2的数据"/>
+                                <state key="normal" title="读数据"/>
                                 <connections>
-                                    <action selector="read2:" destination="pE0-rS-owA" eventType="touchUpInside" id="yfw-oV-I6T"/>
+                                    <action selector="readFromWriteCharacteristic:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="F5c-7j-Eab"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LZd-jZ-Xfe">
-                                <rect key="frame" x="20" y="253" width="132" height="33"/>
+                                <rect key="frame" x="20" y="253" width="52" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="读取特征3的数据"/>
+                                <state key="normal" title="读数据"/>
                                 <connections>
-                                    <action selector="read3:" destination="pE0-rS-owA" eventType="touchUpInside" id="NGi-4I-AeK"/>
+                                    <action selector="readFromWriteAndNotifiyCharacteristic:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="f5W-yF-hqQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QYe-Ss-1JK">
-                                <rect key="frame" x="279" y="253" width="115" height="33"/>
+                                <rect key="frame" x="342" y="253" width="52" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="向特征3写数据"/>
+                                <state key="normal" title="写数据"/>
                                 <connections>
-                                    <action selector="write3:" destination="pE0-rS-owA" eventType="touchUpInside" id="ipi-1g-Jbm"/>
+                                    <action selector="writeToWriteAndNotifiyCharacteristic:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="Zap-jv-WkY"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jl4-Gv-3UV">
-                                <rect key="frame" x="280" y="175" width="114" height="33"/>
+                                <rect key="frame" x="342" y="175" width="52" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="向特征2写数据"/>
+                                <state key="normal" title="写数据"/>
                                 <connections>
-                                    <action selector="write2:" destination="pE0-rS-owA" eventType="touchUpInside" id="ubA-jz-Twq"/>
+                                    <action selector="writeToWriteCharacteristic:" destination="5Ls-ZI-8MA" eventType="touchUpInside" id="vVn-Fs-tTd"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="只读属性的特征1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JdQ-jf-TZY">
-                                <rect key="frame" x="20" y="69" width="114" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="只读属性的特征" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JdQ-jf-TZY">
+                                <rect key="frame" x="20" y="69" width="108" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="只写属性的特征2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ii6-by-Ek3">
-                                <rect key="frame" x="20" y="149" width="116" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="只写属性的特征" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ii6-by-Ek3">
+                                <rect key="frame" x="20" y="149" width="108" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="只写属性的特征2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzn-Ou-flg">
-                                <rect key="frame" x="20" y="227" width="116" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可写可通知属性的特征" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzn-Ou-flg">
+                                <rect key="frame" x="20" y="227" width="153" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -247,19 +247,25 @@
                             <constraint firstItem="QYe-Ss-1JK" firstAttribute="centerY" secondItem="LZd-jZ-Xfe" secondAttribute="centerY" id="AGv-dG-c7f"/>
                             <constraint firstItem="iKv-29-wp9" firstAttribute="leading" secondItem="Tcr-pH-dPT" secondAttribute="leading" id="F8w-1W-Zmy"/>
                             <constraint firstItem="vzn-Ou-flg" firstAttribute="leading" secondItem="Tcr-pH-dPT" secondAttribute="leading" constant="20" id="GVX-bM-iVP"/>
+                            <constraint firstItem="Tcr-pH-dPT" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JdQ-jf-TZY" secondAttribute="trailing" symbolic="YES" id="Gdw-nL-haE"/>
                             <constraint firstItem="JdQ-jf-TZY" firstAttribute="leading" secondItem="Tcr-pH-dPT" secondAttribute="leading" constant="20" id="ILJ-Kr-KA9"/>
                             <constraint firstItem="iKv-29-wp9" firstAttribute="bottom" secondItem="Tcr-pH-dPT" secondAttribute="bottom" id="J5c-m8-WDa"/>
                             <constraint firstItem="gro-NG-fM9" firstAttribute="leading" secondItem="Tcr-pH-dPT" secondAttribute="leading" constant="20" id="M6Z-1D-vDb"/>
+                            <constraint firstItem="Tcr-pH-dPT" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ii6-by-Ek3" secondAttribute="trailing" symbolic="YES" id="MdL-wV-WfY"/>
                             <constraint firstItem="ii6-by-Ek3" firstAttribute="top" secondItem="gro-NG-fM9" secondAttribute="bottom" constant="21" id="PSj-io-P0y"/>
                             <constraint firstItem="LZd-jZ-Xfe" firstAttribute="top" secondItem="vzn-Ou-flg" secondAttribute="bottom" constant="8" id="Qj5-Ty-fr8"/>
+                            <constraint firstItem="Tcr-pH-dPT" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vzn-Ou-flg" secondAttribute="trailing" symbolic="YES" id="S3Z-BF-T6R"/>
+                            <constraint firstItem="jl4-Gv-3UV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Psc-UA-KEw" secondAttribute="trailing" constant="8" symbolic="YES" id="UCJ-PF-r5O"/>
                             <constraint firstItem="JdQ-jf-TZY" firstAttribute="top" secondItem="Tcr-pH-dPT" secondAttribute="top" constant="25" id="Wq5-gS-LHf"/>
                             <constraint firstItem="YCd-EG-GCD" firstAttribute="centerY" secondItem="gro-NG-fM9" secondAttribute="centerY" id="YO1-eT-xoH"/>
+                            <constraint firstItem="QYe-Ss-1JK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LZd-jZ-Xfe" secondAttribute="trailing" constant="8" symbolic="YES" id="YuS-uf-0nT"/>
                             <constraint firstItem="Tcr-pH-dPT" firstAttribute="trailing" secondItem="YCd-EG-GCD" secondAttribute="trailing" constant="20" id="atZ-sr-rkK"/>
                             <constraint firstItem="jl4-Gv-3UV" firstAttribute="centerY" secondItem="Psc-UA-KEw" secondAttribute="centerY" id="f1H-fP-bQ6"/>
                             <constraint firstItem="gro-NG-fM9" firstAttribute="top" secondItem="JdQ-jf-TZY" secondAttribute="bottom" constant="8" id="iSH-St-owb"/>
                             <constraint firstItem="Psc-UA-KEw" firstAttribute="leading" secondItem="Tcr-pH-dPT" secondAttribute="leading" constant="20" id="iss-H3-TkA"/>
                             <constraint firstItem="iKv-29-wp9" firstAttribute="top" secondItem="LZd-jZ-Xfe" secondAttribute="bottom" constant="37" id="jGs-vI-L64"/>
                             <constraint firstItem="Psc-UA-KEw" firstAttribute="top" secondItem="ii6-by-Ek3" secondAttribute="bottom" constant="8" id="jWh-Cz-IWO"/>
+                            <constraint firstItem="YCd-EG-GCD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gro-NG-fM9" secondAttribute="trailing" constant="8" symbolic="YES" id="kba-zf-fwe"/>
                             <constraint firstItem="vzn-Ou-flg" firstAttribute="top" secondItem="Psc-UA-KEw" secondAttribute="bottom" constant="19" id="udf-bN-g3q"/>
                             <constraint firstItem="LZd-jZ-Xfe" firstAttribute="leading" secondItem="Tcr-pH-dPT" secondAttribute="leading" constant="20" id="vHE-75-LSu"/>
                             <constraint firstItem="Tcr-pH-dPT" firstAttribute="trailing" secondItem="jl4-Gv-3UV" secondAttribute="trailing" constant="20" id="y0o-RV-Irv"/>
@@ -274,7 +280,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bZ4-Bz-acV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="pE0-rS-owA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2273.913043478261" y="-190.17857142857142"/>
         </scene>

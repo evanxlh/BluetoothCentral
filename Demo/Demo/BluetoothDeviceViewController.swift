@@ -9,58 +9,110 @@ import UIKit
 import BluetoothCentral
 
 class BluetoothDeviceViewController: UIViewController {
-
+    
+    fileprivate var logBuffer = String()
+    
     var manager: CentralManager!
     var peripheral: Peripheral!
+    
     @IBOutlet weak var logView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        logView.text = logBuffer
+        logView.isEditable = false
         
+        peripheral.receiveDataDelegate = self
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "退出", style: .plain, target: self, action: #selector(disconnectAndExit))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "建立通信", style: .plain, target: self, action: #selector(establishCommunication))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "开启蓝牙服务", style: .plain, target: self, action: #selector(prepareServicesToRead))
+    }
+    
+    func outputLog(_ message: Any) {
+        DispatchQueue.main.async {
+            self.logBuffer.append("\(message)\n")
+            self.logView.text = self.logBuffer
+        }
     }
     
     @objc private func disconnectAndExit() {
         manager.disconnectPeripheral(peripheral)
     }
     
-    @objc private func establishCommunication() {
-        KRProgressHUD.showInfo(withMessage: "建立通信中")
+    @objc private func prepareServicesToRead() {
+        KRProgressHUD.showInfo(withMessage: "开启蓝牙服务中...")
         
-        let service = ServiceInterested(serviceUUID: serviceUUID_1, characteristicUUIDs: [characteristicUUID_1_1, characteristicUUID_1_2, characteristicUUID_1_3])
-        peripheral.prepareServicesToReady([service], successHandler: { (serviceInfos) in
+        let service = ServiceInterested(serviceUUID: dataServiceUUID, characteristicUUIDs: [readCharacteristicUUID, writeCharacteristicUUID, writeAndNotifyCharacteristicUUID])
+        peripheral.prepareServicesToReady([], successHandler: { (serviceInfos) in
+            self.outputLog(serviceInfos.description)
+        }) { (error) in
+            
+        }
+    }
+    
+    @IBAction func readFromReadCharacteristic(_ sender: Any) {
+        peripheral.readData(from: readCharacteristicUUID, successHandler: { (_) in
             
         }) { (error) in
             
         }
     }
     
-    @IBAction func read1(_ sender: Any) {
+    @IBAction func writeToReadCharacteristic(_ sender: Any) {
+        outputLog("send: Hello, I'm a just read characteristic")
         
+        do {
+            try peripheral.writeData("Hello, I'm a just read characteristic".data(using: .utf8)!, toCharacteristic: readCharacteristicUUID)
+        } catch {
+            outputLog(error)
+        }
     }
     
-    @IBAction func write1(_ sender: Any) {
-        try? peripheral.writeData("Hello, Master command 1_1".data(using: .utf8)!, toCharacteristic: characteristicUUID_1_1)
-    }
-    @IBAction func read2(_ sender: Any) {
-    }
-    
-    @IBAction func write2(_ sender: Any) {
-        try? peripheral.writeData("Hello, Master command 1_2".data(using: .utf8)!, toCharacteristic: characteristicUUID_1_2)
+    @IBAction func readFromWriteCharacteristic(_ sender: Any) {
+        peripheral.readData(from: writeCharacteristicUUID, successHandler: { (_) in
+            
+        }) { (error) in
+            
+        }
     }
     
-    
-    @IBAction func read3(_ sender: Any) {
+    @IBAction func writeToWriteCharacteristic(_ sender: Any) {
+        do {
+            outputLog("send: Hello, I'm a write characteristic")
+            try peripheral.writeData("Hello, I'm a write characteristic".data(using: .utf8)!, toCharacteristic: writeCharacteristicUUID)
+        } catch {
+            outputLog(error)
+        }
     }
     
-    @IBAction func write3(_ sender: Any) {
-        try? peripheral.writeData("Hello, Master command 1_3".data(using: .utf8)!, toCharacteristic: characteristicUUID_1_3)
+    
+    @IBAction func readFromWriteAndNotifiyCharacteristic(_ sender: Any) {
+        peripheral.readData(from: writeAndNotifyCharacteristicUUID, successHandler: { (_) in
+            
+        }) { (error) in
+            
+        }
+    }
+    
+    @IBAction func writeToWriteAndNotifiyCharacteristic(_ sender: Any) {
+        do {
+            outputLog("send: Hello, I'm write and notify characteristic")
+            try peripheral.writeData("Hello, I'm write and notify characteristic".data(using: .utf8)!, toCharacteristic: writeAndNotifyCharacteristicUUID)
+        } catch {
+            outputLog(error)
+        }
     }
     
     func showAlertWithMessage(_ message: String) {
         let alert = UIAlertController(title: "提  示", message: message, preferredStyle: .alert)
         present(alert, animated: true, completion: nil)
     }
+    
+}
 
+extension BluetoothDeviceViewController: PeripheralReceiveDataDelegate {
+    
+    func peripheralDidRecevieCharacteristicData(_ peripheral: Peripheral, data: Data, characteristicUUID: String) {
+        outputLog("Received data from \(characteristicUUID): \(String(describing: String(data: data, encoding: .utf8)))")
+    }
+    
 }

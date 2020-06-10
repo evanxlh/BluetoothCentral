@@ -62,7 +62,13 @@ internal final class PeripheralDelegateProxy: NSObject, CBPeripheralDelegate {
     }
     
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
-        Logger.tag("Peripheral", message: "didWriteValueForCharacteristic: \(characteristic.uuid.uuidString), error: \(String(describing: error))")
+        let message: String?
+        if let data = characteristic.value {
+            message = String(data: data, encoding: .utf8)
+        } else {
+            message = nil
+        }
+        Logger.tag("Peripheral", message: "didWriteValue: [\(String(describing: message))], forCharacteristic: \(characteristic.uuid.uuidString), error: \(String(describing: error))")
     }
     
     func peripheral(_ peripheral: CBPeripheral, didModifyServices invalidatedServices: [CBService]) {

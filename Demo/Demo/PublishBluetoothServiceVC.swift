@@ -85,23 +85,7 @@ fileprivate extension PublishBluetoothServiceVC {
         characteristics.append(contentsOf: [readCharacteristic!, writeCharacteristic!, writeAndNotifyCharacteristic!])
         
         service1.characteristics = characteristics
-        
-        
-        let service2 = CBMutableService(type: CBUUID(string: batteryServiceUUID), primary: true)
-        let character21 = CBMutableCharacteristic(type: CBUUID(string: batteryLevelCharacteristicUUID), properties: [.notify, .read], value: nil, permissions: .readable)
-        service2.characteristics = [character21]
-        
-        let modelNumber = "MK34A/P".data(using: .utf8)!
-        let manufacturerName = "Apple".data(using: .utf8)!
-        let service3 = CBMutableService(type: CBUUID(string: deviceInfoServiceUUID), primary: true)
-        
-        let character31 = CBMutableCharacteristic(type: CBUUID(string: characteristicManufacturerNameUUID), properties: .read, value: manufacturerName, permissions: .readable)
-        let character32 = CBMutableCharacteristic(type: CBUUID(string: characteristicModelNumberUUID), properties: .read, value: modelNumber, permissions: .readable)
-        service3.characteristics = [character31, character32]
-    
         manager.add(service1)
-        manager.add(service2)
-        manager.add(service3)
     }
     
     func updateBatteryLevelPeriodically() {
@@ -123,6 +107,7 @@ fileprivate extension PublishBluetoothServiceVC {
         DispatchQueue.main.async {
             self.logBuffer.append("\(message)\n")
             self.logView.text = self.logBuffer
+            print("\(message)\n")
         }
     }
 }
@@ -153,7 +138,7 @@ extension PublishBluetoothServiceVC: CBPeripheralManagerDelegate {
             outputLog("Receive message from \(uuid): \(String(describing: message))")
             
             if request.characteristic.properties.contains(.write) {
-                 peripheral.respond(to: request, withResult: .success)
+                peripheral.respond(to: request, withResult: .success)
             }
             
             if request.characteristic.properties.contains(.notify) {
@@ -205,5 +190,4 @@ extension PublishBluetoothServiceVC: CBPeripheralManagerDelegate {
     func peripheralManager(_ peripheral: CBPeripheralManager, willRestoreState dict: [String : Any]) {
         outputLog("willRestoreState")
     }
-    
 }

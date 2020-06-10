@@ -31,6 +31,7 @@ class BluetoothDeviceViewController: UIViewController {
         DispatchQueue.main.async {
             self.logBuffer.append("\(message)\n")
             self.logView.text = self.logBuffer
+            print("\(message)\n")
         }
     }
     

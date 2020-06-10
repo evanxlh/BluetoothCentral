@@ -18,7 +18,7 @@ public struct Logger {
     }
     
     /// 是否开启 log, 默认为关闭。
-    public static var isEnabled = false
+    public static var isEnabled = true
     
     /// Log 输出的日期显示格式，不提供则使用默认格式。
     public static var dateFormatter: DateFormatter? = nil

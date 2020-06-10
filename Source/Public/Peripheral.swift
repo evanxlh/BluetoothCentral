@@ -7,12 +7,6 @@
 import Foundation
 import CoreBluetooth
 
-public protocol PeripheralDelegate: AnyObject {
-    
-    /// 已准备好蓝牙服务，可以跟蓝牙设备通信了
-    func peripheralServiceDidReady(_ peripheral: Peripheral)
-}
-
 public protocol PeripheralReceiveDataDelegate: AnyObject {
     
     /// 从 `CBCharacteristic` 接收到数据, 用`characteristicUUID` 来区分不同的 `CBCharacteristic`
@@ -32,12 +26,11 @@ public class Peripheral: NSObject {
     fileprivate var characteristicsMap = [String: CBCharacteristic]()
     fileprivate var cacheForServiceInfos = [String: ServiceInfo]()
     
-    fileprivate var startChannelSuccessHandler: (([String: ServiceInfo]) -> Void)? = nil
-    fileprivate var startChannelFailureHandler: ((Error) -> Void)? = nil
+    fileprivate var servicesSuccessHandler: (([String: ServiceInfo]) -> Void)? = nil
+    fileprivate var servicesFailureHandler: ((Error) -> Void)? = nil
     
     internal let peripheral: CBPeripheral
     
-    public weak var delegate: PeripheralDelegate?
     public weak var receiveDataDelegate: PeripheralReceiveDataDelegate?
     
     public init(peripheral: CBPeripheral) {
@@ -132,7 +125,7 @@ extension Peripheral {
         }
     }
     
-    public indirect enum Error: Swift.Error {
+    public enum ServiceError: Swift.Error {
         case bluethoothUnavailable(reason: UnavailabilityReason)
         case peripheralNotConnected(reason: NotConnectedReason)
         case preparingPeripheralServices
@@ -140,8 +133,8 @@ extension Peripheral {
         case underlyingError(Error)
     }
     
-    /// 对已发现的 services 的缓存(UUID 与 ServiceInfo 健值对)。如果 `data channel` 还未建立，则为空。
-    /// 当 `openDataChannel` 调用成功后，所有发现的 services 都会缓存在这里。
+    /// 对已发现的 services 的缓存(UUID 与 ServiceInfo 健值对)。如果 servies not ready，则为空。
+    /// 当 `prepareServicesToReady` 调用成功后，所有发现的 services 都会缓存在这里。
     public var serviceInfos: [String: ServiceInfo] {
         return cacheForServiceInfos
     }
@@ -151,22 +144,22 @@ extension Peripheral {
     
     /// 先查找您感兴趣的 service & characteristics，然后建立蓝牙从设备与蓝牙主设备间的数据通信服务。
     /// - Parameters:
-    ///   - servicesInterested: 默认为空，即查找蓝牙从设备所有的 service, characteristics, 并准备好必要的通信通道。
-    ///   - successHandler: 数据通信服务启动成功，蓝牙主从设备间可以通信了。返回实际上发现的 services 信息: [ServiceUUIDString: ServiceInfo]。
-    ///   - failureHandler: 数据通信服务启动失败，无法通信。这时可以断开蓝牙再次尝试，或检测 serivces 参数是否正确。
+    ///   - servicesInterested: 默认为空，即查找蓝牙从设备所有的 service, characteristics, 并准备好所有感兴趣的服务。
+    ///   - successHandler: 服务准备就绪，蓝牙主从设备间可以通信了。返回实际上发现的 services 信息: [ServiceUUIDString: ServiceInfo]。
+    ///   - failureHandler: 服务准备失败，无法通信。这时可以断开蓝牙再次尝试，或检测 serivces 参数是否正确。
     public func prepareServicesToReady(_ servicesInterested: [ServiceInterested] = [], successHandler: @escaping ([String: ServiceInfo]) -> Void, failureHandler: @escaping (Error) -> Void) {
         do {
             try validateBluetoothConnection()
         } catch {
-            failureHandler(error as! Error)
+            failureHandler(error as! ServiceError)
         }
         
         cleanUp()
         transitState(to: .preparing)
         
         self.serviceInterested = servicesInterested
-        startChannelSuccessHandler = successHandler
-        startChannelFailureHandler = failureHandler
+        servicesSuccessHandler = successHandler
+        servicesFailureHandler = failureHandler
         peripheral.discoverServices(ServiceInterested.serviceCBUUIDs(from: servicesInterested))
     }
     
@@ -175,7 +168,7 @@ extension Peripheral {
     /// - Throws: Error.preparingPeripheralServices
     public func invalidateAllServices() throws {
         if case State.preparing = state {
-            throw Error.preparingPeripheralServices
+            throw ServiceError.preparingPeripheralServices
         }
         cleanUp()
         transitState(to: .notReady)
@@ -191,11 +184,11 @@ extension Peripheral {
         do {
             try validateBluetoothConnection()
             guard let characteristic = characteristicsMap[characteristicUUID] else {
-                throw Error.notFoundCharacteristic(uuid: characteristicUUID)
+                throw ServiceError.notFoundCharacteristic(uuid: characteristicUUID)
             }
             peripheral.readValue(for: characteristic)
         } catch {
-            failureHandler(error as! Error)
+            failureHandler(error as! ServiceError)
         }
     }
     
@@ -207,7 +200,7 @@ extension Peripheral {
     public func writeData(_ data: Data, toCharacteristic characteristicUUID : String) throws {
         try validateBluetoothConnection()
         guard let dataChannel = dataChannel(by: characteristicUUID) else {
-            throw Error.notFoundCharacteristic(uuid: characteristicUUID)
+            throw ServiceError.notFoundCharacteristic(uuid: characteristicUUID)
         }
         dataChannel.sendData(data)
     }
@@ -221,16 +214,16 @@ fileprivate extension Peripheral {
         
         // 开始建立数据通道之前，检查下蓝牙是否可用，蓝牙设备是否已连接
         if case let .unavailable(reason) = InternalAvailability.availability {
-            throw Error.bluethoothUnavailable(reason: reason)
+            throw ServiceError.bluethoothUnavailable(reason: reason)
         }
         
         // 检查蓝牙外设是否已连接
         guard case .connected = peripheral.state else {
-            throw Error.peripheralNotConnected(reason: NotConnectedReason(connectionState)!)
+            throw ServiceError.peripheralNotConnected(reason: NotConnectedReason(connectionState)!)
         }
         
         if case State.preparing = state {
-            throw Error.preparingPeripheralServices
+            throw ServiceError.preparingPeripheralServices
         }
     }
     
@@ -257,22 +250,34 @@ fileprivate extension Peripheral {
         dataChannelsMap.removeAll()
         cacheForServiceInfos.removeAll()
     }
+    
+    func triggerServicesReady() {
+        runTaskOnMainThread { [weak self] in
+            guard let `self` = self else { return }
+            self.servicesSuccessHandler?(self.cacheForServiceInfos)
+        }
+    }
+    
+    func triggerServicesFailure(_ error: ServiceError) {
+        cleanUp()
+        runTaskOnMainThread { [weak self] in
+            guard let `self` = self else { return }
+            self.servicesFailureHandler?(error)
+        }
+    }
 }
 
 extension Peripheral: InternalPeripheralDelegate {
     
-    func peripheralIsReadyToSendData(_ peripheral: CBPeripheral) {
-        dataChannelsMap.values.forEach {
-            $0.peripheralIsReadyToSendData()
-        }
-    }
-    
-    func peripheralDidDiscoverServices(_ peripheral: CBPeripheral) {
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         
-        guard let services = peripheral.services else {
+        if error != nil {
+            transitState(to: .error(underlyingError: error!))
+            triggerServicesFailure(.underlyingError(error!))
             return
         }
         
+        guard let services = peripheral.services else { return }
         for service in services {
             let serviceInfo = ServiceInfo(uuid: service.uuid.uuidString, isPrimary: service.isPrimary)
             let characteristicUUIDs = ServiceInterested.characteristicCBUUIDs(from: serviceInterested, forService: service)
@@ -281,16 +286,14 @@ extension Peripheral: InternalPeripheralDelegate {
         }
     }
     
-    func peripheral(_ peripheral: CBPeripheral, didFailToDiscoverServices error: Swift.Error) {
-        transitState(to: .error(underlyingError: error))
-    }
-    
-    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService) {
-        
-        guard let characteristics = service.characteristics else {
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: Error?) {
+        if error != nil {
+            transitState(to: .error(underlyingError: error!))
+            triggerServicesFailure(.underlyingError(error!))
             return
         }
         
+        guard let characteristics = service.characteristics else { return }
         for characteristic in characteristics {
             
             let uuidString = characteristic.uuid.uuidString
@@ -316,24 +319,17 @@ extension Peripheral: InternalPeripheralDelegate {
         }
         
         transitState(to: .ready)
-        
-        runTaskOnMainThread { [weak self] in
-            guard let `self` = self else { return }
-            self.startChannelSuccessHandler?(self.cacheForServiceInfos)
+        triggerServicesReady()
+    }
+    
+    func peripheralIsReadyToSendData(_ peripheral: CBPeripheral) {
+        dataChannelsMap.values.forEach {
+            $0.peripheralIsReadyToSendData()
         }
     }
     
-    func peripheral(_ peripheral: CBPeripheral, didFailToDiscoverCharacteristicsForService service: CBService, error: Swift.Error) {
-        transitState(to: .error(underlyingError: error))
-    }
-    
-    func peripheral(_ peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic) {
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: Error?) {
         guard let data = characteristic.value, data.count > 0 else { return }
         receiveDataDelegate?.peripheralDidRecevieCharacteristicData(self, data: data, characteristicUUID: characteristic.uuid.uuidString)
     }
-    
-    func peripheral(_ peripheral: CBPeripheral, didFailToUpdateValueForCharacteristic characteristic: CBCharacteristic, error: Swift.Error) {
-        
-    }
-    
 }

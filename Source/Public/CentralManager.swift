@@ -195,6 +195,7 @@ extension CentralManager: CentralStateDelegate {
     }
     
     func triggerDisconnect(for peripheral: Peripheral) {
+        try? peripheral.invalidateAllServices()
         runTaskOnMainThread { [weak self] in
             guard let `self` = self else { return }
             self.delegate?.centralManager(self, peripheralDidDisconnect: peripheral)

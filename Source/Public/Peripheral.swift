@@ -166,7 +166,7 @@ extension Peripheral {
     /// 当蓝牙设备断开或想主动关闭通信通道，都需要调用这个方法.
     ///
     /// - Throws: Error.preparingPeripheralServices
-    public func invalidateAllServices() throws {
+    internal func invalidateAllServices() throws {
         if case State.preparing = state {
             throw ServiceError.preparingPeripheralServices
         }
@@ -179,8 +179,8 @@ extension Peripheral {
 
 extension Peripheral {
     
-    /// 读取指定的 ``characteristic` 的数据。
-    public func readData(from characteristicUUID: String, successHandler: (Data) -> Void, failureHandler: (Error) -> Void) {
+    /// 读取指定的 ``characteristic` 的数据。数据通过 `PeripheralReceiveDataDelegate` 返回。
+    public func readData(from characteristicUUID: String, failureHandler: (Error) -> Void) {
         do {
             try validateBluetoothConnection()
             guard let characteristic = characteristicsMap[characteristicUUID] else {

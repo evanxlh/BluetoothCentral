@@ -42,7 +42,7 @@ class BluetoothDeviceViewController: UIViewController {
     @objc private func prepareServicesToRead() {
         KRProgressHUD.showInfo(withMessage: "开启蓝牙服务中...")
         
-        let service = ServiceInterested(serviceUUID: dataServiceUUID, characteristicUUIDs: [readCharacteristicUUID, writeCharacteristicUUID, writeAndNotifyCharacteristicUUID])
+//        let service = ServiceInterested(serviceUUID: dataServiceUUID, characteristicUUIDs: [readCharacteristicUUID, writeCharacteristicUUID, writeAndNotifyCharacteristicUUID])
         peripheral.prepareServicesToReady([], successHandler: { (serviceInfos) in
             self.outputLog(serviceInfos.description)
         }) { (error) in
@@ -51,9 +51,7 @@ class BluetoothDeviceViewController: UIViewController {
     }
     
     @IBAction func readFromReadCharacteristic(_ sender: Any) {
-        peripheral.readData(from: readCharacteristicUUID, successHandler: { (_) in
-            
-        }) { (error) in
+        peripheral.readData(from: readCharacteristicUUID) { (error) in
             
         }
     }
@@ -69,9 +67,7 @@ class BluetoothDeviceViewController: UIViewController {
     }
     
     @IBAction func readFromWriteCharacteristic(_ sender: Any) {
-        peripheral.readData(from: writeCharacteristicUUID, successHandler: { (_) in
-            
-        }) { (error) in
+        peripheral.readData(from: writeCharacteristicUUID) { (error) in
             
         }
     }
@@ -87,9 +83,7 @@ class BluetoothDeviceViewController: UIViewController {
     
     
     @IBAction func readFromWriteAndNotifiyCharacteristic(_ sender: Any) {
-        peripheral.readData(from: writeAndNotifyCharacteristicUUID, successHandler: { (_) in
-            
-        }) { (error) in
+        peripheral.readData(from: writeAndNotifyCharacteristicUUID) { (error) in
             
         }
     }

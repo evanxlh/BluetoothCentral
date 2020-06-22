@@ -73,7 +73,7 @@ internal final class PeripheralDelegateProxy: NSObject, CBPeripheralDelegate {
         
     }
     
-    @available(iOS 11.0, *)
+    @available(iOS 11.0, watchOS 4.0, *)
     func peripheral(_ peripheral: CBPeripheral, didOpen channel: CBL2CAPChannel?, error: Error?) {
         
     }

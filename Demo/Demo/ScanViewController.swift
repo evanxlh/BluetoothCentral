@@ -16,6 +16,11 @@ class ScanViewController: UITableViewController {
     fileprivate var manager: CentralManager!
     fileprivate var discoveries = [PeripheralDiscovery]()
     fileprivate var isScanning = false
+    
+    deinit {
+        manager.removeAllBluetoothAvailabilityObservers()
+        manager.removeAllPeripheralDisconnectedObservers()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +28,12 @@ class ScanViewController: UITableViewController {
         updateNavigationTitle()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "开始扫描", style: .plain, target: self, action: #selector(startScan))
         manager = CentralManager()
-        manager.delegate = self
+        setupObservers()
+    }
+    
+    private func setupObservers() {
+        manager.addBluetoothAvailabilityObserver(self)
+        manager.addPeripheralDisconnectedObserver(self)
     }
     
     @objc fileprivate func startScan() {
@@ -120,7 +130,7 @@ class ScanViewController: UITableViewController {
     }
 }
 
-extension ScanViewController: CentralManagerDelegate {
+extension ScanViewController: BluetoothAvailabilityObserver, PeripheralDisconnectedObserver {
     
     func centralManager(_ centralManager: CentralManager, availabilityDidUpdate availability: Availability) {
         switch availability {

@@ -49,9 +49,8 @@ internal final class CentralDelegateProxy: NSObject, CBCentralManagerDelegate {
         // Not implemented
     }
     
-    func centralManager(_ central: CBCentralManager, didUpdateANCSAuthorizationFor peripheral: CBPeripheral) {
-        // Not implemented
-    }
+//    func centralManager(_ central: CBCentralManager, didUpdateANCSAuthorizationFor peripheral: CBPeripheral) {
+//    }
 }
 
 internal protocol CentralStateDelegate: AnyObject {

@@ -17,9 +17,9 @@ public protocol PeripheralReceiveDataDelegate: AnyObject {
 public class Peripheral: NSObject {
     
     fileprivate var lock = MutexLock()
-    fileprivate var _state: State = .notReady
     fileprivate let deleteProxy: PeripheralDelegateProxy
     fileprivate var serviceInterested = [ServiceInterested]()
+    fileprivate var _servicestate: ServiceState = .notReady
     
     /// [UUIDString: Any]
     fileprivate var dataChannelsMap = [String: SendDataChannel]()
@@ -30,6 +30,7 @@ public class Peripheral: NSObject {
     fileprivate var servicesFailureHandler: ((Error) -> Void)? = nil
     
     internal let peripheral: CBPeripheral
+    internal weak var manager: CentralManager? = nil
     
     public weak var receiveDataDelegate: PeripheralReceiveDataDelegate?
     
@@ -52,20 +53,6 @@ public class Peripheral: NSObject {
 // MARK: - 蓝牙设备的一些信息
 
 extension Peripheral {
-    
-    public enum State {
-        case notReady
-        case preparing
-        case ready
-        case error(underlyingError: Swift.Error)
-    }
-    
-    public enum ConnectionState: Int {
-        case connecting
-        case connected
-        case disconnecting
-        case disconnected
-    }
     
     public var connectionState: ConnectionState {
         switch peripheral.state {
@@ -94,9 +81,9 @@ extension Peripheral {
         return peripheral.name
     }
     
-    public var state: State {
+    public var servicestate: ServiceState {
         lock.lock()
-        let state = _state
+        let state = _servicestate
         lock.unlock()
         return state
     }
@@ -105,33 +92,6 @@ extension Peripheral {
 // MARK: - 服务准备 & 销毁
 
 extension Peripheral {
-    
-    public enum NotConnectedReason: Int {
-        case connecting
-        case disconnecting
-        case disconnected
-        
-        init?(_ connectionState: ConnectionState) {
-            switch connectionState {
-            case .connecting:
-                self = NotConnectedReason.connecting
-            case .disconnecting:
-                self = NotConnectedReason.disconnecting
-            case .disconnected:
-                self = NotConnectedReason.disconnected
-            default:
-                return nil
-            }
-        }
-    }
-    
-    public enum ServiceError: Swift.Error {
-        case bluethoothUnavailable(reason: UnavailabilityReason)
-        case peripheralNotConnected(reason: NotConnectedReason)
-        case preparingPeripheralServices
-        case notFoundCharacteristic(uuid: String)
-        case underlyingError(Error)
-    }
     
     /// 对已发现的 services 的缓存(UUID 与 ServiceInfo 健值对)。如果 servies not ready，则为空。
     /// 当 `prepareServicesToReady` 调用成功后，所有发现的 services 都会缓存在这里。
@@ -163,11 +123,16 @@ extension Peripheral {
         peripheral.discoverServices(ServiceInterested.serviceCBUUIDs(from: servicesInterested))
     }
     
+    /// 断开与蓝牙设备的连接
+    public func disconnect() {
+        manager?.disconnectPeripheral(self)
+    }
+    
     /// 当蓝牙设备断开或想主动关闭通信通道，都需要调用这个方法.
     ///
     /// - Throws: Error.preparingPeripheralServices
     internal func invalidateAllServices() throws {
-        if case State.preparing = state {
+        if case ServiceState.preparing = _servicestate {
             throw ServiceError.preparingPeripheralServices
         }
         cleanUp()
@@ -222,13 +187,13 @@ fileprivate extension Peripheral {
             throw ServiceError.peripheralNotConnected(reason: NotConnectedReason(connectionState)!)
         }
         
-        if case State.preparing = state {
+        if case ServiceState.preparing = _servicestate {
             throw ServiceError.preparingPeripheralServices
         }
     }
     
-    func transitState(to newState: State) {
-        _state = newState
+    func transitState(to newState: ServiceState) {
+        _servicestate = newState
     }
     
     func dataChannel(by characteristicUUID: String) -> SendDataChannel? {

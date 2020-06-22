@@ -57,7 +57,9 @@ public final class CentralManager: NSObject {
     
     /// MARK: - 监听系统蓝牙是否可用
     
-    /// 让 Observer 监听系统蓝牙是否可用事件。add 和 remove 需要成对使用。
+    /// 让 Observer 监听系统蓝牙是否可用事件。
+    ///
+    /// - 这里是对 `observer` 进行弱引用。
     public func addBluetoothAvailabilityObserver<Observer>(_ observer: Observer) where Observer: BluetoothAvailabilityObserver {
         let weakObserver = WeakObject(object: observer)
         if !availabilityObservers.contains(where: { $0 as! WeakObject<Observer> == weakObserver }) {
@@ -78,7 +80,9 @@ public final class CentralManager: NSObject {
     
     /// MARK: - 监听蓝牙设备断开
     
-    /// 让 Observer 监听蓝牙断开事件。add 和 remove 需要成对使用。
+    /// 让 Observer 监听蓝牙断开事件。
+    ///
+    /// - 这里是对 `observer` 进行弱引用。
     public func addPeripheralDisconnectedObserver<Observer>(_ observer: Observer) where Observer: PeripheralDisconnectedObserver {
         let weakObserver = WeakObject(object: observer)
         if !disconnectedObservers.contains(where: { $0 as! WeakObject<Observer> == weakObserver }) {

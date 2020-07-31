@@ -11,7 +11,7 @@ import CoreBluetooth
 /// 您给以给每个 `CBCharacteristic` 都创建一个数据通道用来发送数据。
 ///
 /// 支持发送任意数据，如果数据太大，data channel 会自动拆分成小数据包再发进行发送。
-internal class SendDataChannel: NSObject {
+class SendDataChannel: NSObject {
     
     fileprivate let maxDataLengthPerWrite: Int
     fileprivate let peripheral: CBPeripheral
@@ -20,20 +20,20 @@ internal class SendDataChannel: NSObject {
     fileprivate var sendDataTasks = [SendDataTask]()
     fileprivate var lock = MutexLock()
     
-    internal var hasDataTasksNotSent: Bool {
+    var hasDataTasksNotSent: Bool {
         lock.lock()
         let empty = sendDataTasks.isEmpty
         lock.unlock()
         return !empty
     }
     
-    internal init(peripheral: CBPeripheral, characteristic: CBCharacteristic) {
+    init(peripheral: CBPeripheral, characteristic: CBCharacteristic) {
         self.peripheral = peripheral
         self.characteristic = characteristic
         maxDataLengthPerWrite = peripheral.maximumWriteValueLength(for: .withoutResponse)
     }
     
-    internal func sendData(_ data: Data) {
+    func sendData(_ data: Data) {
         let dataTask = SendDataTask(data: data, maxDataLenghtCanSentOnce: maxDataLengthPerWrite)
         sendDataTasks.append(dataTask)
         processSendDataTasks()
@@ -43,12 +43,12 @@ internal class SendDataChannel: NSObject {
     ///
     /// 当 `CBPeripheral` 的代理方法: `peripheralIsReady(toSendWriteWithoutResponse:)` 被调用时，
     /// 调用此方法来通知 data channel 继续发送数据。
-    internal func peripheralIsReadyToSendData() {
+    func peripheralIsReadyToSendData() {
         processSendDataTasks()
     }
     
     /// 取消数据通道中的所有数据发送任务，比如蓝牙断开
-    internal func cancelAllSendDataTasks() {
+    func cancelAllSendDataTasks() {
         lock.lock()
         sendDataTasks.removeAll()
         lock.unlock()

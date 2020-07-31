@@ -14,14 +14,19 @@ public struct PeripheralDiscovery: Equatable {
     public let peripheral: Peripheral
     public let rssi: Int
     
+    /// 发现蓝牙设备的时间差：当前时间戳减去开始扫描的时间戳.
+    /// 也就是指明是在第几秒发现的。
+    public let timeOffset: TimeInterval
+    
     public var localName: String? {
         return advertisementData[CBAdvertisementDataLocalNameKey] as? String
     }
     
-    internal init(advertisementData: [String: Any], peripheral: Peripheral, rssi: NSNumber) {
+    init(advertisementData: [String: Any], peripheral: Peripheral, rssi: NSNumber, timeOffset: TimeInterval) {
         self.advertisementData = advertisementData
         self.peripheral = peripheral
         self.rssi = rssi.intValue
+        self.timeOffset = timeOffset
     }
 
     public static func == (lhs: PeripheralDiscovery, rhs: PeripheralDiscovery) -> Bool {

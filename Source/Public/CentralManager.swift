@@ -7,16 +7,6 @@
 import Foundation
 import CoreBluetooth
 
-/// 想要监听系统蓝牙是否可用事件的观察者需实现这个协议
-public protocol BluetoothAvailabilityObserver: AnyObject {
-    func centralManager(_ centralManager: CentralManager, availabilityDidUpdate availability: Availability)
-}
-
-/// 想要监听蓝牙设备断开事件的观察者需实现这个协议
-public protocol PeripheralDisconnectedObserver: AnyObject {
-    func centralManager(_ centralManager: CentralManager, peripheralDidDisconnect peripheral: Peripheral)
-}
-
 // MARK: - Object Lifecycle
 
 public final class CentralManager: NSObject {
@@ -27,12 +17,22 @@ public final class CentralManager: NSObject {
     fileprivate var connectionPool: ConnectionPool
     fileprivate var delegateProxy: CentralDelegateProxy
     
-    fileprivate var availabilityObservers = [AnyObject]()
-    fileprivate var disconnectedObservers = [AnyObject]()
+    fileprivate var _availabilityEvent = PublishSubject<Availability>()
+    fileprivate var _disconnectEvent = PublishSubject<Peripheral>()
     
     /// 系统蓝牙的可用状态
     public var availability: Availability {
         return Availability(state: manager.unifiedState)
+    }
+    
+    /// 系统蓝牙可用状态事件
+    public var availabilityEvent: Observable<Availability> {
+        return _availabilityEvent.asObservable()
+    }
+    
+    /// 蓝牙设备断开事件
+    public var peripheralDisconnectEvent: Observable<Peripheral> {
+        return _disconnectEvent.asObservable()
     }
     
     public override init() {
@@ -50,56 +50,6 @@ public final class CentralManager: NSObject {
         manager.delegate = delegateProxy
     }
     
-    deinit {
-        removeAllBluetoothAvailabilityObservers()
-        removeAllPeripheralDisconnectedObservers()
-    }
-    
-    /// MARK: - 监听系统蓝牙是否可用
-    
-    /// 让 Observer 监听系统蓝牙是否可用事件。
-    ///
-    /// - 这里是对 `observer` 进行弱引用。
-    public func addBluetoothAvailabilityObserver<Observer>(_ observer: Observer) where Observer: BluetoothAvailabilityObserver {
-        let weakObserver = WeakObject(object: observer)
-        if !availabilityObservers.contains(where: { $0 as! WeakObject<Observer> == weakObserver }) {
-            availabilityObservers.append(weakObserver)
-        }
-    }
-    
-    public func removeBluetoothAvailabilityObserver<Observer>(_ observer: Observer) where Observer: BluetoothAvailabilityObserver {
-        let weakObserver = WeakObject(object: observer)
-        if let index = availabilityObservers.firstIndex(where: { $0 as! WeakObject<Observer> == weakObserver}) {
-            availabilityObservers.remove(at: index)
-        }
-    }
-    
-    public func removeAllBluetoothAvailabilityObservers() {
-        availabilityObservers.removeAll()
-    }
-    
-    /// MARK: - 监听蓝牙设备断开
-    
-    /// 让 Observer 监听蓝牙断开事件。
-    ///
-    /// - 这里是对 `observer` 进行弱引用。
-    public func addPeripheralDisconnectedObserver<Observer>(_ observer: Observer) where Observer: PeripheralDisconnectedObserver {
-        let weakObserver = WeakObject(object: observer)
-        if !disconnectedObservers.contains(where: { $0 as! WeakObject<Observer> == weakObserver }) {
-            disconnectedObservers.append(weakObserver)
-        }
-    }
-    
-    public func removePeripheralDisconnectedObserver<Observer>(_ observer: Observer) where Observer: PeripheralDisconnectedObserver {
-        let weakObserver = WeakObject(object: observer)
-        if let index = disconnectedObservers.firstIndex(where: { $0 as! WeakObject<Observer> == weakObserver}) {
-            disconnectedObservers.remove(at: index)
-        }
-    }
-    
-    public func removeAllPeripheralDisconnectedObservers() {
-        disconnectedObservers.removeAll()
-    }
 }
 
 // MARK: - 蓝牙设备获取
@@ -111,18 +61,36 @@ public extension CentralManager {
         return connectionPool.connectedPeripherals
     }
     
-    func retrievePeripheral(withIdentifier identifier: UUID) -> CBPeripheral? {
+    /// 通过蓝牙设备的标识符 UUID 来获取蓝牙设备
+    func retrievePeripheral(withIdentifier identifier: UUID) -> Peripheral? {
         return retrievePeripherals(withIdentifiers: [identifier]).first
     }
     
-    func retrievePeripherals(withIdentifiers identifiers: [UUID]) -> [CBPeripheral] {
-        return manager.retrievePeripherals(withIdentifiers: identifiers)
+    /// 通过多个蓝牙设备的标识符 UUIDs 来获取多个蓝牙设备。如果获取不到，返回空数据
+    func retrievePeripherals(withIdentifiers identifiers: [UUID]) -> [Peripheral] {
+        let peripherals = manager.retrievePeripherals(withIdentifiers: identifiers)
+        return mapPeripherals(peripherals)
     }
     
-    /// 获取系统已连上的所有蓝牙设备，包括 其它 app 已连接上的蓝牙设备
+    /// 通过 service uuids 来获取系统已连上的所有蓝牙设备，包括 其它 app 已连接上的蓝牙设备
     func retrieveConnectedPeripherals(withServiceUUIDs uuidStrings: [String]) -> [Peripheral] {
         let uuids = uuidStrings.map { CBUUID(string: $0) }
-        return manager.retrieveConnectedPeripherals(withServices: uuids).map { Peripheral(peripheral: $0) }
+        let peripherals = manager.retrieveConnectedPeripherals(withServices: uuids)
+        return mapPeripherals(peripherals)
+    }
+    
+    private func mapPeripherals(_ peripherals: [CBPeripheral]) -> [Peripheral] {
+        var mapped = [Peripheral]()
+        for peripheral in peripherals {
+            if let cp = connectedPeripherals.filter( { $0.peripheral.identifier == peripheral.identifier }).first {
+                mapped.append(cp)
+            } else {
+                let newPeripheral = Peripheral(peripheral: peripheral)
+                newPeripheral._manager = self
+                mapped.append(newPeripheral)
+            }
+        }
+        return mapped
     }
 }
 
@@ -175,6 +143,26 @@ public extension CentralManager {
     enum PeripheralDiscoveryChange {
         case updated(PeripheralDiscovery, Int)
         case new(PeripheralDiscovery)
+        
+        /// 发现蓝牙设备的时间差：当前时间戳减去开始扫描的时间戳.
+        /// 也就是指明是在第几秒发现的。
+        public var timeOffset: TimeInterval {
+            switch self {
+            case let .updated(discovery, _),
+                 let .new(discovery):
+                
+                return discovery.timeOffset
+            }
+        }
+        
+        public var discovery: PeripheralDiscovery {
+            switch self {
+            case let .updated(aDiscovery, _):
+                return aDiscovery
+            case let .new(aDiscovery):
+                return aDiscovery
+            }
+        }
     }
     
     /// 开始扫描蓝牙设备
@@ -187,7 +175,14 @@ public extension CentralManager {
     func startScan(withMode mode: ScanMode, filter: ScanFilter? = nil, onProgress: ((_ change: PeripheralDiscoveryChange) -> Void)? = nil, onCompletion: @escaping ([PeripheralDiscovery]) -> Void, onError: ((ScanError) -> Void)? = nil) {
         do {
             let filter = filter ?? ScanFilter()
-            try scanner.startScan(withMode: mode, filter: filter, onProgress: onProgress, onCompletion: onCompletion)
+            try scanner.startScan(withMode: mode, filter: filter, onProgress: { [weak self] (change) in
+                
+                guard let `self` = self else { return }
+                change.discovery.peripheral._manager = self
+                onProgress?(change)
+                
+            }, onCompletion: onCompletion)
+            
         } catch {
             onError?(error as! ScanError)
         }
@@ -229,7 +224,7 @@ public extension CentralManager {
     ///   - onSuccess: 连接成功后触发
     ///   - onFailure: 连接过程中遇到错误时触发，详细错误见 `ConnectionError`
     func connect(withTimeout timeout: TimeInterval = 5, peripheral: Peripheral, onSuccess: @escaping ConnectionSuccessBlock, onFailure: @escaping ConnectionFailureBlock) {
-        peripheral.manager = self
+        peripheral._manager = self
         connectionPool.connectWithTimeout(timeout, peripheral: peripheral, onSuccess: onSuccess, onFailure: onFailure)
     }
     
@@ -247,11 +242,7 @@ extension CentralManager: CentralStateDelegate {
     func triggerAvailabilityUpdate(_ availability: Availability) {
         runTaskOnMainThread { [weak self] in
             guard let `self` = self else { return }
-            self.availabilityObservers.forEach {
-                guard let weakObject = $0 as? WeakObject<AnyObject> else { return }
-                guard let observer = weakObject.object as? BluetoothAvailabilityObserver else { return }
-                observer.centralManager(self, availabilityDidUpdate: availability)
-            }
+            self._availabilityEvent.publish(availability)
         }
     }
     
@@ -259,11 +250,7 @@ extension CentralManager: CentralStateDelegate {
         try? peripheral.invalidateAllServices()
         runTaskOnMainThread { [weak self] in
             guard let `self` = self else { return }
-            self.disconnectedObservers.forEach {
-                guard let weakObject = $0 as? WeakObject<AnyObject> else { return }
-                guard let observer = weakObject.object as? PeripheralDisconnectedObserver else { return }
-                observer.centralManager(self, peripheralDidDisconnect: peripheral)
-            }
+            self._disconnectEvent.publish(peripheral)
         }
     }
     

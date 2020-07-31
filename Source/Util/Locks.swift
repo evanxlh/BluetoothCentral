@@ -24,18 +24,18 @@ public protocol Lockable {
  */
 public final class Lock: Lockable {
     
-    private let internalLock: NSLock
+    private let _lock: NSLock
     
     public init() {
-        internalLock = NSLock()
+        _lock = NSLock()
     }
     
     public func lock() {
-        internalLock.lock()
+        _lock.lock()
     }
     
     public func unlock() {
-        internalLock.unlock()
+        _lock.unlock()
     }
 }
 
@@ -49,23 +49,23 @@ public final class Lock: Lockable {
  */
 public final class MutexLock: Lockable {
     
-    private var internalLock: pthread_mutex_t
+    private var _lock: pthread_mutex_t
     
     deinit {
-        pthread_mutex_destroy(&internalLock)
+        pthread_mutex_destroy(&_lock)
     }
     
     public init() {
-        internalLock = pthread_mutex_t()
-        pthread_mutex_init(&internalLock, nil)
+        _lock = pthread_mutex_t()
+        pthread_mutex_init(&_lock, nil)
     }
     
     public func lock() {
-        pthread_mutex_lock(&internalLock)
+        pthread_mutex_lock(&_lock)
     }
     
     public func unlock() {
-        pthread_mutex_unlock(&internalLock)
+        pthread_mutex_unlock(&_lock)
     }
 }
 
@@ -80,18 +80,18 @@ public final class MutexLock: Lockable {
 @available(iOS 10.0, *)
 public final class UnfairLock: Lockable {
     
-    private var internalLock: os_unfair_lock
+    private var _lock: os_unfair_lock
     
     public init() {
-        internalLock = os_unfair_lock()
+        _lock = os_unfair_lock()
     }
     
     public func lock() {
-        os_unfair_lock_lock(&internalLock)
+        os_unfair_lock_lock(&_lock)
     }
     
     public func unlock() {
-        os_unfair_lock_unlock(&internalLock)
+        os_unfair_lock_unlock(&_lock)
     }
 }
 
@@ -101,18 +101,18 @@ public final class UnfairLock: Lockable {
  */
 public final class SemaphoreLock: Lockable {
     
-    private let internalLock: DispatchSemaphore
+    private let _lock: DispatchSemaphore
     
     public init() {
-        internalLock = DispatchSemaphore(value: 1)
+        _lock = DispatchSemaphore(value: 1)
     }
     
     public func lock() {
-        internalLock.wait()
+        _lock.wait()
     }
     
     public func unlock() {
-        internalLock.signal()
+        _lock.signal()
     }
 }
 

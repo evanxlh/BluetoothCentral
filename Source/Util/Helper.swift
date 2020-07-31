@@ -6,11 +6,11 @@
 
 import Foundation
 
-internal enum InternalError: Error {
+enum InternalError: Error {
     case unknown
 }
 
-internal func runTaskOnMainThread(_ taskBlock: @escaping () -> Void) {
+func runTaskOnMainThread(_ taskBlock: @escaping () -> Void) {
     if Thread.isMainThread {
         taskBlock()
     } else {

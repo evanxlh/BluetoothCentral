@@ -8,7 +8,7 @@ import Foundation
 import CoreBluetooth
 
 /// 保存蓝牙尝试连接的信息，连接成功后会被移除。
-internal final class ConnectionAttempt: NSObject {
+final class ConnectionAttempt: NSObject {
 
     let timer: DispatchTimer
     let peripheral: Peripheral

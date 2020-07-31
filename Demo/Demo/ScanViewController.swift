@@ -9,18 +9,12 @@ import UIKit
 import CoreBluetooth
 import BluetoothCentral
 
-
-
 class ScanViewController: UITableViewController {
     
+    fileprivate let disposeBag = DisposeBag()
     fileprivate var manager: CentralManager!
     fileprivate var discoveries = [PeripheralDiscovery]()
     fileprivate var isScanning = false
-    
-    deinit {
-        manager.removeAllBluetoothAvailabilityObservers()
-        manager.removeAllPeripheralDisconnectedObservers()
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,12 +22,7 @@ class ScanViewController: UITableViewController {
         updateNavigationTitle()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "开始扫描", style: .plain, target: self, action: #selector(startScan))
         manager = CentralManager()
-        setupObservers()
-    }
-    
-    private func setupObservers() {
-        manager.addBluetoothAvailabilityObserver(self)
-        manager.addPeripheralDisconnectedObserver(self)
+        listenerEvents()
     }
     
     @objc fileprivate func startScan() {
@@ -128,22 +117,22 @@ class ScanViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         connectPeripheral(discoveries[indexPath.row].peripheral)
     }
-}
-
-extension ScanViewController: BluetoothAvailabilityObserver, PeripheralDisconnectedObserver {
     
-    func centralManager(_ centralManager: CentralManager, availabilityDidUpdate availability: Availability) {
-        switch availability {
-        case .available:
-            startScan()
-        case .unavailable(reason: let reason):
-            KRProgressHUD.showError(withMessage: reason.debugDescription)
-        }
-    }
-    
-    func centralManager(_ centralManager: CentralManager, peripheralDidDisconnect peripheral: Peripheral) {
-        navigationController?.popToRootViewController(animated: true)
-        print("现在还连接的设备: \(centralManager.connectedPeripherals)")
-        KRProgressHUD.showMessage("蓝牙[\(String(describing: peripheral.name))]断开连接了!!!")
+    private func listenerEvents() {
+        
+        manager.availabilityEvent.subscribe { [weak self] (availability) in
+            switch availability {
+            case .available:
+                self?.startScan()
+            case .unavailable(reason: let reason):
+                KRProgressHUD.showError(withMessage: reason.debugDescription)
+            }
+        }.dispose(by: disposeBag)
+        
+        manager.peripheralDisconnectEvent.subscribe { [weak self] (peripheral) in
+            self?.navigationController?.popToRootViewController(animated: true)
+            print("现在还连接的设备: \(String(describing: self?.manager.connectedPeripherals))")
+            KRProgressHUD.showMessage("蓝牙[\(String(describing: peripheral.name))]断开连接了!!!")
+        }.dispose(by: disposeBag)
     }
 }

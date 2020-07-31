@@ -16,7 +16,7 @@ public enum Availability: Equatable {
     /// Bluetooth LE 当前不可用，及其原因
     case unavailable(reason: UnavailabilityReason)
 
-    internal init(state: CentralState) {
+    init(state: CentralState) {
         switch state {
         case .poweredOn:
             self = .available
@@ -25,7 +25,7 @@ public enum Availability: Equatable {
         }
     }
     
-    internal func toUnifiedState() -> CentralState {
+    func toUnifiedState() -> CentralState {
         switch self {
         case .available:
             return .poweredOn
@@ -65,7 +65,7 @@ public enum UnavailabilityReason: CustomDebugStringConvertible {
     /// 未知的临时状态，Core Bluetooth 初始化完成，或重置后，此状态会被更新。
     case unknown
 
-    internal init(state: CentralState) {
+    init(state: CentralState) {
         switch state {
         case .poweredOff:
             self = .poweredOff
@@ -97,7 +97,7 @@ public enum UnavailabilityReason: CustomDebugStringConvertible {
         }
     }
     
-    internal func toUnifiedState() -> CentralState {
+    func toUnifiedState() -> CentralState {
         switch self {
         case .poweredOff:
             return .poweredOff

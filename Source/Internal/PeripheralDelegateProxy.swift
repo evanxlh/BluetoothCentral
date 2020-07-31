@@ -7,14 +7,14 @@
 import Foundation
 import CoreBluetooth
 
-internal protocol InternalPeripheralDelegate: AnyObject {
+protocol InternalPeripheralDelegate: AnyObject {
     func peripheralIsReadyToSendData(_ peripheral: CBPeripheral)
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?)
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: Error?)
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: Error?)
 }
 
-internal final class PeripheralDelegateProxy: NSObject, CBPeripheralDelegate {
+final class PeripheralDelegateProxy: NSObject, CBPeripheralDelegate {
     
     weak var delegate: InternalPeripheralDelegate?
     

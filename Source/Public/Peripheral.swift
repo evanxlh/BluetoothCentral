@@ -29,8 +29,12 @@ public class Peripheral: NSObject {
     fileprivate var servicesSuccessHandler: (([String: ServiceInfo]) -> Void)? = nil
     fileprivate var servicesFailureHandler: ((Error) -> Void)? = nil
     
-    internal let peripheral: CBPeripheral
-    internal weak var manager: CentralManager? = nil
+    let peripheral: CBPeripheral
+    weak var _manager: CentralManager? = nil
+    
+    public var manager: CentralManager? {
+        return _manager
+    }
     
     public weak var receiveDataDelegate: PeripheralReceiveDataDelegate?
     
@@ -131,7 +135,7 @@ extension Peripheral {
     /// 当蓝牙设备断开或想主动关闭通信通道，都需要调用这个方法.
     ///
     /// - Throws: Error.preparingPeripheralServices
-    internal func invalidateAllServices() throws {
+    func invalidateAllServices() throws {
         if case ServiceState.preparing = _servicestate {
             throw ServiceError.preparingPeripheralServices
         }
@@ -148,6 +152,7 @@ extension Peripheral {
     public func readData(from characteristicUUID: String, failureHandler: (Error) -> Void) {
         do {
             try validateBluetoothConnection()
+            try validateServiceReady()
             guard let characteristic = characteristicsMap[characteristicUUID] else {
                 throw ServiceError.notFoundCharacteristic(uuid: characteristicUUID)
             }
@@ -164,6 +169,7 @@ extension Peripheral {
     /// - Throws: 见 `DataChannelError`
     public func writeData(_ data: Data, toCharacteristic characteristicUUID : String) throws {
         try validateBluetoothConnection()
+        try validateServiceReady()
         guard let dataChannel = dataChannel(by: characteristicUUID) else {
             throw ServiceError.notFoundCharacteristic(uuid: characteristicUUID)
         }
@@ -189,6 +195,15 @@ fileprivate extension Peripheral {
         
         if case ServiceState.preparing = _servicestate {
             throw ServiceError.preparingPeripheralServices
+        }
+    }
+    
+    func validateServiceReady() throws {
+        if case .notReady = _servicestate {
+            throw ServiceError.serviceNotStart
+        }
+        if case let .error(underlyingError: error) = _servicestate {
+            throw ServiceError.underlyingError(error)
         }
     }
     

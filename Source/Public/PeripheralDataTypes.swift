@@ -49,6 +49,7 @@ extension Peripheral {
     public enum ServiceError: Swift.Error {
         case bluethoothUnavailable(reason: UnavailabilityReason)
         case peripheralNotConnected(reason: NotConnectedReason)
+        case serviceNotStart
         case preparingPeripheralServices
         case notFoundCharacteristic(uuid: String)
         case underlyingError(Error)

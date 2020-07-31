@@ -24,7 +24,7 @@ public struct ServiceInterested {
     }
 }
 
-internal extension ServiceInterested {
+extension ServiceInterested {
     
     static func serviceCBUUIDs(from filters: [ServiceInterested]) -> [CBUUID]? {
         if filters.count == 0 {  return nil }

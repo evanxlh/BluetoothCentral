@@ -7,19 +7,19 @@
 import Foundation
 import CoreBluetooth
 
-internal protocol ConnectionPoolDelegate: class {
+protocol ConnectionPoolDelegate: class {
     func connectionPool(_ connectionPool: ConnectionPool, peripheralDidDisconnect peripheral: Peripheral)
 }
 
 /// 负责蓝牙连接集中管理，
 /// 设计来自 [BluetoothKit](https://github.com/rhummelmose/BluetoothKit/blob/master/Source/BKConnectionPool.swift)。
-internal final class ConnectionPool {
+final class ConnectionPool {
     
     fileprivate var manager: CBCentralManager
     fileprivate var _connectionAttempts = [ConnectionAttempt]()
     fileprivate var _connectedPeripherals = [Peripheral]()
     
-    internal var connectedPeripherals: [Peripheral] {
+    var connectedPeripherals: [Peripheral] {
         return _connectedPeripherals
     }
     

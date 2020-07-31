@@ -8,7 +8,7 @@ import Foundation
 import CoreBluetooth
 
 ///  统一蓝牙状态(`CBCentralManagerState` 和 `CBManagerState`)，不用再为 iOS 不同版本 API 的差异而分心。
-internal enum CentralState: Int {
+enum CentralState: Int {
     
     /// 蓝牙已打开，可以正常使用
     case poweredOn
@@ -32,7 +32,7 @@ internal enum CentralState: Int {
 extension CBCentralManager {
     
     /// 不管是 `CBCentralManagerState`, 还是 `CBManagerState`, 统一成一个状态。
-    internal var unifiedState: CentralState {
+    var unifiedState: CentralState {
         switch state {
         case .poweredOn:
             return .poweredOn
@@ -53,7 +53,7 @@ extension CBCentralManager {
 }
 
 /// 内部维护的蓝牙可用性
-internal struct InternalAvailability {
+struct InternalAvailability {
     
     private static var _availability: Availability = .unavailable(reason: .unknown)
     

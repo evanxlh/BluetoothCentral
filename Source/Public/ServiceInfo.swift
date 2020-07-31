@@ -23,9 +23,9 @@ public struct ServiceInfo: Equatable {
         return _characteristicInfos
     }
     
-    internal var _characteristicInfos = [String: CharacteristicInfo]()
+    var _characteristicInfos = [String: CharacteristicInfo]()
     
-    internal init(uuid: String, isPrimary: Bool) {
+    init(uuid: String, isPrimary: Bool) {
         self.uuid = uuid
         self.isPrimary = isPrimary
     }
@@ -74,7 +74,7 @@ public struct CharacteristicInfo: Equatable {
         }
     }
     
-    internal init(uuid: String, properties: CBCharacteristicProperties, data: Data? = nil) {
+    init(uuid: String, properties: CBCharacteristicProperties, data: Data? = nil) {
         self.uuid = uuid
         self.properties = properties
         self.data = data

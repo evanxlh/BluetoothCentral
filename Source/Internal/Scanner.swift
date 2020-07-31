@@ -7,7 +7,7 @@
 import Foundation
 import CoreBluetooth
 
-internal final class Scanner {
+final class Scanner {
 
     // MARK: - Internal Stuff
     
@@ -24,6 +24,8 @@ internal final class Scanner {
     fileprivate var completionHandler: (([PeripheralDiscovery]) -> Void)?
     
     fileprivate let lock = MutexLock()
+    fileprivate var startTimestamp: TimeInterval = 0
+    
     fileprivate var _state = State.idle
     fileprivate var state: State {
         lock.lock()
@@ -48,6 +50,7 @@ internal final class Scanner {
             progressHandler = onProgress
             completionHandler = onCompletion
             
+            startTimestamp = CFAbsoluteTimeGetCurrent()
             let options = [CBCentralManagerScanOptionAllowDuplicatesKey: filter.isUpdateDuplicatesEnabled]
             centralManager.scanForPeripherals(withServices: filter.serviceUUIDs, options: options)
             processWorkingMode(mode)
@@ -129,8 +132,14 @@ extension Scanner: CentralDiscoveryDelegate {
         
         guard state == .scanning else { return }
         
+        let discoveryTimestamp = CFAbsoluteTimeGetCurrent()
         let aPeripheral = Peripheral(peripheral: peripheral)
-        let discovery = PeripheralDiscovery(advertisementData: advertisementData, peripheral: aPeripheral, rssi: rssi)
+        let discovery = PeripheralDiscovery(
+            advertisementData: advertisementData,
+            peripheral: aPeripheral,
+            rssi: rssi,
+            timeOffset: discoveryTimestamp - startTimestamp
+        )
         if let filter = scanFilter.customFilter, !filter(discovery) {
             return
         }

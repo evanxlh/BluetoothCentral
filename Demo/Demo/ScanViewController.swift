@@ -12,16 +12,18 @@ import BluetoothCentral
 class ScanViewController: UITableViewController {
     
     fileprivate let disposeBag = DisposeBag()
-    fileprivate var manager: CentralManager!
     fileprivate var discoveries = [PeripheralDiscovery]()
     fileprivate var isScanning = false
+    
+    fileprivate lazy var manager: CentralManager = {
+        return CentralManager()
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         KRProgressHUD.set(duration: 2.0)
         updateNavigationTitle()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "开始扫描", style: .plain, target: self, action: #selector(startScan))
-        manager = CentralManager()
         listenerEvents()
     }
     

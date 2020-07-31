@@ -5,36 +5,22 @@ Swift 实现的主设备端的蓝牙通信框架， 支持 扫描、连接管理
 
 ## CentralManager
 
-负责蓝牙设备的扫描、连接管理，以及系统蓝牙授权信息的状态更新。蓝牙操作都是在内部线程中进行，但 `delegate` 都会在主线程中进行。
+负责蓝牙设备的扫描、连接管理，以及系统蓝牙授权信息的状态更新。
 
-### 创建及代理实现
+### 创建
 
 ```swift
 class ScanViewController: UITableViewController {
     
-    fileprivate var manager: CentralManager!
+    fileprivate lazy var manager: CentralManager = {
+        return CentralManager()
+    }()
+  
     fileprivate var discoveries = [PeripheralDiscovery]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        manager = CentralManager()
-        manager.delegate = self
-    }
-}
-
-extension ScanViewController: CentralManagerDelegate {
-    
-    func centralManager(_ centralManager: CentralManager, availabilityDidUpdate availability: Availability) {
-        switch availability {
-        case .available:
-            startScan()
-        case .unavailable(reason: let reason):
-            showError(reason.debugDescription)
-        }
-    }
-    
-    func centralManager(_ centralManager: CentralManager, peripheralDidDisconnect peripheral: Peripheral) {
-        showMessage("蓝牙[\(String(describing: peripheral.name))]断开连接了!!!")
+        listenEvents()
     }
 }
 ```
@@ -84,6 +70,33 @@ manager.connect(withTimeout: 3.0, peripheral: peripheral, onSuccess: { (remotePe
 }) { (remotePeripheral, error) in
   // 连接失败
 }
+```
+
+
+
+### 事件监听
+
+#### 蓝牙状态监听
+
+```swift
+manager.availabilityEvent.subscribe { [weak self] (availability) in
+    switch availability {
+    case .available:
+        self?.startScan()
+    case .unavailable(reason: let reason):
+        // 收到蓝牙不可用的事件
+    }
+}.dispose(by: disposeBag)
+```
+
+
+
+#### 蓝牙断开事件监听
+
+```swift
+manager.peripheralDisconnectEvent.subscribe { [weak self] (peripheral) in
+  // 收到蓝牙断开事件
+}.dispose(by: disposeBag)
 ```
 
 

@@ -20,7 +20,7 @@ public class Observable<Value> {
         self.onDispose = onDispose
     }
     
-    public func subscribe(_ queue: DispatchQueue? = nil, _ observer: @escaping Observer) -> Disposable {
+    public func subscribe(observer: @escaping Observer, on queue: DispatchQueue = .main) -> Disposable {
         lock.lock()
         defer { lock.unlock() }
         

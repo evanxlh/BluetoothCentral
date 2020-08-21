@@ -1,5 +1,6 @@
 //
 //  PeripheralDiscovery.swift
+//  BluetoothCentral
 //
 //  Created by Evan Xie on 2/21/20.
 //

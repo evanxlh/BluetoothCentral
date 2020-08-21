@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreBluetooth
+import ObservationLite
 import BluetoothCentral
 
 class ScanViewController: UITableViewController {

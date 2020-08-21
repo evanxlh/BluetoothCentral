@@ -1,5 +1,6 @@
 //
 //  SendDataChannel.swift
+//  BluetoothCentral
 //
 //  Created by Evan Xie on 2020/6/1.
 //
@@ -16,6 +17,7 @@ class SendDataChannel: NSObject {
     fileprivate let maxDataLengthPerWrite: Int
     fileprivate let peripheral: CBPeripheral
     fileprivate let characteristic: CBCharacteristic
+    fileprivate let queue = DispatchQueue(label: "Queue.BluetoothCentral.SendDataChannel")
     
     fileprivate var sendDataTasks = [SendDataTask]()
     fileprivate var lock = MutexLock()
@@ -35,8 +37,8 @@ class SendDataChannel: NSObject {
     
     func sendData(_ data: Data) {
         let dataTask = SendDataTask(data: data, maxDataLenghtCanSentOnce: maxDataLengthPerWrite)
-        sendDataTasks.append(dataTask)
-        processSendDataTasks()
+        enqueue(dataTask)
+        doNext()
     }
     
     /// 告诉 data channel 可以继续发送数据了。
@@ -44,7 +46,7 @@ class SendDataChannel: NSObject {
     /// 当 `CBPeripheral` 的代理方法: `peripheralIsReady(toSendWriteWithoutResponse:)` 被调用时，
     /// 调用此方法来通知 data channel 继续发送数据。
     func peripheralIsReadyToSendData() {
-        processSendDataTasks()
+        doNext()
     }
     
     /// 取消数据通道中的所有数据发送任务，比如蓝牙断开
@@ -57,6 +59,25 @@ class SendDataChannel: NSObject {
 
 fileprivate extension SendDataChannel {
     
+    func enqueue(_ task: SendDataTask) {
+        lock.lock()
+        sendDataTasks.append(task)
+        lock.unlock()
+    }
+    
+    @discardableResult
+    func dequeue() -> SendDataTask? {
+        lock.lock()
+        defer { lock.unlock() }
+        return sendDataTasks.removeFirst()
+    }
+    
+    func doNext() {
+        queue.async { [weak self] in
+            self?.processSendDataTasks()
+        }
+    }
+    
     /// 处理数据发送队列中的等待任务。
     func processSendDataTasks() {
         guard hasDataTasksNotSent else {
@@ -65,8 +86,8 @@ fileprivate extension SendDataChannel {
         
         let nextTask = sendDataTasks.first!
         if nextTask.isAllDataSent {
-            sendDataTasks.removeFirst()
-            processSendDataTasks()
+            dequeue()
+            doNext()
             return
         }
         
@@ -82,8 +103,7 @@ fileprivate extension SendDataChannel {
             }
             
             nextTask.offset += nextSendData.count
-            processSendDataTasks()
-            return
+            doNext()
         }
     }
 }

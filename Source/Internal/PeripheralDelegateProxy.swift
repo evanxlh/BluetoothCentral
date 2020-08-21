@@ -1,5 +1,6 @@
 //
 //  PeripheralDelegateProxy.swift
+//  BluetoothCentral
 //
 //  Created by Evan Xie on 2020/6/2.
 //
@@ -73,7 +74,7 @@ final class PeripheralDelegateProxy: NSObject, CBPeripheralDelegate {
         
     }
     
-    @available(iOS 11.0, watchOS 4.0, *)
+    @available(iOS 11.0, watchOS 4.0, tvOS 11.0, *)
     func peripheral(_ peripheral: CBPeripheral, didOpen channel: CBL2CAPChannel?, error: Error?) {
         
     }

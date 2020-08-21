@@ -1,6 +1,7 @@
 //
 //  ConnectionAttempt.swift
-
+//  BluetoothCentral
+//
 //  Created by Evan Xie on 2/26/20.
 //
 

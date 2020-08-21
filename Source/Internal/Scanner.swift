@@ -1,5 +1,6 @@
 //
 //  Scanner.swift
+//  BluetoothCentral
 //
 //  Created by Evan Xie on 2/24/20.
 //

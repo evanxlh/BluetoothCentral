@@ -21,7 +21,7 @@ You can use [CocoaPods](http://cocoapods.org/) to install `BluetoothCetral` by a
 platform :ios, '9.0'
 use_frameworks!
 target 'MyApp' do
-    pod 'BluetoothCetral', '~> 1.0'
+    pod 'BluetoothCetral', '1.0.0'
 end
 ```
 

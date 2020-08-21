@@ -13,7 +13,7 @@ Pod::Spec.new do |spec|
   spec.tvos.deployment_target = '10.0'
   spec.watchos.deployment_target = '3.0'
 
-  spec.source       = { :git => 'https://github.com/evanxlh/BluetoothCentral.git', :tag => 'spec.version' }
+  spec.source       = { :git => 'https://github.com/evanxlh/BluetoothCentral.git', :tag => spec.version }
   spec.source_files  = 'Source/*.{swift}', 'Source/**/*.{swift}'
   
   spec.dependency 'ObservationLite'

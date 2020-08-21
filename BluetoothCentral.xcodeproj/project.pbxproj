@@ -125,7 +125,7 @@
 		20B7E0C324D3DB1F0077DCBE /* PeripheralDataTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralDataTypes.swift; sourceTree = "<group>"; };
 		20B7E0C424D3DB1F0077DCBE /* ServiceInterested.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceInterested.swift; sourceTree = "<group>"; };
 		20B7E0C524D3DB1F0077DCBE /* PeripheralDiscovery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralDiscovery.swift; sourceTree = "<group>"; };
-		20D21EE824EFC31A001A068B /* BluetoothCentral.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = BluetoothCentral.podspec; sourceTree = "<group>"; };
+		20D21EE824EFC31A001A068B /* BluetoothCentral.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = BluetoothCentral.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		20D21EEE24EFC37A001A068B /* BluetoothCentral.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BluetoothCentral.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6972AB09D2292FE6B9A3AC1D /* Pods-BluetoothCentral-watchOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BluetoothCentral-watchOS.release.xcconfig"; path = "Target Support Files/Pods-BluetoothCentral-watchOS/Pods-BluetoothCentral-watchOS.release.xcconfig"; sourceTree = "<group>"; };
 		6BD64AB83EDFAA4D26E7F193 /* Pods-BluetoothCentral-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BluetoothCentral-iOS.debug.xcconfig"; path = "Target Support Files/Pods-BluetoothCentral-iOS/Pods-BluetoothCentral-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -278,7 +278,6 @@
 				C6BF4F5E45BB596189083190 /* Pods-BluetoothCentral-watchOS.debug.xcconfig */,
 				6972AB09D2292FE6B9A3AC1D /* Pods-BluetoothCentral-watchOS.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
